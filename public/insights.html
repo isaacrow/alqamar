@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>تحليلات القمر</title>
+<link rel="icon" type="image/png" href="logo.png?v=2" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" />
+<link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css" />
+<style>
+  /* ---------- tokens (light) ---------- */
+  :root {
+    color-scheme: light;
+    --bg: #f1f0ec; --surface: #fcfcfb; --surface-2: #f4f3ef; --border: rgba(11,11,11,.10);
+    --ink: #0b0b0b; --ink-2: #52514e; --muted: #6f6d68; --accent: #2a78d6;
+    --grid: rgba(11,11,11,.10); --axis: rgba(11,11,11,.28); --track: rgba(11,11,11,.06);
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --other: #a8a7a1;
+    --on-s1: #fff; --on-s2: #fff; --on-s3: #fff; --on-s4: #0b0b0b; --on-s5: #fff; --on-s6: #fff; --on-other: #0b0b0b;
+    --heat-lo: #e7f0fc; --heat-hi: #0d366b;
+    --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 16px rgba(0,0,0,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #121211; --surface: #1a1a19; --surface-2: #222220; --border: rgba(255,255,255,.10);
+      --ink: #f0efec; --ink-2: #c3c2b7; --muted: #a3a29b; --accent: #3987e5;
+      --grid: rgba(255,255,255,.10); --axis: rgba(255,255,255,.26); --track: rgba(255,255,255,.07);
+      --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --other: #5f5e5a;
+      --on-s4: #fff; --on-other: #fff;
+      --heat-lo: #1f2a38; --heat-hi: #9ec5f4;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121211; --surface: #1a1a19; --surface-2: #222220; --border: rgba(255,255,255,.10);
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #a3a29b; --accent: #3987e5;
+    --grid: rgba(255,255,255,.10); --axis: rgba(255,255,255,.26); --track: rgba(255,255,255,.07);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --other: #5f5e5a;
+    --on-s4: #fff; --on-other: #fff;
+    --heat-lo: #1f2a38; --heat-hi: #9ec5f4;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: "Cairo", system-ui, sans-serif; font-size: 15px; line-height: 1.5; }
+  a { color: var(--accent); }
+  button { font: inherit; color: inherit; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ---------- top bar ---------- */
+  .top { position: sticky; top: 0; z-index: 1000; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .top-in { max-width: 1500px; margin: 0 auto; padding: 10px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; }
+  .brand img { height: 34px; width: auto; max-width: 90px; object-fit: contain; border-radius: 6px; }
+  .nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  .nav a { text-decoration: none; color: var(--ink-2); padding: 4px 12px; border-radius: 999px; font-size: .86rem; font-weight: 600; }
+  .nav a:hover { background: var(--track); color: var(--ink); }
+  .top-actions { margin-inline-start: auto; display: flex; gap: 8px; align-items: center; }
+  .btn { border: 1px solid var(--border); background: var(--surface); padding: 5px 12px; border-radius: 999px; cursor: pointer; font-size: .82rem; font-weight: 600; text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 6px; }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: transparent; }
+  .filters { max-width: 1500px; margin: 0 auto; padding: 0 20px 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .82rem; color: var(--ink-2); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 2px 4px 2px 10px; color: var(--ink); }
+  .chip b { font-weight: 700; color: var(--ink-2); font-size: .76rem; }
+  .chip button { border: 0; background: var(--track); width: 20px; height: 20px; border-radius: 50%; cursor: pointer; line-height: 1; }
+
+  main { max-width: 1500px; margin: 0 auto; padding: 18px 20px 60px; display: flex; flex-direction: column; gap: 18px; }
+  .section-title { font-size: 1.25rem; font-weight: 800; margin: 14px 0 0; scroll-margin-top: 150px; }
+  .section-sub { color: var(--ink-2); font-size: .86rem; margin-top: -10px; }
+
+  .fix-panel { margin-top: 14px; gap: 10px; }
+  .fix-row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--border); }
+  .fix-row .fx-help { color: var(--ink-2); font-size: .85rem; flex: 1 1 320px; }
+  .fix-row b { display: block; color: var(--ink); }
+  .fix-msg { padding: 10px 12px; border-radius: 10px; background: var(--bg, transparent); border: 1px solid var(--border); font-size: .9rem; line-height: 1.7; }
+  .fix-msg.err { border-color: #c0392b; }
+  .fix-table { width: 100%; border-collapse: collapse; font-size: .82rem; margin-top: 8px; }
+  .fix-table th, .fix-table td { text-align: start; vertical-align: top; padding: 6px 8px; border-top: 1px solid var(--border); overflow-wrap: anywhere; }
+  .fix-table th { color: var(--muted); font-weight: 600; }
+  .fix-table del { color: var(--ink-2); text-decoration-color: #c0392b; }
+  .fix-table ins { text-decoration: none; background: color-mix(in srgb, var(--accent) 16%, transparent); border-radius: 4px; padding: 0 3px; }
+  .fix-table .empty { color: var(--muted); font-style: italic; }
+  .fix-scroll { max-height: 420px; overflow: auto; }
+  .fix-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+  /* From https://css.glass */
+  .card {
+    background: rgba(255, 255, 255, 0.49);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.73);
+    padding: 14px 16px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  [data-theme="dark"] .card {
+    background: rgba(18, 24, 40, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  }
+  .card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .card-title { font-weight: 700; font-size: .98rem; }
+  .card-title .n { display: inline-block; min-width: 22px; color: var(--muted); font-weight: 600; font-size: .8rem; }
+  .card-sub { font-size: .76rem; color: var(--ink-2); margin-top: 2px; }
+  .toggle { font-size: .72rem; padding: 2px 10px; flex: none; }
+  .empty { text-align: center; color: var(--ink-2); font-size: .85rem; padding: 26px 8px; }
+
+  /* KPIs */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 12px; }
+  .kpi { padding: 12px 14px; }
+  .kpi-v { font-size: 1.7rem; font-weight: 800; line-height: 1.15; }
+  .kpi-l { font-size: .8rem; color: var(--ink-2); }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px; }
+  .fact { text-align: start; border: 1px solid var(--border); background: var(--surface); border-radius: 14px; padding: 10px 14px; cursor: pointer; font-size: .88rem; line-height: 1.6; }
+  .fact:hover { border-color: var(--accent); }
+  .fact b { font-size: 1.05rem; }
+
+  /* chart grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 14px; align-items: start; }
+  .grid .wide { grid-column: 1 / -1; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } main, .top-in, .filters { padding-inline: 16px; } }
+
+  /* bars */
+  .bars { display: flex; flex-direction: column; gap: 2px; }
+  .bar { display: grid; grid-template-columns: minmax(80px, 36%) 1fr auto; gap: 10px; align-items: center; padding: 4px 6px; border-radius: 8px; border: 0; background: none; width: 100%; text-align: start; cursor: pointer; }
+  .bar:hover, .bar:focus-visible { background: var(--track); outline: none; }
+  .bar:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+  .bar-l { font-size: .8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-t { height: 14px; display: flex; }
+  .bar-f { height: 100%; background: var(--s1); min-width: 2px; border-start-end-radius: 4px; border-end-end-radius: 4px; }
+  .bar-v { font-size: .76rem; color: var(--ink-2); white-space: nowrap; }
+  .bar-v .p { color: var(--ink); font-weight: 700; }
+
+  /* segmented */
+  .seg { display: flex; gap: 2px; height: 30px; }
+  .seg-p { height: 100%; border: 0; border-radius: 4px; cursor: pointer; min-width: 3px; font-size: .74rem; font-weight: 700; padding: 0 6px; white-space: nowrap; overflow: hidden; }
+  .seg-p:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 10px; font-size: .78rem; }
+  .legend button, .legend span { border: 0; background: none; padding: 2px 4px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+  .legend button:hover { background: var(--track); }
+  .legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; flex: none; }
+  .legend .p { color: var(--ink-2); }
+
+  /* columns */
+  svg .hit { fill: transparent; cursor: pointer; outline: none; }
+  svg .hit:hover, svg .hit:focus { fill: var(--track); }
+
+  /* heatmap */
+  .heat-wrap { overflow-x: auto; }
+  .heat { display: grid; gap: 2px; font-size: .72rem; min-width: max-content; }
+  .heat .hl { padding: 0 6px; display: flex; align-items: center; white-space: nowrap; max-width: 150px; overflow: hidden; text-overflow: ellipsis; color: var(--ink); }
+  .heat .hc { color: var(--muted); text-align: center; padding-top: 4px; }
+  .heat .hc.vert { writing-mode: vertical-rl; text-align: start; max-height: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; justify-self: center; padding: 0 0 4px; }
+  .heat .cell { height: 26px; min-width: 30px; border: 0; border-radius: 3px; cursor: pointer; font-size: .66rem; font-variant-numeric: tabular-nums; padding: 0; }
+  .heat .cell:hover, .heat .cell:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .heat .cell.zero { background: transparent; cursor: default; }
+  .heat-scale { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: .72rem; color: var(--ink-2); }
+  .heat-scale span.r { width: 120px; height: 8px; border-radius: 4px; background: linear-gradient(to left, var(--heat-lo), var(--heat-hi)); }
+
+  /* tables */
+  .twrap { display: none; max-height: 340px; overflow: auto; }
+  .card.as-table .twrap { display: block; }
+  .card.as-table .chart { display: none; }
+  table { width: 100%; border-collapse: collapse; font-size: .8rem; }
+  th, td { padding: 4px 8px; border-bottom: 1px solid var(--border); text-align: start; }
+  th { color: var(--ink-2); font-weight: 600; position: sticky; top: 0; background: var(--surface); }
+  td.n, th.n { text-align: end; font-variant-numeric: tabular-nums; }
+  tr[data-f1] { cursor: pointer; }
+  tr[data-f1]:hover td { background: var(--track); }
+
+  /* tooltip */
+  #tip { position: fixed; z-index: 3000; pointer-events: none; display: none; background: var(--surface); color: var(--ink); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); padding: 7px 10px; font-size: .8rem; max-width: 320px; line-height: 1.5; }
+  #tip .k { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-inline-end: 6px; }
+  #tip .hint { color: var(--muted); font-size: .72rem; margin-top: 2px; }
+
+  /* map */
+  #map { height: 620px; border-radius: 12px; z-index: 1; overflow: hidden; background: var(--surface-2); }
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
+  .seg button { border: 0; background: transparent; color: var(--ink-2); font: inherit; font-size: .78rem; padding: 4px 12px; cursor: pointer; }
+  .seg button.on { background: var(--accent); color: #fff; }
+  .map-bar .sw.ln { border-radius: 2px; height: 3px; width: 18px; }
+  .map-bar .sw.dash { background: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 7px) !important; }
+  .maplibregl-popup-content { font-family: "Cairo", sans-serif; direction: rtl; text-align: right; font-size: .82rem; background: var(--surface); color: var(--ink); border-radius: 10px; box-shadow: var(--shadow); }
+  .map-pop .maplibregl-popup-content { min-width: 240px; }
+  .map-hover .maplibregl-popup-content { padding: 6px 10px; pointer-events: none; }
+  .maplibregl-popup-anchor-top .maplibregl-popup-tip { border-bottom-color: var(--surface); }
+  .maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: var(--surface); }
+  .maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: var(--surface); }
+  .maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: var(--surface); }
+  .maplibregl-popup-close-button { color: var(--ink-2); font-size: 18px; }
+  .pop .hint { color: var(--muted); font-size: .72rem; }
+  .map-bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: .82rem; margin-bottom: 10px; }
+  .map-bar label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+  .map-bar .sw { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  .map-side { display: grid; grid-template-columns: 1fr 340px; gap: 14px; }
+  @media (max-width: 1000px) { .map-side { grid-template-columns: 1fr; } #map { height: 480px; } }
+  .rank { max-height: 620px; overflow: auto; }
+  .rank h4 { margin: 4px 0 6px; font-size: .86rem; }
+  .pop h3 { margin: 0 0 4px; font-size: 1rem; }
+  .pop .pop-sub { color: var(--ink-2); font-size: .8rem; margin-top: 2px; }
+  .pop .pop-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .pop .pop-actions .btn { text-decoration: none; font-size: .78rem; padding: 4px 10px; }
+  .pop .row { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; }
+  .pop button.link { border: 0; background: none; color: var(--accent); cursor: pointer; padding: 0; text-align: start; font-weight: 600; }
+  .pop ul { list-style: none; margin: 6px 0 0; padding: 0; max-height: 180px; overflow: auto; }
+  .pop li { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; border-top: 1px solid var(--border); }
+  .approx { color: var(--muted); font-size: .72rem; }
+
+  /* network */
+  .net-controls { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-size: .82rem; margin-bottom: 10px; }
+  .net-controls fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .net-controls label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+  .net-controls input[type=range] { width: 110px; }
+  #net { width: 100%; height: 680px; border-radius: 12px; background: var(--surface-2); touch-action: none; }
+  #net text { font-size: 11px; fill: var(--ink); paint-order: stroke; stroke: var(--surface-2); stroke-width: 3px; pointer-events: none; }
+  
+  #net .link { stroke: var(--ink-2); cursor: pointer; }
+  #net .dim { opacity: .08; }
+  .net-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(min(300px, 100%), 340px); gap: 12px; align-items: stretch; }
+  @media (max-width: 900px) { .net-wrap { grid-template-columns: 1fr; } }
+  .net-detail { border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); padding: 12px; max-height: 680px; overflow: auto; font-size: .82rem; }
+  .net-detail .nd-empty { color: var(--muted); line-height: 1.8; }
+  .net-detail h3 { margin: 0 0 2px; font-size: 1rem; }
+  .net-detail .nd-sub { color: var(--ink-2); margin-bottom: 8px; }
+  .net-detail .nd-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 10px; }
+  .net-detail h4 { margin: 12px 0 4px; font-size: .78rem; color: var(--ink-2); display: flex; justify-content: space-between; }
+  .nd-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto 22px; gap: 6px; align-items: center; width: 100%; padding: 3px 4px; border: 0; background: none; color: inherit; font: inherit; text-align: start; border-radius: 6px; cursor: pointer; }
+  .nd-row:hover, .nd-row:focus-visible { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+  .nd-row .l { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; }
+  .nd-row .l::before { content: ''; position: absolute; inset-inline-start: 0; bottom: -1px; height: 2px; width: var(--w, 0%); background: var(--c, var(--s1)); border-radius: 2px; opacity: .7; }
+  .nd-row .n { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .nd-row .lift { font-size: .7rem; padding: 0 5px; border-radius: 8px; border: 1px solid var(--border); color: var(--muted); }
+  .nd-row .lift.hi { color: var(--ink); border-color: var(--s1); }
+  .nd-row .add { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--ink-2); font-size: .8rem; line-height: 1; cursor: pointer; }
+  .nd-row .add:hover { color: var(--accent); border-color: var(--accent); }
+  .nd-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .nd-chips button { border: 1px solid var(--border); background: var(--surface); color: var(--ink); border-radius: 12px; padding: 2px 8px; font: inherit; font-size: .74rem; cursor: pointer; }
+  
+  .net-stage { position: relative; min-width: 0; }
+  #net3d { height: 680px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  .net3d-hint { position: absolute; bottom: 10px; inset-inline-start: 12px; font-size: .74rem; color: var(--muted); background: color-mix(in srgb, var(--surface) 80%, transparent); padding: 3px 8px; border-radius: 8px; pointer-events: none; }
+  .scene-tooltip { font-family: "Cairo", sans-serif !important; direction: rtl; text-align: right; background: var(--surface) !important; color: var(--ink) !important; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px !important; font-size: .8rem !important; }
+  
+  .net-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; margin-top: 8px; }
+  .net-legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-inline-end: 5px; }
+
+  /* galaxy: always a night sky, whatever the page theme */
+  .gx-wrap { position: relative; height: 760px; border-radius: 18px; overflow: hidden; background: #03050c; box-shadow: var(--shadow); color: #e8ecf6; }
+  .gx-wrap:fullscreen { height: 100vh; border-radius: 0; }
+  #gx { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+  #gx.hovering { cursor: pointer; }
+  .gx-ui { position: absolute; top: 12px; inset-inline-start: 12px; display: flex; flex-direction: column; gap: 6px; font-size: .78rem; max-width: min(560px, calc(100% - 24px));
+    background: rgba(8, 12, 28, .62); backdrop-filter: blur(8px); border: 1px solid rgba(140, 170, 255, .18); border-radius: 14px; padding: 8px 12px; }
+  .gx-more { display: flex; flex-direction: column; gap: 6px; }
+  .gx-ui.collapsed .gx-more { display: none; }
+  .gx-row { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; border: 0; margin: 0; padding: 0; }
+  .gx-brand { font-size: .95rem; letter-spacing: .3px; }
+  .gx-stat { color: #9fb0d6; }
+  .gx-ui label { display: inline-flex; gap: 5px; align-items: center; cursor: pointer; }
+  .gx-ui input[type=range] { width: 100px; accent-color: #5fd4ff; }
+  .gx-ui input[type=checkbox] { accent-color: #5fd4ff; }
+  .gx-ui input[type=text], #gxSearch { background: rgba(255,255,255,.08); border: 1px solid rgba(140,170,255,.25); color: #e8ecf6; border-radius: 8px; padding: 3px 8px; font: inherit; width: 170px; }
+  .gx-ui button { background: rgba(255,255,255,.08); border: 1px solid rgba(140,170,255,.25); color: #e8ecf6; border-radius: 8px; padding: 3px 9px; cursor: pointer; font-size: .76rem; }
+  .gx-ui button:hover { background: rgba(95,212,255,.18); }
+  .gx-type i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; box-shadow: 0 0 6px currentColor; }
+  .gx-legend { position: absolute; bottom: 12px; inset-inline-start: 12px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .76rem; color: #c9d3ea; pointer-events: none; }
+  .gx-legend i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-inline-end: 5px; }
+  .gx-info { position: absolute; top: 12px; inset-inline-end: 12px; width: 290px; max-height: calc(100% - 24px); overflow: auto; font-size: .8rem;
+    background: rgba(8, 12, 28, .74); backdrop-filter: blur(8px); border: 1px solid rgba(140, 170, 255, .22); border-radius: 14px; padding: 10px 12px; }
+  .gx-info h4 { margin: 0; font-size: 1rem; }
+  .gx-info .k { color: #9fb0d6; font-size: .74rem; }
+  .gx-info button { display: flex; justify-content: space-between; gap: 8px; width: 100%; background: none; border: 0; border-top: 1px solid rgba(140,170,255,.14); color: #e8ecf6; padding: 4px 2px; cursor: pointer; text-align: start; font-size: .78rem; }
+  .gx-info button:hover { background: rgba(95,212,255,.12); }
+  .gx-info button.main { color: #5fd4ff; font-weight: 700; border-top: 0; margin: 6px 0 2px; }
+  @media (max-width: 760px) { .gx-wrap { height: 620px; } .gx-info { display: none; } }
+
+  /* drawer */
+  #drawer { position: fixed; inset-block: 0; inset-inline-start: 0; width: min(560px, 100vw); background: var(--surface); border-inline-end: 1px solid var(--border); box-shadow: var(--shadow); z-index: 2500; transform: translateX(105%); transition: transform 200ms ease; display: flex; flex-direction: column; }
+  #drawer.open { transform: none; }
+  .dr-head { padding: 14px 16px 10px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+  .dr-title { font-weight: 800; font-size: 1.05rem; display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+  .dr-tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .8rem; }
+  .dr-tools select { font: inherit; border: 1px solid var(--border); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 3px 6px; }
+  .dr-list { overflow: auto; padding: 6px 10px 20px; flex: 1; }
+  .ms { display: block; text-decoration: none; color: var(--ink); padding: 9px 8px; border-bottom: 1px solid var(--border); border-radius: 8px; }
+  .ms:hover { background: var(--track); }
+  .ms-t { font-family: "Amiri", "Cairo", serif; font-weight: 700; font-size: 1.02rem; }
+  .ms-m { font-size: .76rem; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 2px 12px; }
+  .ms-issues { color: var(--s2); flex-basis: 100%; }
+  #shade { position: fixed; inset: 0; background: rgba(0,0,0,.25); z-index: 2400; display: none; }
+  #shade.on { display: block; }
+
+  #gate { max-width: 520px; margin: 80px auto; text-align: center; display: none; }
+  .loading { opacity: .55; transition: opacity 150ms; }
+
+  /* ---------- Network Controls (with clear check indicators) ---------- */
+  .net-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px 4px;
+    margin-bottom: 8px;
+  }
+  .net-row-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 14px;
+  }
+  .net-title {
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .net-stat {
+    font-size: 0.76rem;
+    color: var(--muted);
+    background: var(--track);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .net-types-fieldset {
+    border: 0;
+    margin: 0;
+    padding: 6px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    align-items: center;
+  }
+  .net-type-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.02);
+    transition: all 0.15s ease;
+  }
+  [data-theme="dark"] .net-type-label {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .net-type-label:hover {
+    background: var(--track);
+  }
+  .net-type-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin: 0;
+  }
+  .net-type-label.checked {
+    font-weight: 700;
+    background: rgba(42, 120, 214, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  .net-row-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    font-size: 0.82rem;
+  }
+  .ctrl-slider {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-2);
+  }
+  .ctrl-slider input[type="range"] {
+    width: 100px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .ctrl-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .ctrl-check input {
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  /* ---------- Galaxy UI Checkmarks & Pill Buttons ---------- */
+  .gx-btn-pill {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(140, 170, 255, 0.35);
+    color: #e8ecf6;
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .gx-btn-pill:hover {
+    background: rgba(95, 212, 255, 0.25);
+    border-color: #5fd4ff;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(95, 212, 255, 0.4);
+  }
+  .gx-type-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: opacity 0.15s ease;
+  }
+  .gx-type-label input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #5fd4ff;
+    cursor: pointer;
+    margin: 0;
+  }
+  .gx-type-label.unchecked {
+    color: #64748b !important;
+    opacity: 0.65;
+  }
+
+  /* ---------- Redesigned Glass Network 2D Canvas ---------- */
+  #net {
+    width: 100%;
+    height: 680px;
+    border-radius: 16px;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.98), rgba(240, 245, 253, 0.94));
+    box-shadow: inset 0 2px 16px rgba(42, 120, 214, 0.05);
+    border: 1px solid rgba(210, 222, 238, 0.8);
+    touch-action: none;
+  }
+  [data-theme="dark"] #net {
+    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.96), rgba(8, 12, 24, 0.98));
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 2px 24px rgba(0, 0, 0, 0.5);
+  }
+  #net .link {
+    cursor: pointer;
+    transition: stroke-opacity 0.2s ease, stroke-width 0.2s ease;
+    fill: none;
+  }
+  #net .node-group {
+    cursor: pointer;
+  }
+  #net .node-halo {
+    display: none;
+    animation: netPulse 2.2s infinite ease-in-out;
+    filter: drop-shadow(0 0 6px #38bdf8);
+  }
+  #net .node-group.sel .node-halo {
+    display: block;
+  }
+  #net .node-group.sel .node-body {
+    stroke: #38bdf8 !important;
+    stroke-width: 2.5px !important;
+  }
+  #net .node-group.added .node-body {
+    stroke-dasharray: 4 2;
+    stroke: #fbbf24 !important;
+    stroke-width: 2px !important;
+  }
+  @keyframes netPulse {
+    0%, 100% { stroke-opacity: 0.9; stroke-width: 2.5px; }
+    50% { stroke-opacity: 0.35; stroke-width: 4px; }
+  }
+  #net text.node-label {
+    font-family: 'Cairo', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    pointer-events: none;
+    user-select: none;
+    paint-order: stroke fill;
+    stroke: rgba(255, 255, 255, 0.92);
+    stroke-width: 3.5px;
+    stroke-linejoin: round;
+    fill: #0f172a;
+    transition: opacity 0.2s ease;
+  }
+  [data-theme="dark"] #net text.node-label {
+    stroke: rgba(15, 23, 42, 0.92);
+    fill: #f8fafc;
+  }
+  #net .dim {
+    opacity: 0.06 !important;
+  }
+
+
+  /* Fullscreen Map styling */
+  #mapCard:fullscreen,
+  #mapCard:-webkit-full-screen,
+  #mapCard.map-fullscreen {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    padding: 12px 16px !important;
+    border-radius: 0 !important;
+    z-index: 99999 !important;
+    background: var(--bg) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+  }
+  #mapCard:fullscreen #map,
+  #mapCard:-webkit-full-screen #map,
+  #mapCard.map-fullscreen #map {
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    border-radius: 12px !important;
+  }
+  #mapCard:fullscreen .map-bar,
+  #mapCard:-webkit-full-screen .map-bar,
+  #mapCard.map-fullscreen .map-bar {
+    margin-bottom: 8px !important;
+  }
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><img src="logo.png?v=2" alt="" /> تحليلات القمر</div>
+    <nav class="nav" aria-label="أقسام الصفحة">
+      <a href="#overview">نظرة عامة</a><a href="#map-sec">الخريطة</a><a href="#net-sec">شبكة العلاقات</a><a href="#gx-sec">المجرّة</a>
+      <a href="#time-sec">الزمن</a><a href="#place-sec">الأماكن</a><a href="#people-sec">الأشخاص والأعمال</a><a href="#phys-sec">المادة والحالة</a><a href="#cross-sec">التقاطعات</a><a href="#quality-sec">جودة البيانات</a>
+    </nav>
+    <div class="top-actions">
+      <button class="btn" id="themeBtn" type="button" aria-label="تبديل المظهر">◐ المظهر</button>
+      <a class="btn" href="./">العودة إلى الفهرس</a>
+    </div>
+  </div>
+  <div class="filters" id="filters"></div>
+</header>
+
+<div id="gate" class="card">
+  <h2>يجب تسجيل الدخول أولاً</h2>
+  <p>افتح الفهرس وسجّل الدخول، ثم ارجع إلى هذه الصفحة.</p>
+  <a class="btn primary" href="./">تسجيل الدخول</a>
+</div>
+
+<main id="app" hidden>
+  <h2 class="section-title" id="overview">نظرة عامة</h2>
+  <div class="section-sub">انقر أي رقم أو عمود أو نسبة أو خلية أو نقطة على الخريطة أو عقدة في الشبكة لعرض مخطوطاتها. ومن قائمة المخطوطات يمكنك تصفية الصفحة كلها بذلك الاختيار.</div>
+  <div class="kpis" id="kpis"></div>
+  <div class="facts" id="facts"></div>
+
+  <h2 class="section-title" id="map-sec">الخريطة: أين تُحفظ المخطوطات وأين نُسخت</h2>
+  <div class="section-sub">خرائط OpenStreetMap بمنظور ثلاثي الأبعاد: كل خزانة عمود بارتفاع عدد مخطوطاتها، والأقواس البنفسجية رحلة المخطوطة من مكان نسخها إلى الخزانة التي تحفظها اليوم، والخطوط المتقطعة تصل خزانتين تحفظان نسخاً من الأعمال نفسها. انقر خزانة لإبراز صلاتها، واسحب بالزر الأيمن (أو Ctrl) لتدوير المنظور.</div>
+  <div class="map-side">
+    <div class="card" id="mapCard">
+      <div class="map-bar">
+        <span class="seg" role="group" aria-label="المنظور"><button type="button" id="map3d" class="on">ثلاثي الأبعاد</button><button type="button" id="map2d">مسطّح</button></span>
+        <label><input type="checkbox" id="lyLibs" checked /> <span class="sw" style="background:var(--s1)"></span> الخزائن (أعمدة)</label>
+        <label><input type="checkbox" id="lyFlows" checked /> <span class="sw ln" style="background:var(--s5)"></span> من مكان النسخ إلى الخزانة</label>
+        <label><input type="checkbox" id="lyShared" checked /> <span class="sw ln dash" style="color:var(--s3)"></span> أعمال مشتركة بين خزانتين</label>
+        <label><input type="checkbox" id="lyCopied" checked /> <span class="sw" style="background:var(--s2)"></span> أماكن النسخ</label>
+        <label><input type="checkbox" id="lyHeld" /> <span class="sw" style="background:var(--s1); opacity:.45"></span> مدن الحفظ (مجموع)</label>
+        <span class="approx" id="mapNote"></span>
+        <button type="button" id="mapFullBtn" class="btn" style="margin-inline-start:auto; display:inline-flex; align-items:center; gap:6px; font-weight:700;">⛶ ملء الشاشة</button>
+      </div>
+      <div id="map" role="region" aria-label="خريطة الخزائن وأماكن النسخ"></div>
+    </div>
+    <div class="card rank" id="mapRank"></div>
+  </div>
+
+  <h2 class="section-title" id="net-sec">شبكة العلاقات</h2>
+  <div class="section-sub">كل عقدة قيمة (موضوع، لغة، قرن، دولة...) وحجمها عدد مخطوطاتها؛ وكل خط يربط قيمتين تجتمعان في مخطوطات واحدة، وسُمكه عددها. مرّر المؤشر لإبراز الجيران، واسحب العقد، وكبّر بعجلة الفأرة. انقر عقدة أو خطاً لعرض المخطوطات.</div>
+  <div class="card">
+    <div class="net-controls" id="netControlsCard">
+      <div class="net-row-top">
+        <div class="net-title"><b>🕸 أبعاد شبكة العلاقات</b> <span id="netTypeStat" class="net-stat num"></span></div>
+        <button type="button" id="netSelectAllBtn" class="btn" style="border-radius:999px;font-size:0.78rem;padding:3px 12px;font-weight:700">✓ تحديد الكل</button>
+        <span class="seg" role="group" aria-label="العرض">
+          <button type="button" id="net2d" class="on">شبكة بلورية 2D</button>
+          <button type="button" id="net3dBtn">فضاء بلوري 3D 🔮</button>
+        </span>
+      </div>
+      <fieldset id="netTypes" class="net-types-fieldset" aria-label="أبعاد الشبكة"></fieldset>
+      <div class="net-row-bottom">
+        <label class="ctrl-slider">عُقد لكل نوع <input type="range" id="netPer" min="4" max="30" value="14" /> <span id="netPerV" class="num">14</span></label>
+        <label class="ctrl-slider">أقل عدد للربط <input type="range" id="netMin" min="1" max="500" value="15" /> <span id="netMinV" class="num">15</span></label>
+        <label class="ctrl-check"><input type="checkbox" id="netLift" checked /> لوّن الروابط بقوة الارتباط (Lift)</label>
+        <button class="btn" type="button" id="netReset">⟲ إعادة الترتيب</button>
+        <button class="btn" type="button" id="netClearAdd" hidden>إزالة العُقد المضافة</button>
+      </div>
+    </div>
+    <div class="net-wrap">
+      <div class="net-stage">
+        <svg id="net" role="img" aria-label="شبكة العلاقات بين القيم"></svg>
+        <div id="net3d" hidden aria-label="شبكة العلاقات في فضاء ثلاثي الأبعاد: اسحب للتدوير، وعجلة الفأرة للتكبير، وانقر كرة لعرض صلاتها"></div>
+        <div class="net3d-hint" id="net3dHint" hidden>اسحب للتدوير · عجلة الفأرة للتكبير · انقر كرة لصلاتها، ومرتين لتوسيع الشبكة منها</div>
+      </div>
+      <aside class="net-detail" id="netDetail" aria-live="polite">
+        <div class="nd-empty">انقر أي عقدة لترى كل ما يرتبط بها: المؤلفين والأعمال والخزائن والنسّاخ والقرون وغيرها، مع العدد وقوة الارتباط. انقر مرتين لتوسيع الشبكة منها.</div>
+      </aside>
+    </div>
+    <div class="net-legend" id="netLegend"></div>
+  </div>
+  <div class="card" id="pairsCard">
+    <div class="card-head"><div><div class="card-title">أقوى الارتباطات في الشبكة</div><div class="card-sub">أزواج تجتمع أكثر مما تتوقعه الصدفة (Lift = المرصود ÷ المتوقع)، بحد أدنى للعدد. انقر صفاً لعرض مخطوطاته.</div></div></div>
+    <div id="pairs"></div>
+  </div>
+
+  <h2 class="section-title" id="gx-sec">مجرّة المعرفة</h2>
+  <div class="section-sub">الفهرس كله كمجرّة: الموضوعات نجوم مضيئة كبيرة، وحولها عناقيد مؤلفيها وأعمالها ومدنها ولغاتها وقرونها. الضوء الجاري على الخيوط يربط ما يجتمع في مخطوطات واحدة. اسحب للتنقل، وكبّر بالعجلة، ومرّر على نجمة لترى صلاتها، وانقر لعرض مخطوطاتها، وانقر مرتين للاقتراب منها.</div>
+  <div class="gx-wrap" id="gxWrap">
+    <canvas id="gx" aria-label="مجرّة العلاقات بين الموضوعات والمؤلفين والأعمال والأماكن" role="img"></canvas>
+    <div class="gx-ui">
+      <div class="gx-row"><b class="gx-brand">✦ مجرّة المعرفة</b><span id="gxStat" class="gx-stat num"></span><button type="button" id="gxSelectAllBtn" class="gx-btn-pill">✓ تحديد الكل</button><button type="button" id="gxCollapse" aria-expanded="true" style="margin-inline-start:auto">⚙ الإعدادات</button></div>
+      <div class="gx-more" id="gxMore">
+      <fieldset id="gxTypes" class="gx-row" aria-label="أنواع النجوم"></fieldset>
+      <div class="gx-row">
+        <label>الكثافة <input type="range" id="gxPer" min="10" max="60" value="35" /></label>
+        <label>أقل رابط <input type="range" id="gxMin" min="1" max="300" value="15" /></label>
+        <label><input type="checkbox" id="gxFlow" checked /> تدفّق الضوء</label>
+      </div>
+      <div class="gx-row">
+        <input id="gxSearch" list="gxList" placeholder="ابحث عن نجمة…" autocomplete="off" /><datalist id="gxList"></datalist>
+        <button type="button" id="gxFull">⛶ ملء الشاشة</button>
+        <button type="button" id="gxReset">⟲ إعادة</button>
+      </div>
+      </div>
+    </div>
+    <div class="gx-legend" id="gxLegend"></div>
+    <div class="gx-info" id="gxInfo" hidden></div>
+  </div>
+
+  <h2 class="section-title" id="time-sec">الزمن</h2>
+  <div class="grid" id="g-time"></div>
+  <h2 class="section-title" id="place-sec">الأماكن واللغات والخطوط</h2>
+  <div class="grid" id="g-place"></div>
+  <h2 class="section-title" id="people-sec">الأشخاص والأعمال</h2>
+  <div class="grid" id="g-people"></div>
+  <h2 class="section-title" id="phys-sec">المادة والحالة</h2>
+  <div class="grid" id="g-phys"></div>
+  <h2 class="section-title" id="cross-sec">التقاطعات</h2>
+  <div class="grid" id="g-cross"></div>
+  <h2 class="section-title" id="quality-sec">جودة البيانات: ما يحتاج إلى مراجعة</h2>
+  <div class="section-sub">فحوص آلية على كل السجلات. انقر أي مشكلة أو خلية لتظهر قائمة السجلات المعنية، وافتح كل سجل في الفهرس لتصحيحه، أو صدّر القائمة CSV لتوزيعها على المفهرسين.</div>
+  <div class="grid" id="g-quality"></div>
+  <section class="card fix-panel" id="fixPanel" hidden aria-labelledby="fixTitle">
+    <div class="card-title" id="fixTitle">إصلاحات جماعية</div>
+    <div class="card-sub">تُطبَّق على السجلات التي في نطاق التصفية الحالية للصفحة. كل سجل يُحفظ نسخةً جديدة في تاريخه، وتُؤخذ نسخة احتياطية من قاعدة البيانات قبل كل دفعة، ويمكن التراجع عن الدفعة كاملة. ما لا تتأكد منه القاعدة يُترك للمراجعة اليدوية.</div>
+    <div id="fixList"></div>
+    <div id="fixPreview"></div>
+    <div id="fixBatches"></div>
+  </section>
+</main>
+
+<div id="shade"></div>
+<aside id="drawer" aria-label="المخطوطات" aria-hidden="true">
+  <div class="dr-head">
+    <div class="dr-title"><span id="drTitle">المخطوطات</span><button class="btn" type="button" id="drClose" aria-label="إغلاق">✕</button></div>
+    <div class="dr-tools">
+      <span id="drCount" class="num"></span>
+      <label>ترتيب <select id="drSort"><option value="">ترتيب الفهرس</option><option value="date">الأقدم نسخاً</option><option value="leaves">الأكثر أوراقاً</option></select></label>
+      <button class="btn primary" type="button" id="drApply">تصفية الصفحة بهذا الاختيار</button>
+      <a class="btn" id="drExport" href="#" download title="كل السجلات في هذه القائمة، مع الحقول الأساسية ومشكلات البيانات">⬇ تصدير CSV</a>
+    </div>
+  </div>
+  <div class="dr-list" id="drList"></div>
+</aside>
+<div id="tip" role="tooltip"></div>
+
+<script src="vendor/maplibre/maplibre-gl.js"></script>
+<script src="vendor/3d-force-graph.js"></script>
+<script src="vendor/d3.min.js"></script>
+<script>
+"use strict";
+// ======================================================================
+// State: page filters ([dim, value] pairs) live in the URL (?f=dim:value), so a view can be shared.
+// ======================================================================
+const S = { filters: [], summary: null, geo: null, net: null, labels: {} };
+const fmt = n => Number(n || 0).toLocaleString('en-US');
+const pct = (n, d) => (d ? Math.round(1000 * n / d) / 10 : 0);
+const pctTxt = (n, d) => { const p = pct(n, d); return (p > 0 && p < 0.1 ? '<0.1' : p) + '٪'; };
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const $ = id => document.getElementById(id);
+// Inside Moon (same-origin frame through Moon's /alqamar proxy) a record opens in Moon's manuscripts screen;
+// on its own, in Al-Qamar's catalogue in a new tab.
+const IN_MOON = (() => { try { return window.parent !== window && !!window.parent.location.href; } catch (e) { return false; } })();
+const recordLink = idx => IN_MOON
+  ? `href="../manuscripts/#record=${Number(idx)}" target="_top"`
+  : `href="./#record=${Number(idx)}" target="_blank" rel="noopener"`;
+const compact = n => n >= 1000 ? (n >= 10000 ? Math.round(n / 1000) + 'K' : Math.round(n / 100) / 10 + 'K') : String(n);
+
+function readUrl() {
+  const p = new URLSearchParams(location.search);
+  S.filters = p.getAll('f').map(s => { const i = s.indexOf(':'); return [s.slice(0, i), s.slice(i + 1)]; }).filter(([d, v]) => d && v);
+}
+function writeUrl() {
+  const p = new URLSearchParams();
+  S.filters.forEach(([d, v]) => p.append('f', d + ':' + v));
+  history.replaceState(null, '', location.pathname + (S.filters.length ? '?' + p : '') + location.hash);
+}
+const qs = (filters, extra = {}) => {
+  const p = new URLSearchParams();
+  filters.forEach(([d, v]) => p.append('f', d + ':' + v));
+  Object.entries(extra).forEach(([k, v]) => p.set(k, v));
+  return p.toString();
+};
+async function api(path, filters, extra) {
+  const res = await fetch(`api/insights/${path}?${qs(filters, extra)}`);
+  if (res.status === 401 || res.status === 403) throw Object.assign(new Error('auth'), { auth: true });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return res.json();
+}
+// ======================================================================
+// Bulk fixes (quality section): preview -> apply -> undo
+// ======================================================================
+const can = p => !!(S.me && (S.me.permissions || []).includes(p));
+const FX = { preview: null };
+const shownVal = v => v ? esc(v.length > 160 ? v.slice(0, 160) + '…' : v) : '<span class="empty">فارغ</span>';
+const scopeTxt = () => S.filters.length ? 'في نطاق التصفية الحالية' : 'في كل الفهرس';
+async function loadFixes() {
+  if (!can('catalog:write')) { $('fixPanel').hidden = true; return; }
+  let data;
+  try { data = await api('fixes', []); } catch (e) { $('fixPanel').hidden = true; return; }
+  $('fixPanel').hidden = false;
+  const counts = Object.fromEntries((S.summary.charts.issue || []).map(x => [x.value, x.count]));
+  $('fixList').innerHTML = data.fixes.map(f => `
+    <div class="fix-row">
+      <div class="fx-help"><b>${esc(f.label)}</b>${esc(f.help)}<br><span class="num">${fmt(counts[f.id] || 0)}</span> سجلاً فيها هذه المشكلة ${scopeTxt()}.</div>
+      <button class="btn" type="button" data-fix="${esc(f.id)}" ${counts[f.id] ? '' : 'disabled'}>معاينة التغييرات</button>
+    </div>`).join('');
+  $('fixList').querySelectorAll('[data-fix]').forEach(b => b.addEventListener('click', () => previewFix(b.dataset.fix)));
+  renderBatches(data.batches);
+  if (FX.preview && FX.preview.key !== qs(S.filters, { fix: FX.preview.fix })) { FX.preview = null; $('fixPreview').innerHTML = ''; }
+}
+async function previewFix(fix) {
+  $('fixPreview').innerHTML = '<div class="fix-msg">جارٍ فحص السجلات…</div>';
+  let p;
+  try { p = await api('fix/preview', S.filters, { fix, limit: 40 }); }
+  catch (e) { $('fixPreview').innerHTML = '<div class="fix-msg err">تعذّرت المعاينة.</div>'; return; }
+  FX.preview = { ...p, key: qs(S.filters, { fix }) };
+  const reasons = Object.entries(p.skipped).map(([r, n]) => `${esc(r)}: <span class="num">${fmt(n)}</span>`).join('، ');
+  const rows = p.samples.map(s => s.changes.map((c, i) => `<tr>
+      ${i === 0 ? `<td rowspan="${s.changes.length}"><a ${recordLink(s.idx)}>${esc(s.title || ('#' + s.idx))}</a></td>` : ''}
+      <td>${esc(c.field)}</td><td><del>${shownVal(c.before)}</del></td><td><ins>${shownVal(c.after)}</ins></td></tr>`).join('')).join('');
+  const mayApply = can('catalog:approve');
+  $('fixPreview').innerHTML = `
+    <div class="fix-msg">
+      <b>${esc(p.label)}</b>: سيُصلَح <b class="num">${fmt(p.fixable)}</b> سجلاً ${scopeTxt()}.
+      ${p.skippedTotal ? `ويُترك <b class="num">${fmt(p.skippedTotal)}</b> للمراجعة اليدوية (${reasons}).` : ''}
+      ${p.fixable > p.samples.length ? `<br>هذه أول ${fmt(p.samples.length)} منها:` : ''}
+    </div>
+    ${rows ? `<div class="fix-scroll"><table class="fix-table"><thead><tr><th>المخطوطة</th><th>الحقل</th><th>قبل</th><th>بعد</th></tr></thead><tbody>${rows}</tbody></table></div>` : ''}
+    <div class="fix-actions">
+      ${p.fixable ? `<button class="btn primary" type="button" id="fixApply" ${mayApply ? '' : 'disabled'}>تطبيق على ${fmt(p.fixable)} سجلاً</button>` : ''}
+      ${p.skippedTotal ? `<button class="btn" type="button" id="fixLeft">عرض المتروكة للمراجعة</button>` : ''}
+      <button class="btn" type="button" id="fixCancel">إلغاء</button>
+      ${p.fixable && !mayApply ? '<span class="approx">التطبيق من صلاحية المدقق أو المدير؛ يمكنك تصدير القائمة وتسليمها لهم.</span>' : ''}
+    </div>`;
+  $('fixCancel').addEventListener('click', () => { FX.preview = null; $('fixPreview').innerHTML = ''; });
+  if ($('fixLeft')) $('fixLeft').addEventListener('click', () => openDrawer([['issue', fix]]));
+  if ($('fixApply')) $('fixApply').addEventListener('click', () => applyFix(p));
+}
+async function applyFix(p) {
+  if (!confirm(`سيُعدَّل ${fmt(p.fixable)} سجلاً (${p.label}).\nكل سجل يُحفظ نسخة جديدة، ويمكن التراجع عن الدفعة كاملة لاحقاً.\nمتابعة؟`)) return;
+  $('fixApply').disabled = true;
+  $('fixApply').textContent = 'جارٍ الحفظ…';
+  const res = await fetch(`api/insights/fix/apply?${qs(S.filters, { fix: p.fix })}`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ expect: p.fixable })
+  });
+  const out = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    $('fixPreview').innerHTML = `<div class="fix-msg err">${esc(out.error || 'تعذّر الحفظ')}</div>`;
+    return;
+  }
+  FX.preview = null;
+  await loadAll();
+  $('fixPreview').innerHTML = `<div class="fix-msg">تم: أُصلح <b class="num">${fmt(out.applied)}</b> سجلاً${out.skipped ? `، وبقي <b class="num">${fmt(out.skipped)}</b> للمراجعة اليدوية` : ''}. يمكنك التراجع من قائمة الدفعات أدناه.</div>`;
+}
+function renderBatches(list) {
+  if (!list.length) { $('fixBatches').innerHTML = ''; return; }
+  const mayUndo = can('catalog:approve');
+  $('fixBatches').innerHTML = `<div class="card-sub" style="margin-top:6px">آخر الدفعات</div>
+    <div class="fix-scroll">${list.map(b => `<div class="fix-row">
+      <div class="fx-help"><b>${esc(b.note.replace(/^إصلاح جماعي:\s*/, '').replace(/\s*#\w+$/, ''))}</b>
+        <span class="num">${fmt(b.count)}</span> سجلاً · <bdi>${esc(b.username)}</bdi> · <bdi class="num">${esc(new Date(b.at).toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short' }))}</bdi></div>
+      ${b.undone ? `<span class="approx">تم التراجع (${fmt(b.undone)})</span>` : (mayUndo ? `<button class="btn" type="button" data-undo="${esc(b.id)}">تراجع عن الدفعة</button>` : '')}
+    </div>`).join('')}</div>`;
+  $('fixBatches').querySelectorAll('[data-undo]').forEach(btn => btn.addEventListener('click', () => undoFix(btn)));
+}
+async function undoFix(btn) {
+  if (!confirm('إعادة كل سجلات هذه الدفعة إلى ما كانت عليه قبل الإصلاح؟\nالسجلات التي عُدّلت يدوياً بعد الإصلاح تُترك كما هي.')) return;
+  btn.disabled = true;
+  const res = await fetch(`api/insights/fix/undo?batch=${encodeURIComponent(btn.dataset.undo)}`, { method: 'POST' });
+  const out = await res.json().catch(() => ({}));
+  await loadAll();
+  $('fixPreview').innerHTML = res.ok
+    ? `<div class="fix-msg">أُعيد <b class="num">${fmt(out.undone)}</b> سجلاً${out.kept ? `، وتُرك <b class="num">${fmt(out.kept)}</b> لأنه عُدّل بعد الإصلاح` : ''}.</div>`
+    : `<div class="fix-msg err">${esc(out.error || 'تعذّر التراجع')}</div>`;
+}
+
+// a filter's readable label, remembered from whatever chart showed it
+const labelKey = (d, v) => d + ':' + v;
+function remember(d, v, label) { if (label) S.labels[labelKey(d, v)] = label; }
+
+// ======================================================================
+// Theme
+// ======================================================================
+(function theme() {
+  let saved = null;
+  try { saved = localStorage.getItem('alqamar_insights_theme'); } catch (e) {}
+  if (saved) document.documentElement.dataset.theme = saved;
+  $('themeBtn').addEventListener('click', () => {
+    const dark = getComputedStyle(document.documentElement).colorScheme.includes('dark');
+    const next = dark ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('alqamar_insights_theme', next); } catch (e) {}
+    if (S.summary) renderCharts();
+    if (S.net) drawNetwork();
+    applyMapTheme();
+    if (NET3.graph) drawNetwork3d();
+  });
+})();
+
+// ======================================================================
+// Loading
+// ======================================================================
+async function loadAll() {
+  writeUrl();
+  if (S.me === undefined) {
+    try { S.me = (await (await fetch('api/auth/me')).json()).user || null; } catch (e) { S.me = null; }
+    // export is a permission of its own (reviewers don't have it)
+    $('drExport').hidden = !(S.me && (S.me.permissions || []).includes('catalog:export'));
+  }
+  renderFilterChips();
+  document.body.classList.add('loading');
+  try {
+    const [summary, geo] = await Promise.all([api('summary', S.filters), api('geo', S.filters)]);
+    S.summary = summary; S.geo = geo;
+    $('gate').style.display = 'none';
+    $('app').hidden = false;
+    renderKpis(); renderFacts(); renderCharts(); renderMap();
+    loadFixes();
+    loadNetwork();
+    loadGalaxy();
+  } catch (e) {
+    if (e.auth) { $('gate').style.display = 'block'; $('app').hidden = true; }
+    else console.error(e);
+  } finally {
+    document.body.classList.remove('loading');
+  }
+}
+
+function renderFilterChips() {
+  const el = $('filters');
+  if (!S.filters.length) { el.innerHTML = '<span>النطاق: كل الفهرس.</span>'; return; }
+  const dl = (S.summary && S.summary.dimLabels) || {};
+  el.innerHTML = '<span>النطاق:</span>' + S.filters.map(([d, v], i) =>
+    `<span class="chip"><b>${esc(dl[d] || d)}</b> ${esc(S.labels[labelKey(d, v)] || v)} <button type="button" data-rm="${i}" aria-label="إزالة">×</button></span>`).join('') +
+    ' <button class="btn" type="button" id="clearF">مسح الكل</button>';
+  el.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { S.filters.splice(+b.dataset.rm, 1); loadAll(); });
+  $('clearF').onclick = () => { S.filters = []; loadAll(); };
+}
+
+function addPageFilters(pairs) {
+  for (const [d, v] of pairs) {
+    const i = S.filters.findIndex(([fd]) => fd === d);
+    if (i >= 0) S.filters[i] = [d, v]; else S.filters.push([d, v]);
+  }
+  closeDrawer();
+  loadAll();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ======================================================================
+// KPIs and auto-generated facts
+// ======================================================================
+function renderKpis() {
+  const s = S.summary;
+  const k = (v, l, f) => `<button class="card kpi fact" type="button" ${f ? `data-f1="${esc(f)}"` : 'disabled style="cursor:default"'}><div class="kpi-v num">${v}</div><div class="kpi-l">${l}</div></button>`;
+  $('kpis').innerHTML = [
+    k(fmt(s.total), 'مخطوطة في النطاق'),
+    k(fmt(s.distinct.authors), 'مؤلفاً مختلفاً'),
+    k(fmt(s.distinct.works), 'عملاً (عنواناً موحداً)'),
+    k(fmt(s.distinct.copyists), 'ناسخاً مسمّى'),
+    k(fmt(s.distinct.libraries), 'خزانة'),
+    k(pctTxt(s.dated, s.total), `مؤرخة النسخ (${fmt(s.dated)})`),
+    k(s.years ? `${s.years.median} هـ` : '—', s.years ? `وسيط سنة النسخ (80٪ بين ${s.years.p10} و${s.years.p90} هـ)` : 'سنة النسخ'),
+    k(fmt(s.avgLeaves), 'متوسط عدد الأوراق')
+  ].join('');
+}
+
+function renderFacts() {
+  const s = S.summary, c = s.charts, out = [];
+  const top = (arr) => arr && arr.length ? arr.reduce((a, b) => (b.count > a.count ? b : a)) : null;
+  const fact = (html, f1, f2) => out.push(`<button class="fact" type="button" data-f1="${esc(f1)}" ${f2 ? `data-f2="${esc(f2)}"` : ''}>${html}</button>`);
+  const life = c.gap.find(x => x.value === '0');
+  const gapBase = c.gap.reduce((a, b) => a + b.count, 0);
+  if (life) fact(`<b>${pctTxt(life.count, gapBase)}</b> من المخطوطات التي يُعرف تاريخ نسخها ووفاة مؤلفها نُسخت <b>في حياة المؤلف</b> (${fmt(life.count)} مخطوطة).`, 'gap:0');
+  const auto = c.copyistType.find(x => x.value === 'autograph');
+  if (auto) fact(`<b>${fmt(auto.count)}</b> مخطوطة بخط مؤلفها أو جامعها (${pctTxt(auto.count, s.total)}) — أثمن ما في الفهرس.`, 'copyistType:autograph');
+  const tc = top(c.century);
+  if (tc) fact(`أغزر قرون النسخ: <b>${esc(tc.label)}</b> بـ${fmt(tc.count)} مخطوطة (${pctTxt(tc.count, s.dated)} من المؤرخة).`, 'century:' + tc.value);
+  const mo = top(c.month);
+  if (mo) { const mBase = c.month.reduce((a, b) => a + b.count, 0); fact(`أكثر الشهور ذكراً في تواريخ النسخ: <b>${esc(mo.label)}</b> (${pctTxt(mo.count, mBase)} مما ذُكر شهره).`, 'month:' + mo.value); }
+  const wd = top(c.weekday);
+  if (wd) { const wBase = c.weekday.reduce((a, b) => a + b.count, 0); fact(`أكثر الأيام ذكراً لإتمام النسخ: <b>${esc(wd.label)}</b> (${pctTxt(wd.count, wBase)} مما ذُكر يومه).`, 'weekday:' + wd.value); }
+  const w = c.work[0];
+  if (w) fact(`أكثر الأعمال نسخاً: <b>${esc(w.label)}</b> بـ${fmt(w.count)} نسخة.`, 'work:' + w.value);
+  const cp = c.copyPlace[0];
+  if (cp) fact(`أكثر أماكن النسخ المسجلة: <b>${esc(cp.label)}</b> (${fmt(cp.count)} من ${fmt(s.withCopyPlace)} مخطوطة ذُكر مكان نسخها).`, 'copyPlace:' + cp.value);
+  const fl = S.geo && S.geo.flows[0];
+  if (fl) { const n = p => (S.geo.places.find(x => x.key === p) || {}).label || p; fact(`أكثر مسارات الانتقال: نُسخت في <b>${esc(n(fl.from))}</b> وتُحفظ اليوم في <b>${esc(n(fl.to))}</b> (${fmt(fl.count)} مخطوطة).`, 'copyPlace:' + fl.from, 'holdCity:' + fl.to); }
+  const inc = c.condition.filter(x => ['both', 'start', 'end', 'other'].includes(x.value)).reduce((a, b) => a + b.count, 0);
+  if (s.withDesc) fact(`<b>${pctTxt(inc, s.withDesc)}</b> من المخطوطات الموصوفة يُذكر فيها نقص أو خرم (${fmt(inc)} مخطوطة).`, 'condition:end');
+  $('facts').innerHTML = out.join('');
+}
+
+// ======================================================================
+// Chart catalogue: 25 charts. base = what the percentages are of.
+// ======================================================================
+const CHARTS = [
+  // time
+  { g: 'time', id: 'century', type: 'cols', wide: true, t: 'تواريخ النسخ عبر القرون الهجرية', sub: s => `${fmt(s.dated)} مخطوطة مؤرخة (${pctTxt(s.dated, s.total)}). القرن من أقدم تاريخ نسخ.`, base: s => s.dated },
+  { g: 'time', id: 'period', type: 'cols', wide: true, t: 'خط زمني دقيق: كل ربع قرن هجري', sub: () => 'يكشف القمم داخل القرن الواحد', base: s => s.dated, height: 200 },
+  { g: 'time', id: 'authorCentury', type: 'cols', t: 'قرن وفاة المؤلفين', sub: s => `من ${fmt(s.withAuthorDeath)} مخطوطة ذُكرت فيها سنة وفاة المؤلف (ت ...هـ)`, base: s => s.withAuthorDeath },
+  { g: 'time', id: 'gap', type: 'cols', t: 'كم بعد وفاة المؤلف نُسخت المخطوطة؟', sub: () => 'سنة النسخ ناقص سنة وفاة المؤلف (الهجريتين)', base: s => sumOf(s.charts.gap), labelAll: true },
+  { g: 'time', id: 'month', type: 'cols', t: 'شهر النسخ الهجري', sub: s => `من التواريخ التي يُذكر فيها الشهر`, base: s => sumOf(s.charts.month), labelAll: true },
+  { g: 'time', id: 'weekday', type: 'cols', t: 'يوم إتمام النسخ', sub: () => 'من التواريخ التي يُذكر فيها اليوم', base: s => sumOf(s.charts.weekday), labelAll: true },
+  { g: 'time', id: 'timeOfDay', type: 'bars', t: 'وقت النسخ المذكور', sub: () => 'من حرود المتن التي تذكر الوقت (ليلة، العصر، الضحى...)', base: s => sumOf(s.charts.timeOfDay) },
+  // place, language, script
+  { g: 'place', id: 'lang', type: 'seg', t: 'لغات المخطوطات', sub: () => 'المخطوطة متعددة اللغات تُحسب في كل لغاتها', base: s => s.total, fold: 5 },
+  { g: 'place', id: 'country', type: 'bars', t: 'دول الحفظ اليوم', sub: () => 'حسب موقع الخزانة', base: s => s.total },
+  { g: 'place', id: 'holdCity', type: 'bars', t: 'مدن الحفظ', sub: () => 'أكبر 15 مدينة', base: s => s.total },
+  { g: 'place', id: 'library', type: 'bars', t: 'أكبر الخزائن', sub: () => 'أكبر 15 خزانة', base: s => s.total },
+  { g: 'place', id: 'copyPlace', type: 'bars', t: 'أماكن النسخ', sub: s => `من ${fmt(s.withCopyPlace)} مخطوطة ذُكر مكان نسخها`, base: s => s.withCopyPlace },
+  { g: 'place', id: 'copyCountry', type: 'bars', t: 'بلدان النسخ (بحدود اليوم)', sub: s => `من ${fmt(s.withCopyPlace)} مخطوطة ذُكر مكان نسخها`, base: s => s.withCopyPlace },
+  { g: 'place', id: 'script', type: 'bars', t: 'أنواع الخطوط', sub: s => `من ${fmt(sumOf(s.charts.script))} تسجيلاً لنوع الخط`, base: s => sumOf(s.charts.script) },
+  // people & works
+  { g: 'people', id: 'subject', type: 'bars', t: 'أكثر الموضوعات', sub: () => 'أكبر 15 موضوعاً', base: s => s.total },
+  { g: 'people', id: 'author', type: 'bars', t: 'أكثر المؤلفين حضوراً', sub: () => 'عدد النسخ لكل مؤلف', base: s => s.total },
+  { g: 'people', id: 'work', type: 'bars', t: 'أكثر الأعمال نسخاً', sub: () => 'العنوان الأول قبل «=»', base: s => s.total },
+  { g: 'people', id: 'copyist', type: 'bars', t: 'أغزر النسّاخ', sub: () => 'النسّاخ المسمّون فقط', base: s => sumOf(s.charts.copyist, true) || s.total, baseNote: 'من النسخ ذات الناسخ المسمّى' },
+  { g: 'people', id: 'copyistType', type: 'seg', t: 'من نسخ المخطوطة؟', sub: () => 'مسمّى، مجهول، بخط المؤلف، أو لم يُسجّل', base: s => s.total, fold: 5 },
+  // physical & condition
+  { g: 'phys', id: 'leaves', type: 'cols', t: 'حجم المخطوطات (عدد الأوراق)', sub: s => `متوسط ${fmt(s.avgLeaves)} ورقة`, base: s => s.withLeaves, labelAll: true },
+  { g: 'phys', id: 'feature', type: 'bars', t: 'السمات المادية المذكورة في الوصف', sub: s => `من ${fmt(s.withDesc)} مخطوطة لها وصف`, base: s => s.withDesc },
+  { g: 'phys', id: 'condition', type: 'seg', t: 'حالة الاكتمال', sub: () => 'مما يذكره وصف النسخة', base: s => s.total, fold: 6 },
+  // cross
+  { g: 'cross', id: 'heat0', type: 'heat', heat: 0, wide: true, t: 'الموضوعات عبر القرون', sub: () => 'كل خلية عدد مخطوطات الموضوع في ذلك القرن' },
+  { g: 'cross', id: 'heat1', type: 'heat', heat: 1, wide: true, t: 'اللغات عبر القرون', sub: () => 'متى صعدت الفارسية والتركية؟' },
+  { g: 'cross', id: 'heat2', type: 'heat', heat: 2, wide: true, t: 'دول الحفظ عبر قرون النسخ', sub: () => 'أي القرون تحفظها كل دولة' },
+  // data quality
+  { g: 'quality', id: 'issue', type: 'bars', t: 'المشكلات المكتشفة', sub: s => `النسبة من كل مخطوطات النطاق (${fmt(s.total)})`, base: s => s.total },
+  { g: 'quality', id: 'completeness', type: 'cols', t: 'درجة اكتمال السجلات', sub: () => 'كم حقلاً من الحقول العشرة الأساسية مسجّل في كل مخطوطة', base: s => s.total, labelAll: true },
+  { g: 'quality', id: 'heat3', type: 'heat', heat: 3, wide: true, t: 'المشكلات في كل خزانة', sub: () => 'أكبر 15 خزانة: أين يبدأ عمل التصحيح' }
+];
+function sumOf(arr) { return (arr || []).reduce((a, b) => a + b.count, 0); }
+
+function renderCharts() {
+  const s = S.summary;
+  const groups = { time: [], place: [], people: [], phys: [], cross: [], quality: [] };
+  CHARTS.forEach((c, i) => groups[c.g].push([c, i + 1]));
+  for (const [g, list] of Object.entries(groups)) {
+    const host = $('g-' + g);
+    const wasTable = new Set([...host.querySelectorAll('.card.as-table')].map(x => x.dataset.id));
+    host.innerHTML = list.map(([c, n]) => `
+      <section class="card ${c.wide ? 'wide' : ''} ${wasTable.has(c.id) ? 'as-table' : ''}" data-id="${c.id}">
+        <div class="card-head">
+          <div><div class="card-title"><span class="n num">${n}.</span>${esc(c.t)}</div><div class="card-sub">${c.sub(s)}</div></div>
+          <button class="btn toggle" type="button" data-toggle>${wasTable.has(c.id) ? 'رسم' : 'جدول'}</button>
+        </div>
+        <div class="body" id="c-${c.id}"></div>
+      </section>`).join('');
+    for (const [c] of list) {
+      const el = $('c-' + c.id);
+      if (c.type === 'heat') { heatmap(el, s.heatmaps[c.heat]); continue; }
+      const items = s.charts[c.id] || [];
+      items.forEach(x => remember(c.id, x.value, x.label));
+      const base = c.base(s);
+      if (c.type === 'bars') bars(el, items, base, c.id);
+      else if (c.type === 'seg') segmented(el, items, base, c.id, c.fold);
+      else columns(el, items, base, c.id, c);
+    }
+  }
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-toggle]');
+  if (t) { const card = t.closest('.card'); const on = card.classList.toggle('as-table'); t.textContent = on ? 'رسم' : 'جدول'; }
+});
+
+// table (every row opens its manuscripts)
+function table(head, rows) {
+  return `<div class="twrap"><table><thead><tr>${head.map((h, i) => `<th class="${i ? 'n' : ''}">${esc(h)}</th>`).join('')}</tr></thead><tbody>${
+    rows.map(r => `<tr ${r.f ? `data-f1="${esc(r.f)}" ${r.f2 ? `data-f2="${esc(r.f2)}"` : ''} data-tip-label="${esc(r.cells[0])}"` : ''} tabindex="${r.f ? 0 : -1}">${r.cells.map((c, i) => `<td class="${i ? 'n' : ''}">${typeof c === 'number' ? fmt(c) : esc(c)}</td>`).join('')}</tr>`).join('')
+  }</tbody></table></div>`;
+}
+const fAttr = (dim, v) => `data-f1="${esc(dim + ':' + v)}"`;
+
+function bars(el, items, base, dim) {
+  if (!items.length) { el.innerHTML = '<div class="empty">لا توجد بيانات في هذا النطاق.</div>'; return; }
+  const max = Math.max(...items.map(i => i.count), 1);
+  el.innerHTML = `<div class="chart bars">${items.map(it => `
+    <button type="button" class="bar" ${fAttr(dim, it.value)} data-tip="${esc(`<b>${esc(it.label)}</b><br>${fmt(it.count)} مخطوطة · ${pctTxt(it.count, base)}`)}" aria-label="${esc(it.label)}: ${fmt(it.count)} (${pctTxt(it.count, base)})">
+      <span class="bar-l">${esc(it.label)}</span>
+      <span class="bar-t"><span class="bar-f" style="width:${Math.max(0.5, 100 * it.count / max)}%"></span></span>
+      <span class="bar-v num"><bdi>${fmt(it.count)}</bdi> · <span class="p">${pctTxt(it.count, base)}</span></span>
+    </button>`).join('')}</div>` + table(['القيمة', 'المخطوطات', '٪'], items.map(it => ({ f: dim + ':' + it.value, cells: [it.label, it.count, pctTxt(it.count, base)] })));
+}
+
+function segmented(el, items, total, dim, fold) {
+  if (!items.length || !total) { el.innerHTML = '<div class="empty">لا توجد بيانات في هذا النطاق.</div>'; return; }
+  const head = items.slice(0, fold);
+  const rest = items.slice(fold);
+  const restN = sumOf(rest);
+  const parts = head.map((p, i) => ({ ...p, color: `var(--s${i + 1})`, ink: `var(--on-s${i + 1})` }));
+  if (restN) parts.push({ value: '', label: 'أخرى', count: restN, color: 'var(--other)', ink: 'var(--on-other)', other: true });
+  el.innerHTML = `<div class="chart"><div class="seg">${parts.map(p => {
+    const tip = `<span class="k" style="background:${p.color}"></span><b>${esc(p.label)}</b><br>${fmt(p.count)} مخطوطة · ${pctTxt(p.count, total)}${p.other ? '<br>' + esc(rest.slice(0, 6).map(r => r.label).join('، ')) : ''}`;
+    return `<button type="button" class="seg-p" style="flex:${p.count} 1 0; background:${p.color}; color:${p.ink}" ${p.other ? '' : fAttr(dim, p.value)} data-tip="${esc(tip)}" aria-label="${esc(p.label)}: ${pctTxt(p.count, total)}"><span class="st">${pct(p.count, total) >= 4 ? Math.round(pct(p.count, total)) + '٪' : ''}</span></button>`;
+  }).join('')}</div>
+  <div class="legend">${parts.map(p => `<${p.other ? 'span' : 'button type="button"'} ${p.other ? '' : fAttr(dim, p.value)} data-tip="${esc(`<b>${esc(p.label)}</b><br>${fmt(p.count)} · ${pctTxt(p.count, total)}`)}"><i style="background:${p.color}"></i>${esc(p.label)} <span class="p num">${pctTxt(p.count, total)}</span></${p.other ? 'span' : 'button'}>`).join('')}</div></div>` +
+  table(['القيمة', 'المخطوطات', '٪'], items.map(it => ({ f: dim + ':' + it.value, cells: [it.label, it.count, pctTxt(it.count, total)] })));
+  requestAnimationFrame(() => el.querySelectorAll('.seg-p').forEach(b => { const t = b.querySelector('.st'); if (t && t.offsetWidth + 10 > b.clientWidth) t.textContent = ''; }));
+}
+
+// SVG columns, single series. RTL: the first item sits on the right next to the axis.
+const colObserver = new ResizeObserver(entries => entries.forEach(en => {
+  const t = en.target;
+  if (t._cols && Math.abs((t._w || 0) - t.clientWidth) > 8) columns(t, ...t._cols);
+}));
+function columns(el, items, base, dim, opts) {
+  el._cols = [items, base, dim, opts];
+  el._w = el.clientWidth;
+  colObserver.observe(el);
+  const total = sumOf(items);
+  if (!items.length || !total) { el.innerHTML = '<div class="empty">لا توجد بيانات في هذا النطاق.</div>'; return; }
+  const W = Math.max(280, el.clientWidth || 600), H = opts.height || 230;
+  const padT = 24, padB = opts.labelAll ? 40 : 26, padS = 44, padE = 6;
+  const plotW = W - padS - padE, plotH = H - padT - padB;
+  const maxC = Math.max(...items.map(i => i.count));
+  const raw = Math.max(maxC, 1) / 4, p10 = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * p10).find(v => v >= raw);
+  const nT = Math.max(1, Math.ceil(maxC / step)), yMax = step * nT;
+  const band = plotW / items.length, colW = Math.min(30, Math.max(3, band * 0.62));
+  const y = v => padT + plotH - (v / yMax) * plotH;
+  let svg = '';
+  for (let k = 0; k <= nT; k++) {
+    const yy = y(step * k);
+    svg += `<line x1="${padE}" x2="${W - padS}" y1="${yy}" y2="${yy}" stroke="${k ? 'var(--grid)' : 'var(--axis)'}"/>`;
+    svg += `<text x="${W - padS + 6}" y="${yy + 4}" font-size="10.5" fill="var(--muted)">${compact(step * k)}</text>`;
+  }
+  const every = opts.labelAll ? 1 : Math.ceil(30 / band);
+  const peak = items.reduce((a, b) => (b.count > a.count ? b : a), items[0]);
+  items.forEach((it, i) => {
+    const cx = W - padS - band * (i + 0.5), x = cx - colW / 2, top = y(it.count), h = Math.max(0, padT + plotH - top), r = Math.min(4, colW / 2, h);
+    const tip = `<b>${esc(it.label)}</b><br>${fmt(it.count)} مخطوطة · ${pctTxt(it.count, base)}`;
+    svg += `<rect class="hit" x="${cx - band / 2}" y="${padT}" width="${band}" height="${plotH}" tabindex="0" role="button" ${it.count ? fAttr(dim, it.value) : ''} data-tip="${esc(tip)}" aria-label="${esc(it.label)}: ${fmt(it.count)}"></rect>`;
+    if (h > 0) svg += `<path pointer-events="none" d="M${x},${top + h} V${top + r} Q${x},${top} ${x + r},${top} H${x + colW - r} Q${x + colW},${top} ${x + colW},${top + r} V${top + h} Z" fill="var(--s1)"/>`;
+    if (i % every === 0) {
+      const lab = opts.labelAll ? it.label : (dim === 'century' || dim === 'authorCentury' ? it.value : (dim === 'period' ? it.value : it.label));
+      if (opts.labelAll && band < 60) svg += `<text x="${cx}" y="${H - padB + 14}" font-size="10" fill="var(--muted)" text-anchor="end" transform="rotate(-30 ${cx} ${H - padB + 14})">${esc(lab)}</text>`;
+      else svg += `<text x="${cx}" y="${H - 8}" font-size="10.5" fill="var(--muted)" text-anchor="middle">${esc(lab)}</text>`;
+    }
+    if (it === peak) svg += `<text x="${cx}" y="${top - 6}" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle" pointer-events="none">${pctTxt(it.count, base)}</text>`;
+  });
+  el.innerHTML = `<div class="chart"><svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" role="img" aria-label="${esc(dim)}">${svg}</svg></div>` +
+    table(['القيمة', 'المخطوطات', '٪'], items.filter(i => i.count).map(it => ({ f: dim + ':' + it.value, cells: [it.label, it.count, pctTxt(it.count, base)] })));
+}
+
+// Heatmap: one blue ramp (sqrt scale), every cell opens the manuscripts of both values.
+function heatColor(t) {
+  const cs = getComputedStyle(document.documentElement);
+  const lo = d3.color(cs.getPropertyValue('--heat-lo').trim()), hi = d3.color(cs.getPropertyValue('--heat-hi').trim());
+  return d3.interpolateRgb(lo, hi)(t);
+}
+function heatmap(el, hm) {
+  if (!hm || !hm.rows.length || !hm.cols.length) { el.innerHTML = '<div class="empty">لا توجد بيانات في هذا النطاق.</div>'; return; }
+  const m = new Map(hm.cells.map(([r, c, n]) => [r + '|' + c, n]));
+  const rowTot = new Map(hm.rows.map(r => [r.value, hm.cols.reduce((s, c) => s + (m.get(r.value + '|' + c.value) || 0), 0)]));
+  const max = Math.max(1, ...hm.cells.map(c => c[2]));
+  hm.rows.forEach(r => remember(hm.rowDim, r.value, r.label));
+  hm.cols.forEach(c => remember(hm.colDim, c.value, c.label));
+  const dark = getComputedStyle(document.documentElement).colorScheme.includes('dark');
+  let html = `<div class="heat" style="grid-template-columns: minmax(90px,150px) repeat(${hm.cols.length}, minmax(30px,1fr))"><div></div>`;
+  const vert = hm.colDim !== 'century';
+  html += hm.cols.map(c => `<div class="hc ${vert ? 'vert' : ''}" title="${esc(c.label)}">${esc(hm.colDim === 'century' ? c.value : c.label)}</div>`).join('');
+  for (const r of hm.rows) {
+    html += `<div class="hl" title="${esc(r.label)}">${esc(r.label)}</div>`;
+    for (const c of hm.cols) {
+      const n = m.get(r.value + '|' + c.value) || 0;
+      if (!n) { html += `<div class="cell zero"></div>`; continue; }
+      const t = Math.sqrt(n / max);
+      const ink = (dark ? t < 0.55 : t > 0.5) ? '#fff' : '#0b0b0b';
+      const tip = `<b>${esc(r.label)}</b> · ${esc(c.label)}<br>${fmt(n)} مخطوطة · ${pctTxt(n, r.count || rowTot.get(r.value))} من مخطوطات ${esc(r.label)}`;
+      html += `<button type="button" class="cell" style="background:${heatColor(t)}; color:${ink}" data-f1="${esc(hm.rowDim + ':' + r.value)}" data-f2="${esc(hm.colDim + ':' + c.value)}" data-tip="${esc(tip)}" aria-label="${esc(r.label)} ${esc(c.label)}: ${fmt(n)}">${t > 0.35 ? compact(n) : ''}</button>`;
+    }
+  }
+  html += '</div>';
+  const rows = [];
+  hm.rows.forEach(r => hm.cols.forEach(c => { const n = m.get(r.value + '|' + c.value); if (n) rows.push({ f: hm.rowDim + ':' + r.value, f2: hm.colDim + ':' + c.value, cells: [`${r.label} · ${c.label}`, n, pctTxt(n, r.count || rowTot.get(r.value))] }); }));
+  el.innerHTML = `<div class="chart"><div class="heat-wrap">${html}</div><div class="heat-scale"><span>أقل</span><span class="r"></span><span>أكثر (${fmt(max)})</span></div></div>` + table(['الخلية', 'المخطوطات', '٪ من الصف'], rows);
+}
+
+// ======================================================================
+// Tooltip + click-through (one handler for every chart, table, fact and KPI)
+// ======================================================================
+(function interactions() {
+  const tip = $('tip');
+  const place = (x, y) => {
+    const r = tip.getBoundingClientRect();
+    let left = x - r.width - 14; if (left < 8) left = x + 14;
+    let top = y - r.height - 12; if (top < 8) top = y + 16;
+    tip.style.left = Math.max(8, Math.min(left, innerWidth - r.width - 8)) + 'px';
+    tip.style.top = top + 'px';
+  };
+  const show = (t, x, y) => {
+    tip.innerHTML = t.dataset.tip + (t.dataset.f1 ? '<div class="hint">انقر لعرض المخطوطات</div>' : '');
+    tip.style.display = 'block';
+    if (x === undefined) { const b = t.getBoundingClientRect(); x = b.left + b.width / 2; y = b.top; }
+    place(x, y);
+  };
+  document.addEventListener('mousemove', e => { const t = e.target.closest && e.target.closest('[data-tip]'); if (t) show(t, e.clientX, e.clientY); else tip.style.display = 'none'; });
+  document.addEventListener('focusin', e => { const t = e.target.closest('[data-tip]'); if (t) show(t); });
+  document.addEventListener('focusout', () => { tip.style.display = 'none'; });
+  const act = e => {
+    const t = e.target.closest('[data-f1]');
+    if (!t || t.disabled) return;
+    tip.style.display = 'none';
+    const pairs = [t.dataset.f1, t.dataset.f2].filter(Boolean).map(s => { const i = s.indexOf(':'); return [s.slice(0, i), s.slice(i + 1)]; });
+    openDrawer(pairs);
+  };
+  document.addEventListener('click', e => { if (!e.target.closest('#drawer')) act(e); });
+  document.addEventListener('keydown', e => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('rect.hit, tr[data-f1]')) { e.preventDefault(); act(e); }
+    if (e.key === 'Escape') closeDrawer();
+  });
+})();
+
+// ======================================================================
+// Drawer: the manuscripts behind a click
+// ======================================================================
+const D = { pairs: [], offset: 0, total: 0 };
+async function openDrawer(pairs) {
+  D.pairs = pairs; D.offset = 0;
+  $('drList').innerHTML = '<div class="empty">جارٍ التحميل…</div>';
+  $('drawer').classList.add('open'); $('drawer').setAttribute('aria-hidden', 'false'); $('shade').classList.add('on');
+  await loadDrawerPage(false);
+}
+function closeDrawer() { $('drawer').classList.remove('open'); $('drawer').setAttribute('aria-hidden', 'true'); $('shade').classList.remove('on'); }
+$('drClose').onclick = closeDrawer;
+$('shade').onclick = closeDrawer;
+$('drSort').onchange = () => { D.offset = 0; loadDrawerPage(false); };
+$('drApply').onclick = () => addPageFilters(D.pairs);
+
+async function loadDrawerPage(append) {
+  // the click's own values are combined with the page filters (a click replaces a page filter on the same dimension)
+  const all = S.filters.filter(([d]) => !D.pairs.some(([pd]) => pd === d)).concat(D.pairs);
+  let r;
+  try { r = await api('records', all, { offset: D.offset, limit: 50, sort: $('drSort').value }); }
+  catch (e) { $('drList').innerHTML = '<div class="empty">تعذّر التحميل.</div>'; return; }
+  D.total = r.total;
+  $('drExport').href = 'api/insights/export.csv?' + qs(all, $('drSort').value ? { sort: $('drSort').value } : {});
+  r.filters.forEach(f => remember(f.dim, f.value, f.label));
+  $('drTitle').textContent = r.filters.map(f => `${f.dimLabel}: ${f.label}`).join(' · ') || 'كل المخطوطات';
+  const base = S.summary ? S.summary.total : 0;
+  $('drCount').textContent = `${fmt(r.total)} مخطوطة${base ? ` (${pctTxt(r.total, base)} من النطاق)` : ''}`;
+  const html = r.items.map(it => `
+    <a class="ms" ${recordLink(it.idx)}>
+      <div class="ms-t">${esc(it.title || 'بلا عنوان')}</div>
+      <div class="ms-m">
+        ${it.author ? `<span>${esc(it.author)}</span>` : ''}
+        ${it.hijriYear ? `<span class="num">نُسخت ${it.hijriYear} هـ${it.year ? ` / ${it.year} م` : ''}</span>` : '<span>بلا تاريخ نسخ</span>'}
+        ${it.copyist ? `<span>الناسخ: ${esc(it.copyist)}</span>` : ''}
+        ${it.copyPlace ? `<span>في ${esc(it.copyPlace)}</span>` : ''}
+        ${it.leaves ? `<span class="num">${fmt(it.leaves)} ورقة</span>` : ''}
+        <span>${esc(it.library)}${it.copyNum && it.copyNum !== 'بلا' ? ` · رقم ${esc(it.copyNum)}` : ''}</span>
+        ${it.issues && it.issues.length ? `<span class="ms-issues">⚠ ${esc(it.issues.join('، '))}</span>` : ''}
+      </div>
+    </a>`).join('');
+  const more = D.offset + r.items.length < r.total ? `<button class="btn" type="button" id="drMore" style="margin:12px auto; display:block;">عرض المزيد (${fmt(r.total - D.offset - r.items.length)} متبقية)</button>` : '';
+  if (append) { $('drMore') && $('drMore').remove(); $('drList').insertAdjacentHTML('beforeend', html + more); }
+  else $('drList').innerHTML = (html || '<div class="empty">لا توجد مخطوطات.</div>') + more;
+  if ($('drMore')) $('drMore').onclick = () => { D.offset += 50; loadDrawerPage(true); };
+}
+
+// ======================================================================
+// Map (MapLibre GL + OpenStreetMap tiles): a tilted 3D view where each library is a column (height = manuscripts),
+// with arcs from where manuscripts were copied to the library that keeps them, and links between libraries that
+// hold the same works. Click a library to light up its connections; click empty map to clear.
+// Basemaps need no key: OpenStreetMap's tiles (darkened for the dark theme), the openstreetmap.de server as
+// stand-by. Tile servers need the page's origin as Referer (the server's Referrer-Policy sends just that).
+// ======================================================================
+const M = { map: null, ready: false, sel: null, base: 'osm', baseFailed: {}, tilesOk: 0, tileErr: 0, pitch3d: true };
+const OSM_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+const TILE_SOURCES = {
+  osm: { tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], maxzoom: 19, name: 'OpenStreetMap' },
+  osmde: { tiles: ['https://tile.openstreetmap.de/{z}/{x}/{y}.png'], maxzoom: 18, name: 'openstreetmap.de' }
+};
+function isDarkTheme() { return getComputedStyle(document.documentElement).colorScheme.includes('dark'); }
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+// a color from a CSS token as #rrggbb (MapLibre doesn't read CSS variables)
+function hexOf(v) {
+  const c = document.createElement('canvas').getContext('2d');
+  c.fillStyle = v || '#888';
+  return c.fillStyle;
+}
+function basePaint(dark) {
+  return dark
+    ? { 'raster-brightness-max': 0.42, 'raster-brightness-min': 0.04, 'raster-saturation': -0.75, 'raster-contrast': 0.15 }
+    : { 'raster-brightness-max': 1, 'raster-brightness-min': 0, 'raster-saturation': -0.15, 'raster-contrast': 0 };
+}
+// a small hexagon around a point, r in metres (the footprint of a column)
+function hexagon(lat, lon, r) {
+  const dLat = r / 111320, dLon = r / (111320 * Math.cos(lat * Math.PI / 180)), ring = [];
+  for (let i = 0; i <= 6; i++) { const a = Math.PI / 6 + i * Math.PI / 3; ring.push([lon + dLon * Math.cos(a), lat + dLat * Math.sin(a)]); }
+  return [ring];
+}
+// a gentle arc between two points (so lines in opposite directions don't overlap)
+function arc(a, b, bend = 0.12, steps = 16) {
+  const mx = (a[1] + b[1]) / 2 + (b[0] - a[0]) * bend, my = (a[0] + b[0]) / 2 - (b[1] - a[1]) * bend, pts = [];
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    pts.push([(1 - t) ** 2 * a[0] + 2 * (1 - t) * t * my + t * t * b[0], (1 - t) ** 2 * a[1] + 2 * (1 - t) * t * mx + t * t * b[1]]);
+  }
+  return pts;
+}
+const fc = features => ({ type: 'FeatureCollection', features });
+
+function renderMap() {
+  if (!M.map) {
+    const dark = isDarkTheme();
+    M.map = new maplibregl.Map({
+      container: 'map',
+      style: {
+        version: 8,
+        sources: { base: { type: 'raster', tiles: TILE_SOURCES.osm.tiles, tileSize: 256, maxzoom: TILE_SOURCES.osm.maxzoom, attribution: OSM_ATTR } },
+        layers: [{ id: 'base', type: 'raster', source: 'base', paint: basePaint(dark) }]
+      },
+      center: [48, 32], zoom: 4.2, pitch: M.pitch3d ? 55 : 0, bearing: M.pitch3d ? -12 : 0, maxPitch: 70,
+      attributionControl: { compact: true }
+    });
+    M.map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-left');
+    M.map.addControl(new maplibregl.FullscreenControl(), 'top-left');
+    // tiles: count what loads; if the server keeps refusing and nothing has loaded, use the stand-by server
+    M.map.on('sourcedata', e => { if (e.sourceId === 'base' && e.tile && e.isSourceLoaded !== undefined) M.tilesOk++; });
+    M.map.on('error', e => {
+      if (!e.sourceId || e.sourceId !== 'base') return;
+      M.tileErr++;
+      if (M.tileErr >= 6 && M.tilesOk === 0 && M.base === 'osm') switchBase('osmde', 'تعذّر تحميل خرائط OpenStreetMap، فاستُعمل خادم openstreetmap.de.');
+      else if (M.tileErr >= 12 && M.tilesOk === 0 && M.base === 'osmde') { M.baseNote = 'تعذّر الاتصال بخوادم الخرائط (لا إنترنت؟). الأعمدة والخطوط ما زالت تعمل.'; updateMapNote(); }
+    });
+    M.map.on('load', () => { M.ready = true; addMapLayers(); updateMapData(); });
+    // the buttons inside popups
+    $('map').addEventListener('click', ev => {
+      const b = ev.target.closest('[data-pf1]');
+      if (!b) return;
+      ev.preventDefault();
+      const pairs = [b.dataset.pf1, b.dataset.pf2].filter(Boolean).map(s => { const i = s.indexOf(':'); return [s.slice(0, i), s.slice(i + 1)]; });
+      if (b.dataset.apply) addPageFilters(pairs); else openDrawer(pairs);
+    });
+    ['lyLibs', 'lyHeld', 'lyCopied', 'lyFlows', 'lyShared'].forEach(id => $(id).addEventListener('change', syncLayers));
+    $('map3d').addEventListener('click', () => setPitch(true));
+    $('map2d').addEventListener('click', () => setPitch(false));
+  }
+  if (M.ready) updateMapData();
+  updateMapNote();
+  renderMapRank();
+}
+function switchBase(key, note) {
+  M.base = key; M.tilesOk = 0; M.tileErr = 0;
+  const src = TILE_SOURCES[key];
+  M.map.removeLayer('base'); M.map.removeSource('base');
+  M.map.addSource('base', { type: 'raster', tiles: src.tiles, tileSize: 256, maxzoom: src.maxzoom, attribution: OSM_ATTR });
+  M.map.addLayer({ id: 'base', type: 'raster', source: 'base', paint: basePaint(isDarkTheme()) }, M.map.getStyle().layers[0] && M.map.getStyle().layers[0].id !== 'base' ? M.map.getStyle().layers[0].id : undefined);
+  M.baseNote = note; updateMapNote();
+}
+function applyMapTheme() {
+  if (!M.ready) return;
+  const p = basePaint(isDarkTheme());
+  for (const [k, v] of Object.entries(p)) M.map.setPaintProperty('base', k, v);
+  updateMapData();
+}
+function setPitch(on) {
+  M.pitch3d = on;
+  $('map3d').classList.toggle('on', on); $('map2d').classList.toggle('on', !on);
+  if (M.map) M.map.easeTo({ pitch: on ? 55 : 0, bearing: on ? -12 : 0, duration: 700 });
+  if (M.ready) for (const id of ['libs-cols-far', 'libs-cols-near']) M.map.setLayoutProperty(id, 'visibility', $('lyLibs').checked ? 'visible' : 'none');
+}
+
+function addMapLayers() {
+  const m = M.map;
+  for (const id of ['flows', 'shared', 'held', 'copied', 'libs-far', 'libs-near', 'sel-lines']) m.addSource(id, { type: 'geojson', data: fc([]), buffer: 128, tolerance: 0.375 });
+  // city totals (off by default)
+  m.addLayer({ id: 'held', type: 'circle', source: 'held', paint: { 'circle-radius': ['get', 'r'], 'circle-color': ['get', 'c'], 'circle-opacity': 0.35, 'circle-stroke-color': '#fff', 'circle-stroke-width': 1, 'circle-pitch-alignment': 'map' } });
+  // library <-> library through shared works
+  m.addLayer({ id: 'shared', type: 'line', source: 'shared', layout: { 'line-cap': 'round' },
+    paint: { 'line-color': ['get', 'c'], 'line-width': ['get', 'w'], 'line-opacity': 0.35, 'line-dasharray': [2, 2] } });
+  // copy place -> library
+  m.addLayer({ id: 'flows', type: 'line', source: 'flows', layout: { 'line-cap': 'round' },
+    paint: { 'line-color': ['get', 'c'], 'line-width': ['get', 'w'], 'line-opacity': 0.4 } });
+  // the selected library's connections, drawn strong on top
+  m.addLayer({ id: 'sel-lines', type: 'line', source: 'sel-lines', layout: { 'line-cap': 'round' },
+    paint: { 'line-color': ['get', 'c'], 'line-width': ['+', ['get', 'w'], 1.5], 'line-opacity': 0.95 } });
+  m.addLayer({ id: 'copied', type: 'circle', source: 'copied', paint: { 'circle-radius': ['get', 'r'], 'circle-color': ['get', 'c'], 'circle-opacity': 0.8, 'circle-stroke-color': '#fff', 'circle-stroke-width': 0.8 } });
+  // the libraries: columns, wide when the map is far out, narrow (a building's width) close in
+  const col = src => ({ type: 'fill-extrusion', source: src, paint: {
+    'fill-extrusion-color': ['case', ['boolean', ['feature-state', 'sel'], false], ['get', 'cs'], ['get', 'c']],
+    'fill-extrusion-height': ['get', 'h'], 'fill-extrusion-base': 0, 'fill-extrusion-opacity': 0.88, 'fill-extrusion-vertical-gradient': true } });
+  m.addLayer({ id: 'libs-cols-far', ...col('libs-far'), maxzoom: 8.5 });
+  m.addLayer({ id: 'libs-cols-near', ...col('libs-near'), minzoom: 8.5 });
+
+  // hover: the library or place under the pointer; click: popup and its connections
+  const hoverPop = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10, className: 'map-hover' });
+  const pickable = ['libs-cols-far', 'libs-cols-near', 'copied', 'held', 'flows', 'shared'];
+  m.on('mousemove', e => {
+    const f = m.queryRenderedFeatures(e.point, { layers: pickable.filter(id => m.getLayer(id) && m.getLayoutProperty(id, 'visibility') !== 'none') })[0];
+    m.getCanvas().style.cursor = f ? 'pointer' : '';
+    if (!f) { hoverPop.remove(); return; }
+    hoverPop.setLngLat(e.lngLat).setHTML(`<div class="pop">${f.properties.tip}</div>`).addTo(m);
+  });
+  m.on('mouseout', () => hoverPop.remove());
+  m.on('click', e => {
+    const f = m.queryRenderedFeatures(e.point, { layers: pickable.filter(id => m.getLayer(id) && m.getLayoutProperty(id, 'visibility') !== 'none') })[0];
+    if (!f) { selectLibrary(null); return; }
+    hoverPop.remove();
+    const p = f.properties;
+    if (p.kind === 'lib') { selectLibrary(p.key); new maplibregl.Popup({ maxWidth: '360px', className: 'map-pop' }).setLngLat(e.lngLat).setHTML(libPopupHtml(M.libByKey.get(p.key))).addTo(m); }
+    else if (p.kind === 'place') new maplibregl.Popup({ maxWidth: '340px', className: 'map-pop' }).setLngLat(e.lngLat).setHTML(popupHtml(S.geo.places.find(x => x.key === p.key))).addTo(m);
+    else if (p.kind === 'flow') openDrawer([['copyPlace', p.from], ['institution', p.to]]);
+    else if (p.kind === 'shared') new maplibregl.Popup({ maxWidth: '340px', className: 'map-pop' }).setLngLat(e.lngLat).setHTML(sharedPopupHtml(p)).addTo(m);
+  });
+  syncLayers();
+}
+
+// All the map's data for the current page filter.
+function updateMapData() {
+  const g = S.geo, m = M.map;
+  if (!g || !M.ready) return;
+  const dark = isDarkTheme();
+  const c1 = hexOf(cssVar('--s1')), c2 = hexOf(cssVar('--s2')), c3 = hexOf(cssVar('--s3')), c5 = hexOf(cssVar('--s5')), ink = hexOf(cssVar('--ink-2'));
+  const pale = hexOf(dark ? '#5b6b85' : '#9fb5d6'), hot = dark ? '#ffd166' : '#f2a900';
+  const places = new Map(g.places.map(p => [p.key, p]));
+  const libs = (g.libraries || []).slice().sort((a, b) => b.count - a.count);
+  // several libraries at one point (a shared address): spread on a small circle so each can be picked
+  const atPoint = new Map();
+  for (const l of libs) { const k = l.lat.toFixed(4) + ',' + l.lon.toFixed(4); atPoint.set(k, (atPoint.get(k) || []).concat(l)); }
+  M.spot = new Map();
+  for (const group of atPoint.values()) group.forEach((l, i) => {
+    if (i === 0) { M.spot.set(l.key, [l.lon, l.lat]); return; }
+    const a = 2 * Math.PI * (i - 1) / (group.length - 1), r = 0.0005 * (1 + Math.floor((i - 1) / 8) * 0.6);
+    M.spot.set(l.key, [l.lon + r * Math.cos(a) / Math.cos(l.lat * Math.PI / 180), l.lat + r * Math.sin(a)]);
+  });
+  M.libByKey = new Map(libs.map(l => [l.key, l]));
+  const maxLib = Math.max(1, ...libs.map(l => l.count));
+  const libFeature = (l, r, h) => {
+    remember('institution', l.key, l.label);
+    const [lon, lat] = M.spot.get(l.key);
+    return { type: 'Feature', id: libs.indexOf(l), geometry: { type: 'Polygon', coordinates: hexagon(lat, lon, r) },
+      properties: { kind: 'lib', key: l.key, c: l.exact ? c1 : pale, cs: hot, h,
+        tip: `<b>${esc(l.label)}</b><br>${esc(l.cityLabel)} · ${fmt(l.count)} مخطوطة${l.exact ? '' : ' · موقع تقريبي'}` } };
+  };
+  const s = l => Math.sqrt(l.count / maxLib);
+  m.getSource('libs-far').setData(fc(libs.map(l => libFeature(l, 9000 + 26000 * s(l), 15000 + 900000 * s(l)))));
+  m.getSource('libs-near').setData(fc(libs.map(l => libFeature(l, 28 + 40 * s(l), 60 + 2400 * s(l)))));
+
+  // copy place -> library arcs (the 400 largest)
+  const maxF = Math.max(1, ...(g.instFlows || []).map(f => f.count));
+  M.flowFeatures = (g.instFlows || []).slice(0, 400).map(f => {
+    const a = places.get(f.from), to = M.spot.get(f.to);
+    if (!a || !to || !M.libByKey.has(f.to)) return null;
+    const lib = M.libByKey.get(f.to);
+    return { type: 'Feature', geometry: { type: 'LineString', coordinates: arc([a.lon, a.lat], to) },
+      properties: { kind: 'flow', from: f.from, to: f.to, c: c5, w: 0.6 + 4 * Math.log(1 + f.count) / Math.log(1 + maxF),
+        tip: `نُسخت في <b>${esc(a.label)}</b> وتُحفظ في <b>${esc(lib.label)}</b>: ${fmt(f.count)} مخطوطة<div class="hint">انقر لعرضها</div>` } };
+  }).filter(Boolean);
+  m.getSource('flows').setData(fc(M.flowFeatures));
+
+  // library <-> library (shared works)
+  const maxS = Math.max(1, ...(g.shared || []).map(x => x.works));
+  M.sharedFeatures = (g.shared || []).map(x => {
+    const a = M.spot.get(x.a), b = M.spot.get(x.b), la = M.libByKey.get(x.a), lb = M.libByKey.get(x.b);
+    if (!a || !b || !la || !lb) return null;
+    return { type: 'Feature', geometry: { type: 'LineString', coordinates: arc(a, b, 0.2) },
+      properties: { kind: 'shared', a: x.a, b: x.b, works: x.works, c: c3, w: 0.5 + 3.5 * Math.sqrt(x.works / maxS),
+        tip: `<b>${esc(la.label)}</b> ↔ <b>${esc(lb.label)}</b><br>${fmt(x.works)} عملاً تحفظ كلتاهما نسخة منه` } };
+  }).filter(Boolean);
+  m.getSource('shared').setData(fc(M.sharedFeatures));
+
+  // copy places and city totals
+  const maxC = Math.max(1, ...g.places.map(p => p.copied)), maxH = Math.max(1, ...g.places.map(p => p.held));
+  m.getSource('copied').setData(fc(g.places.filter(p => p.copied).map(p => {
+    remember('copyPlace', p.key, p.label);
+    return { type: 'Feature', geometry: { type: 'Point', coordinates: [p.lon, p.lat] },
+      properties: { kind: 'place', key: p.key, c: c2, r: 2.2 + 8 * Math.sqrt(p.copied / maxC), tip: `<b>${esc(p.label)}</b>: نُسخت فيها ${fmt(p.copied)} مخطوطة` } };
+  })));
+  m.getSource('held').setData(fc(g.places.filter(p => p.held).map(p => {
+    remember('holdCity', p.key, p.label);
+    return { type: 'Feature', geometry: { type: 'Point', coordinates: [p.lon, p.lat] },
+      properties: { kind: 'place', key: p.key, c: c1, r: 4 + 26 * Math.sqrt(p.held / maxH), tip: `<b>${esc(p.label)}</b>: ${fmt(p.held)} مخطوطة محفوظة في المدينة` } };
+  })));
+  selectLibrary(M.sel && M.libByKey.has(M.sel) ? M.sel : null);
+}
+
+// Light up one library: its column, the arcs from where its manuscripts were copied, its shared-work links.
+function selectLibrary(key) {
+  const m = M.map;
+  if (!M.ready) return;
+  if (M.selId !== undefined && M.selId !== null) for (const src of ['libs-far', 'libs-near']) m.setFeatureState({ source: src, id: M.selId }, { sel: false });
+  M.sel = key; M.selId = null;
+  if (!key) { m.getSource('sel-lines').setData(fc([])); setMapLinesDim(false); return; }
+  const libs = (S.geo.libraries || []).slice().sort((a, b) => b.count - a.count);
+  M.selId = libs.findIndex(l => l.key === key);
+  for (const src of ['libs-far', 'libs-near']) m.setFeatureState({ source: src, id: M.selId }, { sel: true });
+  const mine = [...(M.flowFeatures || []).filter(f => f.properties.to === key), ...(M.sharedFeatures || []).filter(f => f.properties.a === key || f.properties.b === key)];
+  m.getSource('sel-lines').setData(fc(mine));
+  setMapLinesDim(true);
+}
+// Lines fade as you zoom into a city (they come from far away), and fade further while one library is selected.
+function setMapLinesDim(on) {
+  const fade = (far, near) => ['interpolate', ['linear'], ['zoom'], 4, far, 9, near, 13, near * 0.6];
+  M.map.setPaintProperty('flows', 'line-opacity', on ? 0.06 : fade(0.4, 0.14));
+  M.map.setPaintProperty('shared', 'line-opacity', on ? 0.05 : fade(0.35, 0.1));
+}
+function sharedPopupHtml(p) {
+  const a = M.libByKey.get(p.a), b = M.libByKey.get(p.b);
+  return `<div class="pop"><b>${esc(a.label)}</b> ↔ <b>${esc(b.label)}</b>
+    <div class="pop-sub">${fmt(p.works)} عملاً تحفظ كلتا الخزانتين نسخة منه (من الأعمال الموجودة في أقل من 40 خزانة)</div>
+    <div class="pop-actions"><a href="#" class="btn" data-pf1="institution:${esc(p.a)}">مخطوطات ${esc(a.label)}</a> <a href="#" class="btn" data-pf1="institution:${esc(p.b)}">مخطوطات ${esc(b.label)}</a></div></div>`;
+}
+function updateMapNote() {
+  const g = S.geo;
+  if (!g) return;
+  const libs = g.libraries || [], exact = libs.filter(l => l.exact).length;
+  $('mapNote').textContent = `${fmt(libs.length)} مؤسسة (${fmt(exact)} في موقع مبناها)، ${fmt(g.held)} مخطوطة على الخريطة بمكان حفظها، و${fmt(g.copied)} بمكان نسخها${g.unplaced ? ` — ${fmt(g.unplaced)} بلا مكان معروف` : ''}. ارتفاع العمود عدد المخطوطات، والعمود الباهت موقع تقريبي. انقر خزانة لإبراز صلاتها.` + (M.baseNote ? ' ' + M.baseNote : '');
+}
+function syncLayers() {
+  if (!M.ready) return;
+  const vis = (id, on) => M.map.getLayer(id) && M.map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
+  vis('libs-cols-far', $('lyLibs').checked); vis('libs-cols-near', $('lyLibs').checked);
+  vis('held', $('lyHeld').checked); vis('copied', $('lyCopied').checked);
+  vis('flows', $('lyFlows').checked); vis('shared', $('lyShared').checked);
+}
+function libPopupHtml(l) {
+  const f = 'institution:' + l.key;
+  const cats = l.catalogues.length > 1
+    ? `<div class="pop-sub" style="margin-top:6px">فهارسها في القمر:</div><ul class="pop-list">${l.catalogues.map(c => `<li><a href="#" data-pf1="library:${c.id}">${esc(c.name)}</a> <span class="num">${fmt(c.count)}</span></li>`).join('')}</ul>`
+    : '';
+  const wd = /^wikidata\//.test(l.osm || ''), byHand = l.osm === 'manual';
+  const srcUrl = !l.osm || byHand ? '' : wd ? `https://www.wikidata.org/wiki/${l.osm.slice(9)}` : `https://www.openstreetmap.org/${l.osm}`;
+  const where = byHand ? 'أُدخل موقعها يدوياً (places_to_fill.json)' : l.exact
+    ? `موقعها من ${wd ? 'ويكي بيانات (Wikidata)' : 'OpenStreetMap'}${srcUrl ? ` (<a href="${esc(srcUrl)}" target="_blank" rel="noopener">عرض المصدر</a>)` : ''}`
+    : l.osm === 'manual-city'
+      ? 'الإحداثيات المُدخلة هي مركز المدينة لا المبنى؛ وُضعت قرب المركز (موقع تقريبي)'
+      : 'لم يُعثر على مبناها في OpenStreetMap ولا ويكي بيانات؛ وُضعت قرب مركز المدينة (موقع تقريبي)';
+  return `<div class="pop"><b>${esc(l.label)}</b><div class="pop-sub">${esc(l.cityLabel)} · <span class="num">${fmt(l.count)}</span> مخطوطة</div>
+    <div class="pop-sub approx">${where}</div>${cats}
+    <div class="pop-actions"><a href="#" class="btn primary" data-pf1="${esc(f)}">عرض مخطوطاتها</a> <a href="#" class="btn" data-pf1="${esc(f)}" data-apply="1">تصفية الصفحة بها</a></div></div>`;
+}
+function popupHtml(p) {
+  const libs = p.libraries.slice(0, 30).map(l => `<li><button class="link" data-pf1="library:${l.id}">${esc(l.name)}</button><span class="num">${fmt(l.count)}</span></li>`).join('');
+  const cents = p.centuries.length ? `<div class="approx">قرون النسخ فيها: ${p.centuries.map(c => `ق${c.century} (${fmt(c.count)})`).join('، ')}</div>` : '';
+  return `<div class="pop"><h3>${esc(p.label)} <span class="approx">${esc(p.country)}</span></h3>
+    ${p.held ? `<div class="row"><button class="link" data-pf1="holdCity:${p.key}">محفوظة فيها: ${fmt(p.held)} مخطوطة</button><button class="link" data-pf1="holdCity:${p.key}" data-apply="1">تصفية الصفحة</button></div>` : ''}
+    ${p.copied ? `<div class="row"><button class="link" data-pf1="copyPlace:${p.key}">نُسخت فيها: ${fmt(p.copied)} مخطوطة</button><button class="link" data-pf1="copyPlace:${p.key}" data-apply="1">تصفية الصفحة</button></div>` : ''}
+    ${cents}
+    ${p.approx ? '<div class="approx">الموقع تقريبي (الخزانة لا تذكر إلا البلد).</div>' : ''}
+    ${libs ? `<ul>${libs}</ul>` : ''}</div>`;
+}
+function renderMapRank() {
+  const g = S.geo;
+  const heldTop = g.places.filter(p => p.held).sort((a, b) => b.held - a.held).slice(0, 12);
+  const copyTop = g.places.filter(p => p.copied).sort((a, b) => b.copied - a.copied).slice(0, 10);
+  const flowTop = g.flows.slice(0, 10);
+  const name = k => (g.places.find(p => p.key === k) || {}).label || k;
+  const maxH = Math.max(1, ...heldTop.map(p => p.held)), maxC = Math.max(1, ...copyTop.map(p => p.copied)), maxF = Math.max(1, ...flowTop.map(f => f.count));
+  const row = (label, n, max, base, f1, f2, color) => `<button type="button" class="bar" data-f1="${esc(f1)}" ${f2 ? `data-f2="${esc(f2)}"` : ''} data-tip="${esc(`<b>${esc(label)}</b><br>${fmt(n)} مخطوطة · ${pctTxt(n, base)}`)}"><span class="bar-l">${esc(label)}</span><span class="bar-t"><span class="bar-f" style="width:${100 * n / max}%; background:${color}"></span></span><span class="bar-v num">${fmt(n)}</span></button>`;
+  $('mapRank').innerHTML = `<h4>أكبر مدن الحفظ</h4><div class="bars">${heldTop.map(p => row(p.label, p.held, maxH, g.held, 'holdCity:' + p.key, null, 'var(--s1)')).join('')}</div>
+    <h4 style="margin-top:14px">أكثر أماكن النسخ</h4><div class="bars">${copyTop.map(p => row(p.label, p.copied, maxC, g.copied, 'copyPlace:' + p.key, null, 'var(--s2)')).join('') || '<div class="empty">لا يوجد.</div>'}</div>
+    <h4 style="margin-top:14px">أكثر مسارات الانتقال</h4><div class="bars">${flowTop.map(f => row(`${name(f.from)} ← ${name(f.to)}`, f.count, maxF, g.copied, 'copyPlace:' + f.from, 'holdCity:' + f.to, 'var(--ink-2)')).join('') || '<div class="empty">لا يوجد.</div>'}</div>`;
+}
+
+// ======================================================================
+// Relationship network (d3-force)
+// ======================================================================
+const NET_TYPES = [
+  ['subject', 'الموضوع'], ['lang', 'اللغة'], ['century', 'قرن النسخ'], ['country', 'دولة الحفظ'], ['script', 'الخط'],
+  ['author', 'المؤلف'], ['holdCity', 'مدينة الحفظ'], ['copyPlace', 'مكان النسخ'], ['authorCentury', 'قرن وفاة المؤلف'],
+  ['copyistType', 'نوع النسخ'], ['feature', 'سمة مادية'], ['work', 'العمل'], ['institution', 'الخزانة / المؤسسة'], ['copyist', 'الناسخ']
+];
+// include: nodes added by expanding from a node (kept even outside their type's top values); sel: the node in the panel
+const NET = { types: ['subject', 'lang', 'century', 'author', 'holdCity', 'script'], include: [], sel: null, sim: null };
+const NET_COLORS = ['var(--s1)', 'var(--s2)', 'var(--s3)', 'var(--s4)', 'var(--s5)', 'var(--s6)', '#8c6d46', '#4c8a6a', '#a05a8c', '#5a6fa0', '#b5651d', '#6b8e23', '#7b68ee', '#cd5c5c', '#2f8f9d'];
+const netTypeLabel = t => (NET_TYPES.find(x => x[0] === t) || [, (S.net && S.net.dimLabels[t]) || t])[1];
+(function netControls() {
+  $('netTypes').innerHTML = NET_TYPES.map(([k, l]) => `<label><input type="checkbox" value="${k}" ${NET.types.includes(k) ? 'checked' : ''}/> ${l}</label>`).join('');
+  $('netTypes').addEventListener('change', e => {
+    const boxes = [...$('netTypes').querySelectorAll('input')];
+    let on = boxes.filter(b => b.checked).map(b => b.value);
+    if (on.length > 6) { e.target.checked = false; on = on.filter(v => v !== e.target.value); }
+    if (!on.length) { e.target.checked = true; on = [e.target.value]; }
+    NET.types = NET_TYPES.map(([k]) => k).filter(k => on.includes(k));
+    loadNetwork();
+  });
+  let tmr;
+  const deb = () => { clearTimeout(tmr); tmr = setTimeout(loadNetwork, 300); };
+  $('netPer').oninput = () => { $('netPerV').textContent = $('netPer').value; deb(); };
+  $('netMin').oninput = () => { $('netMinV').textContent = $('netMin').value; deb(); };
+  $('netLift').onchange = () => drawNetwork();
+  $('netReset').onclick = () => { drawNetwork(); if (NET3.on && NET3.graph) NET3.graph.zoomToFit(600); };
+  $('netClearAdd').onclick = () => { NET.include = []; loadNetwork(); };
+  $('net2d').onclick = () => setNet3d(false);
+  $('net3dBtn').onclick = () => setNet3d(true);
+})();
+async function loadNetwork() {
+  try {
+    const q = qs(S.filters, { types: NET.types.join(','), per: $('netPer').value, min: $('netMin').value }) +
+      NET.include.map(id => '&add=' + encodeURIComponent(id)).join('');
+    const res = await fetch('api/insights/network?' + q);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    S.net = await res.json();
+    $('netClearAdd').hidden = !NET.include.length;
+    drawNetwork();
+    if (NET3.on) drawNetwork3d();
+    renderPairs();
+    if (NET.sel) showNodeDetail(NET.sel.dim, NET.sel.value);
+  } catch (e) { console.error(e); }
+}
+
+// ======================================================================
+// The same network in 3D space (3d-force-graph, WebGL): spheres sized by manuscripts, coloured by kind; drag to
+// rotate, wheel to zoom. Click a sphere for its detail panel; click it again within a moment to expand from it.
+// ======================================================================
+const NET3 = { on: false, graph: null, lastClick: null };
+function setNet3d(on) {
+  NET3.on = on;
+  $('net2d').classList.toggle('on', !on); $('net3dBtn').classList.toggle('on', on);
+  $('net').style.display = on ? 'none' : '';
+  $('net3d').hidden = !on; $('net3dHint').hidden = !on;
+  if (on) drawNetwork3d();
+  else if (NET3.graph) NET3.graph.pauseAnimation();
+}
+function drawNetwork3d() {
+  const data = S.net;
+  if (!data || !NET3.on || typeof ForceGraph3D !== 'function') return;
+  const el = $('net3d');
+  const dark = isDarkTheme();
+  const maxN = Math.max(1, ...data.nodes.map(n => n.count)), maxW = Math.max(1, ...data.links.map(l => l.weight));
+  const colorOf = Object.fromEntries(data.types.map(t => [t, hexOf(typeColor(t).startsWith('var(') ? cssVar(typeColor(t).slice(4, -1)) : typeColor(t))]));
+  const sel = NET.sel ? `${NET.sel.dim}:${NET.sel.value}` : '';
+  const nodes = data.nodes.map(n => ({ id: n.id, dim: n.dim, value: n.value, label: n.label, count: n.count, added: n.added }));
+  const links = data.links.map(l => ({ source: data.nodes[l.source].id, target: data.nodes[l.target].id, weight: l.weight, lift: l.lift }));
+  const linkColor = l => (l.lift >= 1.5 ? (dark ? '#5fd4ff' : '#2563eb') : (dark ? '#475569' : '#cbd5e1'));
+
+  if (!NET3.graph) {
+    NET3.graph = ForceGraph3D({ controlType: 'orbit' })(el)
+      .graphData({ nodes: [], links: [] })
+      .nodeRelSize(5)
+      .linkOpacity(0.35)
+      .nodeThreeObject(n => {
+        const radius = Math.max(3.5, 3 + 12 * Math.sqrt(n.count / maxN));
+        const color = colorOf[n.dim] || '#38bdf8';
+        const isSel = sel === `${n.dim}:${n.value}`;
+
+        const group = new THREE.Group();
+        const sphereGeo = new THREE.SphereGeometry(radius, 28, 28);
+        const glassMat = new THREE.MeshPhysicalMaterial({
+          color: new THREE.Color(color),
+          metalness: 0.1,
+          roughness: 0.12,
+          transmission: 0.72,
+          ior: 1.52,
+          reflectivity: 0.9,
+          clearcoat: 1.0,
+          clearcoatRoughness: 0.1,
+          transparent: true,
+          opacity: 0.95
+        });
+        const mesh = new THREE.Mesh(sphereGeo, glassMat);
+        group.add(mesh);
+
+        const coreGeo = new THREE.SphereGeometry(radius * 0.45, 16, 16);
+        const coreMat = new THREE.MeshBasicMaterial({
+          color: new THREE.Color(color),
+          transparent: true,
+          opacity: 0.85
+        });
+        group.add(new THREE.Mesh(coreGeo, coreMat));
+
+        if (isSel) {
+          const ringGeo = new THREE.RingGeometry(radius * 1.35, radius * 1.55, 32);
+          const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide });
+          const ring = new THREE.Mesh(ringGeo, ringMat);
+          group.add(ring);
+        }
+        return group;
+      })
+      .onNodeClick(n => {
+        const now = Date.now(), again = NET3.lastClick && NET3.lastClick.id === n.id && now - NET3.lastClick.t < 450;
+        NET3.lastClick = { id: n.id, t: now };
+        if (again) {
+          api('neighbors', S.filters, { dim: n.dim, value: n.value, per: 8 }).then(d => {
+            NET.sel = { dim: n.dim, value: n.value };
+            expandFrom(d);
+          });
+          return;
+        }
+        showNodeDetail(n.dim, n.value);
+        if (NET3.graph) NET3.graph.refresh();
+      })
+      .onNodeHover(n => {
+        el.style.cursor = n ? 'pointer' : 'default';
+      })
+      .nodeLabel(n => `<b>${esc(n.label)}</b><br>${esc(netTypeLabel(n.dim))} · ${fmt(n.count)} مخطوطة${n.added ? ' · مضافة' : ''}`)
+      .linkWidth(l => 0.5 + 3.0 * Math.sqrt(l.weight / maxW))
+      .linkColor(linkColor)
+      .linkLabel(l => `${fmt(l.weight)} مخطوطة تجمعهما · Lift ${l.lift}`);
+
+    NET3.graph.cameraPosition({ x: 0, y: 0, z: 320 });
+  }
+
+  NET3.graph.backgroundColor(dark ? '#080c1a' : '#f8fafc');
+  NET3.graph.graphData({ nodes, links });
+}
+function typeColor(dim) {
+  const types = (S.net && S.net.types) || NET.types;
+  const i = types.indexOf(dim);
+  return NET_COLORS[i >= 0 ? i % NET_COLORS.length : NET_COLORS.length - 1];
+}
+
+function typeColorHex(dim) {
+  const raw = typeColor(dim);
+  if (!raw) return '#2563eb';
+  if (raw.startsWith('var(')) {
+    const varName = raw.slice(4, -1);
+    const val = typeof cssVar === 'function' ? cssVar(varName) : '';
+    if (val) return val;
+    const fallbacks = { '--s1': '#2a78d6', '--s2': '#eb6834', '--s3': '#1ba39c', '--s4': '#8e44ad', '--s5': '#f39c12', '--s6': '#27ae60' };
+    return fallbacks[varName] || '#2563eb';
+  }
+  return raw;
+}
+
+async function showNodeDetail(dim, value) {
+  NET.sel = { dim, value };
+  if (NET3.on && NET3.graph) NET3.graph.nodeColor(NET3.graph.nodeColor());
+  d3.selectAll('#net .node-group').classed('sel', n => n.dim === dim && n.value === value);
+  const box = $('netDetail');
+  box.innerHTML = '<div class="nd-empty">جارٍ جمع الصلات…</div>';
+  let d;
+  try { d = await api('neighbors', S.filters, { dim, value, per: 8 }); } catch (e) { box.innerHTML = '<div class="nd-empty">تعذّر جلب الصلات.</div>'; return; }
+  if (!NET.sel || NET.sel.dim !== dim || NET.sel.value !== value) return; // another node was clicked meanwhile
+  remember(dim, value, d.node.label);
+  const inGraph = new Set(((S.net && S.net.nodes) || []).map(n => n.id));
+  const me = `${dim}:${value}`;
+  const row = x => {
+    remember(x.dim, x.value, x.label);
+    const id = `${x.dim}:${x.value}`;
+    return `<div class="nd-row" role="button" tabindex="0" data-pair="${esc(id)}" data-tip="${esc(`<b>${esc(d.node.label)}</b> + <b>${esc(x.label)}</b><br>${fmt(x.count)} مخطوطة · ${x.share}٪ من مخطوطات «${esc(d.node.label)}» · Lift ${x.lift}`)}">
+      <span class="l" style="--w:${Math.min(100, x.share)}%; --c:${typeColor(x.dim)}">${esc(x.label)}</span>
+      <span class="n">${fmt(x.count)}</span>
+      <span class="lift ${x.lift >= 1.5 ? 'hi' : ''}">×${x.lift}</span>
+      ${inGraph.has(id) ? '<span></span>' : `<button type="button" class="add" data-add="${esc(id)}" title="أضفها إلى الشبكة" aria-label="أضف ${esc(x.label)} إلى الشبكة">+</button>`}
+    </div>`;
+  };
+  const order = NET_TYPES.map(t => t[0]);
+  // "library" is each catalogue volume; the institution (volumes together, as on the map) says the same, once
+  const groups = d.groups.filter(g => g.dim !== 'library').sort((a, b) => order.indexOf(a.dim) - order.indexOf(b.dim));
+  box.innerHTML = `
+    <h3><span class="k" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${typeColor(dim)};margin-inline-end:6px"></span>${esc(d.node.label)}</h3>
+    <div class="nd-sub">${esc(netTypeLabel(dim))} · <span class="num">${fmt(d.node.count)}</span> مخطوطة · ${d.node.share}٪ من النطاق</div>
+    <div class="nd-actions">
+      <button class="btn primary" type="button" data-act="list">عرض مخطوطاتها</button>
+      <button class="btn" type="button" data-act="expand" title="يضيف أقرب صلاتها من كل نوع إلى الشبكة">توسيع الشبكة منها</button>
+      <button class="btn" type="button" data-act="filter">تصفية الصفحة بها</button>
+    </div>
+    ${d.distinctive.length ? `<h4>الأكثر تميّزاً (تجتمع معها أكثر من المتوقع)</h4><div class="nd-chips">${d.distinctive.map(x => { remember(x.dim, x.value, x.label); return `<button type="button" data-pair="${esc(x.dim + ':' + x.value)}" title="${esc(netTypeLabel(x.dim))} · ${fmt(x.count)} مخطوطة">${esc(x.label)} <span class="num">×${x.lift}</span></button>`; }).join('')}</div>` : ''}
+    ${groups.map(g => `<h4><span>${esc(netTypeLabel(g.dim))}</span><span class="num">${fmt(g.total)}</span></h4>${g.items.map(row).join('')}`).join('')}`;
+  box.querySelector('[data-act="list"]').onclick = () => openDrawer([[dim, value]]);
+  box.querySelector('[data-act="filter"]').onclick = () => addPageFilters([[dim, value]]);
+  box.querySelector('[data-act="expand"]').onclick = () => expandFrom(d);
+  box.querySelectorAll('[data-pair]').forEach(el => {
+    const go = ev => { if (ev.target.closest('[data-add]')) return; const p = el.dataset.pair, i = p.indexOf(':'); openDrawer([[dim, value], [p.slice(0, i), p.slice(i + 1)]]); };
+    el.addEventListener('click', go);
+    el.addEventListener('keydown', ev => { if (ev.key === 'Enter') go(ev); });
+  });
+  box.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', ev => {
+    ev.stopPropagation();
+    NET.include = [...new Set([...NET.include, me, b.dataset.add])];
+    loadNetwork();
+  }));
+}
+// Adds the node and its closest links of each kind (two per kind, up to 24) to the graph, then recounts all links.
+async function expandFrom(d) {
+  const me = `${d.node.dim}:${d.node.value}`;
+  const picks = [me];
+  const prefer = ['author', 'work', 'institution', 'copyist', 'holdCity', 'copyPlace', 'century', 'subject', 'lang', 'script', 'authorCentury', 'country', 'feature', 'copyistType'];
+  const groups = d.groups.filter(g => prefer.includes(g.dim)).sort((a, b) => prefer.indexOf(a.dim) - prefer.indexOf(b.dim));
+  for (const g of groups) for (const x of g.items.slice(0, 2)) picks.push(`${x.dim}:${x.value}`);
+  NET.include = [...new Set([...NET.include, ...picks.slice(0, 25)])].slice(-200);
+  await loadNetwork();
+}
+function drawNetwork() {
+  const data = S.net;
+  if (!data || !data.nodes) return;
+  const svg = d3.select('#net');
+  svg.selectAll('*').remove();
+  if (NET.sim) NET.sim.stop();
+
+  const el = $('net'), W = el.clientWidth || 900, H = el.clientHeight || 680;
+  svg.attr('viewBox', `0 0 ${W} ${H}`);
+
+  $('netLegend').innerHTML = data.types.map(t => `<span><i style="background:${typeColor(t)}"></i>${esc(netTypeLabel(t))}</span>`).join('') +
+    `<span style="color:var(--muted)">${fmt(data.nodes.length)} عقدة · ${fmt(data.links.length)} رابطاً${NET.include.length ? ` · ${fmt(data.nodes.filter(n => n.added).length)} مضافة` : ''}</span>`;
+
+  if (!data.nodes.length) return;
+  data.nodes.forEach(n => remember(n.dim, n.value, n.label));
+
+  const nodes = data.nodes.map(n => ({ ...n }));
+  const links = data.links.map(l => ({ ...l }));
+  const maxN = Math.max(1, ...nodes.map(n => n.count)), maxW = Math.max(1, ...links.map(l => l.weight));
+  
+  // Refined node radius - elegant, balanced proportions
+  const R = n => Math.max(6, Math.min(22, 5 + 16 * Math.sqrt(n.count / maxN)));
+  const useLift = $('netLift').checked;
+
+  const defs = svg.append('defs');
+
+  // Subtle ambient glow
+  const glow = defs.append('filter').attr('id', 'crystal-glow')
+    .attr('x', '-30%').attr('y', '-30%').attr('width', '160%').attr('height', '160%');
+  glow.append('feDropShadow').attr('dx', 0).attr('dy', 2).attr('stdDeviation', 3).attr('flood-opacity', 0.16);
+
+  // Modern, refined luminous gradients for each category
+  data.types.forEach(t => {
+    const c = typeColorHex(t);
+    const gr = defs.append('radialGradient')
+      .attr('id', 'glass-orb-' + t)
+      .attr('cx', '38%').attr('cy', '35%').attr('r', '65%');
+    gr.append('stop').attr('offset', '0%').style('stop-color', `color-mix(in srgb, ${c} 55%, white)`).style('stop-opacity', '1');
+    gr.append('stop').attr('offset', '65%').style('stop-color', c).style('stop-opacity', '0.95');
+    gr.append('stop').attr('offset', '100%').style('stop-color', `color-mix(in srgb, ${c} 75%, black)`).style('stop-opacity', '1');
+  });
+
+  const g = svg.append('g');
+  let userZoomed = false;
+  const zoom = d3.zoom().scaleExtent([0.15, 6]).on('zoom', ev => {
+    g.attr('transform', ev.transform);
+    if (ev.sourceEvent) userZoomed = true;
+  });
+  svg.call(zoom).on('dblclick.zoom', null);
+  svg.call(zoom.transform, d3.zoomIdentity);
+
+  const fit = (now) => {
+    if (userZoomed || !nodes.length) return;
+    const pad = 40, xs = nodes.map(n => n.x).filter(Number.isFinite), ys = nodes.map(n => n.y).filter(Number.isFinite);
+    if (!xs.length || !ys.length) return;
+    const x0 = Math.min(...xs) - pad, x1 = Math.max(...xs) + pad;
+    const y0 = Math.min(...ys) - pad - 20, y1 = Math.max(...ys) + pad;
+    const k = Math.min(1.2, W / (x1 - x0), H / (y1 - y0));
+    const t = d3.zoomIdentity.translate(W / 2 - k * (x0 + x1) / 2, H / 2 - k * (y0 + y1) / 2).scale(k);
+    if (now === true) svg.call(zoom.transform, t); else svg.transition().duration(600).call(zoom.transform, t);
+  };
+
+  // Safe node resolution for links
+  const getNode = ref => (typeof ref === 'object' ? ref : nodes[ref] || nodes[0]);
+
+  // Clean, delicate filament links (no thick black spiky spokes!)
+  const linkColor = l => {
+    if (useLift) {
+      return l.lift >= 1.6 ? '#0284c7' : l.lift >= 1.0 ? '#3b82f6' : '#94a3b8';
+    }
+    return '#94a3b8';
+  };
+
+  const link = g.append('g').selectAll('line').data(links).join('line')
+    .attr('class', 'link')
+    .attr('stroke', linkColor)
+    .attr('stroke-width', l => 0.5 + 1.5 * Math.sqrt(l.weight / maxW))
+    .attr('stroke-opacity', l => useLift ? (l.lift >= 1.5 ? 0.38 : 0.14) : (0.10 + 0.20 * Math.sqrt(l.weight / maxW)))
+    .attr('stroke-linecap', 'round')
+    .attr('data-f1', l => { const s = getNode(l.source); return s.dim + ':' + s.value; })
+    .attr('data-f2', l => { const t = getNode(l.target); return t.dim + ':' + t.value; })
+    .attr('data-tip', l => {
+      const s = getNode(l.source), t = getNode(l.target);
+      return `<b>${esc(s.label)}</b> ↔ <b>${esc(t.label)}</b><br>${fmt(l.weight)} مخطوطة تجمعهما · Lift ${l.lift}${l.lift > 1.5 ? ' (ارتباط قوي)' : l.lift < 0.7 ? ' (أقل من المتوقع)' : ''}`;
+    });
+
+  // Node Groups (Halo, Clean Glass Gem Orb)
+  const nodeG = g.append('g').selectAll('g.node-group').data(nodes).join('g')
+    .attr('class', n => 'node-group' + (n.added ? ' added' : '') + (NET.sel && NET.sel.dim === n.dim && NET.sel.value === n.value ? ' sel' : ''))
+    .attr('filter', 'url(#crystal-glow)')
+    .attr('data-tip', n => (`<span class="k" style="background:${typeColor(n.dim)}"></span><b>${esc(n.label)}</b><br>${esc(data.dimLabels[n.dim] || n.dim)} · ${fmt(n.count)} مخطوطة · ${pctTxt(n.count, data.total)}<div class="hint">انقر: صلاتها · انقر مرتين: وسّع الشبكة منها</div>`))
+    .on('click', (ev, n) => showNodeDetail(n.dim, n.value))
+    .on('dblclick', async (ev, n) => {
+      ev.preventDefault();
+      const d = await api('neighbors', S.filters, { dim: n.dim, value: n.value, per: 8 });
+      NET.sel = { dim: n.dim, value: n.value };
+      expandFrom(d);
+    })
+    .call(d3.drag()
+      .on('start', (ev, d) => { if (!ev.active) NET.sim.alphaTarget(0.25).restart(); d.fx = d.x; d.fy = d.y; })
+      .on('drag', (ev, d) => { d.fx = ev.x; d.fy = ev.y; })
+      .on('end', (ev, d) => { if (!ev.active) NET.sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+  // Selection Halo Ring (subtle neon pulse ring)
+  nodeG.append('circle')
+    .attr('class', 'node-halo')
+    .attr('r', n => R(n) + 5)
+    .attr('fill', 'none')
+    .attr('stroke', '#0284c7')
+    .attr('stroke-width', 2)
+    .attr('stroke-dasharray', '4 2');
+
+  // Main Clean Jewel Node (refined gradient, crisp subtle edge)
+  nodeG.append('circle')
+    .attr('class', 'node-body')
+    .attr('r', R)
+    .style('fill', n => `url(#glass-orb-${n.dim})`)
+    .style('stroke', 'rgba(255, 255, 255, 0.55)')
+    .style('stroke-width', '1px');
+
+  // Clean Typography Labels (subtle, crisp text halo)
+  const label = g.append('g').selectAll('text').data(nodes).join('text')
+    .attr('class', 'node-label')
+    .attr('text-anchor', 'middle')
+    .attr('dy', n => -R(n) - 5)
+    .text(n => n.label.length > 24 ? n.label.slice(0, 23) + '…' : n.label);
+
+  // Neighbours highlight on hover
+  const getIdx = ref => (typeof ref === 'object' ? ref.index : ref);
+  const adj = new Set(links.map(l => getIdx(l.source) + '-' + getIdx(l.target)));
+  const linked = (a, b) => a === b || adj.has(a + '-' + b) || adj.has(b + '-' + a);
+
+  nodeG.on('mouseover', (ev, d) => {
+    const i = nodes.indexOf(d);
+    nodeG.classed('dim', n => !linked(i, nodes.indexOf(n)));
+    label.classed('dim', n => !linked(i, nodes.indexOf(n)));
+    link.classed('dim', l => getIdx(l.source) !== i && getIdx(l.target) !== i);
+    link.filter(l => getIdx(l.source) === i || getIdx(l.target) === i)
+      .attr('stroke', '#0284c7')
+      .attr('stroke-opacity', 0.90)
+      .attr('stroke-width', l => 1.2 + 2.0 * Math.sqrt(l.weight / maxW));
+  }).on('mouseout', () => {
+    nodeG.classed('dim', false);
+    label.classed('dim', false);
+    link.classed('dim', false)
+      .attr('stroke', linkColor)
+      .attr('stroke-opacity', l => useLift ? (l.lift >= 1.5 ? 0.38 : 0.14) : (0.10 + 0.20 * Math.sqrt(l.weight / maxW)))
+      .attr('stroke-width', l => 0.5 + 1.5 * Math.sqrt(l.weight / maxW));
+  });
+
+  // Balanced Force Simulation - smooth constellation layout
+  NET.sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).distance(l => 60 + 100 * (1 - Math.sqrt(l.weight / maxW))).strength(l => 0.08 + 0.45 * Math.sqrt(l.weight / maxW)))
+    .force('charge', d3.forceManyBody().strength(n => -80 - 280 * Math.sqrt(n.count / maxN)))
+    .force('collide', d3.forceCollide(n => R(n) + 12))
+    .force('x', d3.forceX(W / 2).strength(0.04))
+    .force('y', d3.forceY(H / 2).strength(0.055))
+    .on('tick', paint)
+    .on('end', fit);
+
+  function paint() {
+    link
+      .attr('x1', l => getNode(l.source).x)
+      .attr('y1', l => getNode(l.source).y)
+      .attr('x2', l => getNode(l.target).x)
+      .attr('y2', l => getNode(l.target).y);
+    nodeG.attr('transform', n => `translate(${Number.isFinite(n.x) ? n.x : W/2},${Number.isFinite(n.y) ? n.y : H/2})`);
+    label.attr('x', n => Number.isFinite(n.x) ? n.x : W/2).attr('y', n => Number.isFinite(n.y) ? n.y : H/2);
+  }
+
+  NET.sim.stop();
+  NET.sim.tick(Math.min(320, 130 + 4 * nodes.length));
+  paint();
+  fit(true);
+  NET.sim.alpha(0.08).restart();
+}
+function renderPairs() {
+  const data = S.net;
+  const minW = Math.max(+$('netMin').value, Math.round(data.total * 0.002));
+  const rows = data.links
+    .filter(l => l.weight >= minW && data.nodes[l.source].dim !== data.nodes[l.target].dim)
+    .sort((a, b) => b.lift - a.lift).slice(0, 15);
+  if (!rows.length) { $('pairs').innerHTML = '<div class="empty">لا توجد أزواج كافية؛ خفّض «أقل عدد للربط».</div>'; return; }
+  const n = i => data.nodes[i];
+  $('pairs').innerHTML = `<table><thead><tr><th>الزوج</th><th class="n">المخطوطات</th><th class="n">Lift</th></tr></thead><tbody>${rows.map(l => `
+    <tr data-f1="${esc(n(l.source).dim + ':' + n(l.source).value)}" data-f2="${esc(n(l.target).dim + ':' + n(l.target).value)}" tabindex="0">
+      <td>${esc(n(l.source).label)} <span style="color:var(--muted)">(${esc(data.dimLabels[n(l.source).dim])})</span> + ${esc(n(l.target).label)} <span style="color:var(--muted)">(${esc(data.dimLabels[n(l.target).dim])})</span></td>
+      <td class="n">${fmt(l.weight)}</td><td class="n">×${l.lift}</td></tr>`).join('')}</tbody></table>`;
+}
+
+// ======================================================================
+// ======================================================================
+// Galaxy: the same co-occurrence data drawn as a night sky on <canvas>.
+// Hubs (subjects, or the first chosen type) are big glowing stars; every other node is pulled toward the hub
+// it shares the most manuscripts with, so clusters form; light particles run along the strongest threads.
+// ======================================================================
+const GX_TYPES = [
+  ['subject', 'الموضوعات'], ['author', 'المؤلفون'], ['work', 'الأعمال'], ['holdCity', 'مدن الحفظ'], ['lang', 'اللغات'],
+  ['century', 'قرون النسخ'], ['copyPlace', 'أماكن النسخ'], ['script', 'الخطوط'], ['institution', 'الخزائن'], ['copyist', 'النسّاخ'],
+  ['country', 'دول الحفظ'], ['authorCentury', 'قرن وفاة المؤلف'], ['feature', 'السمات المادية']
+];
+// glow colors on the night sky (identity is also carried by labels, the legend and the info panel)
+const GX_COLORS = ['#ffb547', '#5fd4ff', '#b79cff', '#4f8dff', '#ff7eb6', '#4fd18b', '#ff7a45', '#f5e663', '#a3e635', '#38bdf8', '#f43f5e', '#c084fc', '#e879f9'];
+const GX = {
+  types: ['subject', 'author', 'work', 'holdCity', 'lang', 'century'],
+  data: null, nodes: [], links: [], adj: new Map(), sim: null, t: d3.zoomIdentity, zoom: null,
+  hover: null, focus: null, stars: [], particles: [], sprites: new Map(), raf: 0, visible: false, W: 0, H: 0, dpr: 1, maxW: 1
+};
+const gxCanvas = $('gx'), gxCtx = gxCanvas.getContext('2d');
+const hexRgb = h => { const n = parseInt(h.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; };
+const rgba = (rgb, a) => `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${a})`;
+
+function gxSprite(color) {
+  let s = GX.sprites.get(color);
+  if (s) return s;
+  s = document.createElement('canvas'); s.width = s.height = 128;
+  const c = s.getContext('2d'), rgb = hexRgb(color), g = c.createRadialGradient(64, 64, 0, 64, 64, 64);
+  g.addColorStop(0, 'rgba(255,255,255,1)');
+  g.addColorStop(0.12, rgba(rgb, 1));
+  g.addColorStop(0.3, rgba(rgb, 0.45));
+  g.addColorStop(0.6, rgba(rgb, 0.1));
+  g.addColorStop(1, rgba(rgb, 0));
+  c.fillStyle = g; c.fillRect(0, 0, 128, 128);
+  GX.sprites.set(color, s);
+  return s;
+}
+
+(function gxControls() {
+  $('gxTypes').innerHTML = GX_TYPES.map(([k, l]) => `<label class="gx-type"><input type="checkbox" value="${k}" ${GX.types.includes(k) ? 'checked' : ''}/> ${l}</label>`).join('');
+  $('gxTypes').addEventListener('change', e => {
+    let on = [...$('gxTypes').querySelectorAll('input')].filter(b => b.checked).map(b => b.value);
+    if (on.length > 8) { e.target.checked = false; on = on.filter(v => v !== e.target.value); }
+    if (!on.length) { e.target.checked = true; on = [e.target.value]; }
+    GX.types = GX_TYPES.map(([k]) => k).filter(k => on.includes(k));
+    loadGalaxy();
+  });
+  let tmr;
+  const deb = () => { clearTimeout(tmr); tmr = setTimeout(loadGalaxy, 350); };
+  $('gxPer').oninput = deb; $('gxMin').oninput = deb;
+  const ui = document.querySelector('.gx-ui');
+  const setCollapsed = on => { ui.classList.toggle('collapsed', on); $('gxCollapse').setAttribute('aria-expanded', String(!on)); };
+  setCollapsed(window.innerWidth < 760); // on a phone the panel would cover the sky
+  $('gxCollapse').onclick = () => setCollapsed(!ui.classList.contains('collapsed'));
+  $('gxReset').onclick = () => { GX.focus = null; gxFit(true); if (GX.sim) GX.sim.alpha(0.8).restart(); };
+  $('gxFull').onclick = () => { const w = $('gxWrap'); if (document.fullscreenElement) document.exitFullscreen(); else if (w.requestFullscreen) w.requestFullscreen(); };
+  document.addEventListener('fullscreenchange', () => setTimeout(gxResize, 60));
+  $('gxSearch').addEventListener('change', () => {
+    const q = $('gxSearch').value.trim();
+    const n = GX.nodes.find(x => x.label === q) || GX.nodes.find(x => x.label.includes(q));
+    if (n) { GX.focus = n; gxShowInfo(n); gxZoomTo(n, 2.6); }
+  });
+  // stars: fixed positions in [0,1], drawn in screen space with a little parallax
+  for (let i = 0; i < 520; i++) GX.stars.push({ x: Math.random(), y: Math.random(), r: Math.random() < 0.92 ? Math.random() * 0.9 + 0.2 : Math.random() * 1.6 + 0.8, a: Math.random() * 0.7 + 0.2, sp: Math.random() * 0.002 + 0.0005, ph: Math.random() * 6.3, d: Math.random() * 0.06 + 0.01 });
+  // zoom & pan
+  GX.zoom = d3.zoom().scaleExtent([0.15, 8]).on('zoom', ev => { GX.t = ev.transform; });
+  d3.select(gxCanvas).call(GX.zoom).on('dblclick.zoom', null);
+  gxCanvas.addEventListener('mousemove', e => {
+    const n = gxHit(e);
+    gxCanvas.classList.toggle('hovering', !!n);
+    if (n !== GX.hover) { GX.hover = n; if (n) gxShowInfo(n); }
+  });
+  gxCanvas.addEventListener('mouseleave', () => { GX.hover = null; gxCanvas.classList.remove('hovering'); });
+  gxCanvas.addEventListener('click', e => { const n = gxHit(e); if (n) openDrawer([[n.dim, n.value]]); });
+  gxCanvas.addEventListener('dblclick', e => { const n = gxHit(e); if (n) { GX.focus = n; gxZoomTo(n, Math.max(2.4, GX.t.k * 1.8)); } });
+  new ResizeObserver(gxResize).observe($('gxWrap'));
+  new IntersectionObserver(es => { GX.visible = es[0].isIntersecting; if (GX.visible && !GX.raf) GX.raf = requestAnimationFrame(gxFrame); }).observe($('gxWrap'));
+})();
+
+function gxResize() {
+  const w = $('gxWrap');
+  GX.dpr = Math.min(2, window.devicePixelRatio || 1);
+  GX.W = w.clientWidth; GX.H = w.clientHeight;
+  gxCanvas.width = Math.round(GX.W * GX.dpr); gxCanvas.height = Math.round(GX.H * GX.dpr);
+}
+
+async function loadGalaxy() {
+  try {
+    GX.data = await api('network', S.filters, { types: GX.types.join(','), per: $('gxPer').value, min: $('gxMin').value });
+    gxBuild();
+  } catch (e) { console.error(e); }
+}
+
+function gxBuild() {
+  const d = GX.data;
+  if (GX.sim) GX.sim.stop();
+  GX.hover = null; GX.focus = null; $('gxInfo').hidden = true;
+  const colorOf = dim => GX_COLORS[Math.max(0, GX.types.indexOf(dim)) % GX_COLORS.length];
+  const maxN = Math.max(1, ...d.nodes.map(n => n.count));
+  const nodes = d.nodes.map(n => ({ ...n, color: colorOf(n.dim), rgb: hexRgb(colorOf(n.dim)), r: 2.2 + 16 * Math.sqrt(n.count / maxN), hub: null }));
+  const links = d.links.map(l => ({ ...l }));
+  GX.maxW = Math.max(1, ...links.map(l => l.weight));
+  // hubs: subjects if shown, otherwise the first type
+  const hubDim = GX.types.includes('subject') ? 'subject' : GX.types[0];
+  // the 14 largest values of the hub type become glowing cluster centres
+  const hubs = nodes.filter(n => n.dim === hubDim).sort((a, b) => b.count - a.count).slice(0, 14);
+  hubs.forEach(h => { h.isHub = true; h.r = Math.max(h.r, 9 + 18 * Math.sqrt(h.count / maxN)); });
+  const best = new Map();
+  GX.adj = new Map(nodes.map((n, i) => [i, []]));
+  for (const l of links) {
+    GX.adj.get(l.source).push([l.target, l.weight]); GX.adj.get(l.target).push([l.source, l.weight]);
+    // a star joins the hub it is most *specifically* tied to: weight × lift, so the biggest subject
+    // doesn't swallow everything (an author of grammar joins نحو, not فقه)
+    const score = l.weight * l.lift;
+    for (const [a, b] of [[l.source, l.target], [l.target, l.source]]) {
+      if (nodes[b].isHub && !nodes[a].isHub && (!best.has(a) || best.get(a).w < score)) best.set(a, { hub: nodes[b], w: score });
+    }
+  }
+  // hubs spread on a ring, satellites start next to their hub
+  const R = 220 + 34 * hubs.length;
+  hubs.forEach((h, i) => { const a = 2 * Math.PI * i / hubs.length; h.x = R * Math.cos(a); h.y = R * Math.sin(a); });
+  nodes.forEach((n, i) => {
+    if (n.isHub) return;
+    const b = best.get(i);
+    n.hub = b ? b.hub : null;
+    const c = n.hub || { x: 0, y: 0 };
+    n.x = c.x + (Math.random() - 0.5) * 140; n.y = c.y + (Math.random() - 0.5) * 140;
+  });
+  GX.nodes = nodes; GX.links = links;
+  // particles ride the strongest threads
+  GX.particles = [];
+  links.slice(0, 260).forEach((l, i) => { const k = 1 + Math.round(2 * Math.sqrt(l.weight / GX.maxW)); for (let j = 0; j < k; j++) GX.particles.push({ l, t: Math.random(), sp: 0.0015 + Math.random() * 0.003 }); });
+
+  const clusterForce = alpha => { for (const n of nodes) if (n.hub) { n.vx += (n.hub.x - n.x) * 0.035 * alpha; n.vy += (n.hub.y - n.y) * 0.035 * alpha; } };
+  GX.sim = d3.forceSimulation(nodes)
+    // only links to a star's own hub pull hard; the rest are long and weak, so clusters stay apart
+    .force('link', d3.forceLink(links).distance(l => (l.source.hub === l.target || l.target.hub === l.source ? 45 : 260))
+      .strength(l => (l.source.hub === l.target || l.target.hub === l.source ? 0.5 : 0.004 + 0.03 * Math.sqrt(l.weight / GX.maxW))))
+    .force('charge', d3.forceManyBody().strength(n => n.isHub ? -1600 : -14 - 90 * Math.sqrt(n.count / maxN)).distanceMax(1100))
+    .force('collide', d3.forceCollide(n => n.r * 1.25 + 2))
+    .force('cluster', clusterForce)
+    .force('x', d3.forceX(0).strength(0.015)).force('y', d3.forceY(0).strength(0.015))
+    .alphaDecay(0.018);
+  GX.sim.on('end', () => {});
+  setTimeout(() => gxFit(true), 1600);
+  gxFit(false);
+
+  $('gxList').innerHTML = nodes.map(n => `<option value="${esc(n.label)}">`).join('');
+  $('gxStat').textContent = `${fmt(nodes.length)} نجمة · ${fmt(links.length)} خيطاً`;
+  $('gxLegend').innerHTML = GX.types.map(t => `<span><i style="background:${colorOf(t)}; box-shadow:0 0 8px ${colorOf(t)}"></i>${esc((GX_TYPES.find(x => x[0] === t) || [, t])[1])}</span>`).join('');
+  $('gxTypes').querySelectorAll('label').forEach(lb => {
+    const v = lb.querySelector('input').value, i = GX.types.indexOf(v);
+    lb.style.color = i >= 0 ? GX_COLORS[i % GX_COLORS.length] : '';
+  });
+  if (!GX.raf && GX.visible) GX.raf = requestAnimationFrame(gxFrame);
+}
+
+function gxFit(animate) {
+  if (!GX.nodes.length || !GX.W) return;
+  const xs = GX.nodes.map(n => n.x), ys = GX.nodes.map(n => n.y);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const k = Math.min(3, 0.9 * Math.min(GX.W / (x1 - x0 + 80), GX.H / (y1 - y0 + 80)));
+  const t = d3.zoomIdentity.translate(GX.W / 2 - k * (x0 + x1) / 2, GX.H / 2 - k * (y0 + y1) / 2).scale(k);
+  const sel = d3.select(gxCanvas);
+  if (animate) sel.transition().duration(900).call(GX.zoom.transform, t); else sel.call(GX.zoom.transform, t);
+}
+function gxZoomTo(n, k) {
+  const t = d3.zoomIdentity.translate(GX.W / 2 - k * n.x, GX.H / 2 - k * n.y).scale(k);
+  d3.select(gxCanvas).transition().duration(900).call(GX.zoom.transform, t);
+}
+function gxHit(e) {
+  const r = gxCanvas.getBoundingClientRect();
+  const [wx, wy] = GX.t.invert([e.clientX - r.left, e.clientY - r.top]);
+  let best = null, bd = Infinity;
+  for (const n of GX.nodes) {
+    const d = Math.hypot(n.x - wx, n.y - wy), reach = n.r + 5 / GX.t.k;
+    if (d < reach && d < bd) { bd = d; best = n; }
+  }
+  return best;
+}
+function gxShowInfo(n) {
+  const i = GX.nodes.indexOf(n), d = GX.data;
+  const nb = (GX.adj.get(i) || []).slice().sort((a, b) => b[1] - a[1]).slice(0, 12);
+  $('gxInfo').hidden = false;
+  $('gxInfo').innerHTML = `<h4 style="color:${n.color}">${esc(n.label)}</h4>
+    <div class="k">${esc(d.dimLabels[n.dim] || n.dim)} · ${fmt(n.count)} مخطوطة · ${pctTxt(n.count, d.total)}</div>
+    <button type="button" class="main" data-f1="${esc(n.dim + ':' + n.value)}">عرض مخطوطاتها ←</button>
+    ${nb.length ? '<div class="k" style="margin-top:6px">أقوى صلاتها (انقر لعرض المخطوطات المشتركة):</div>' : ''}
+    ${nb.map(([j, w]) => { const m = GX.nodes[j]; return `<button type="button" data-f1="${esc(n.dim + ':' + n.value)}" data-f2="${esc(m.dim + ':' + m.value)}"><span><span style="color:${m.color}">●</span> ${esc(m.label)}</span><span class="num">${fmt(w)}</span></button>`; }).join('')}`;
+}
+
+function gxCurve(a, b) {
+  // control point pushed sideways: threads arc instead of crossing straight
+  const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, dx = b.x - a.x, dy = b.y - a.y;
+  return [mx - dy * 0.12, my + dx * 0.12];
+}
+
+function gxFrame(now) {
+  GX.raf = 0;
+  if (!GX.visible) return;
+  const c = gxCtx, W = GX.W, H = GX.H, t = GX.t;
+  c.setTransform(GX.dpr, 0, 0, GX.dpr, 0, 0);
+  // deep-space background
+  const bg = c.createRadialGradient(W * 0.5, H * 0.45, 0, W * 0.5, H * 0.5, Math.max(W, H) * 0.75);
+  bg.addColorStop(0, '#0e1a3a'); bg.addColorStop(0.45, '#070c1f'); bg.addColorStop(1, '#020309');
+  c.fillStyle = bg; c.fillRect(0, 0, W, H);
+  // nebula haze behind the hubs
+  c.globalCompositeOperation = 'lighter';
+  for (const n of GX.nodes) if (n.isHub) {
+    const sx = n.x * t.k + t.x, sy = n.y * t.k + t.y, rr = (60 + n.r * 6) * Math.sqrt(t.k);
+    const g = c.createRadialGradient(sx, sy, 0, sx, sy, rr);
+    g.addColorStop(0, rgba(n.rgb, 0.10)); g.addColorStop(1, rgba(n.rgb, 0));
+    c.fillStyle = g; c.fillRect(sx - rr, sy - rr, rr * 2, rr * 2);
+  }
+  // twinkling stars with parallax
+  for (const s of GX.stars) {
+    const a = s.a * (0.55 + 0.45 * Math.sin(now * s.sp + s.ph));
+    let x = (s.x * W + t.x * s.d) % W, y = (s.y * H + t.y * s.d) % H;
+    if (x < 0) x += W; if (y < 0) y += H;
+    c.fillStyle = `rgba(210,225,255,${a})`;
+    c.beginPath(); c.arc(x, y, s.r, 0, 6.283); c.fill();
+  }
+
+  const active = GX.hover || GX.focus;
+  const ai = active ? GX.nodes.indexOf(active) : -1;
+  const near = new Set(ai >= 0 ? [ai, ...(GX.adj.get(ai) || []).map(x => x[0])] : []);
+  c.save();
+  c.translate(t.x, t.y); c.scale(t.k, t.k);
+  // threads
+  for (const l of GX.links) {
+    const a = l.source, b = l.target, q = Math.sqrt(l.weight / GX.maxW);
+    let alpha = 0.035 + 0.32 * q;
+    if (ai >= 0) alpha = (a.index === ai || b.index === ai) ? 0.75 : alpha * 0.12;
+    const [cx, cy] = gxCurve(a, b);
+    if (ai >= 0 && alpha > 0.5) {
+      // highlighted threads blend the two stars' colours
+      const g = c.createLinearGradient(a.x, a.y, b.x, b.y);
+      g.addColorStop(0, rgba(a.rgb, alpha)); g.addColorStop(1, rgba(b.rgb, alpha));
+      c.strokeStyle = g;
+    } else c.strokeStyle = rgba((a.isHub ? a : b.isHub ? b : a).rgb, alpha);
+    c.lineWidth = (0.35 + 2.2 * q) / Math.sqrt(t.k);
+    c.beginPath(); c.moveTo(a.x, a.y); c.quadraticCurveTo(cx, cy, b.x, b.y); c.stroke();
+  }
+  // light flowing along the threads
+  if ($('gxFlow').checked) {
+    for (const p of GX.particles) {
+      p.t += p.sp; if (p.t > 1) p.t -= 1;
+      const a = p.l.source, b = p.l.target;
+      if (ai >= 0 && a.index !== ai && b.index !== ai) continue;
+      const [cx, cy] = gxCurve(a, b), u = 1 - p.t;
+      const x = u * u * a.x + 2 * u * p.t * cx + p.t * p.t * b.x, y = u * u * a.y + 2 * u * p.t * cy + p.t * p.t * b.y;
+      const sz = 7 / Math.sqrt(t.k);
+      c.drawImage(gxSprite(p.t < 0.5 ? a.color : b.color), x - sz / 2, y - sz / 2, sz, sz);
+    }
+  }
+  // stars (nodes): glow sprite + bright core; hubs breathe slowly
+  for (let i = 0; i < GX.nodes.length; i++) {
+    const n = GX.nodes[i];
+    const dim = ai >= 0 && !near.has(i);
+    const r = n.r * (n.isHub ? 1 + 0.05 * Math.sin(now * 0.0015 + i) : 1);
+    c.globalAlpha = dim ? 0.12 : 1;
+    const sz = r * (n.isHub ? 5.5 : 4.2);
+    c.drawImage(gxSprite(n.color), n.x - sz / 2, n.y - sz / 2, sz, sz);
+    if (i === ai) { c.strokeStyle = 'rgba(255,255,255,.85)'; c.lineWidth = 1.5 / t.k; c.beginPath(); c.arc(n.x, n.y, r * 1.5, 0, 6.283); c.stroke(); }
+  }
+  c.globalAlpha = 1;
+  c.restore();
+  c.globalCompositeOperation = 'source-over';
+
+  // labels in screen space: hubs, big stars, and the hovered star's neighbours; no overlaps
+  c.font = '600 12px Cairo, sans-serif'; c.textAlign = 'center'; c.direction = 'rtl';
+  const placed = [];
+  const order = GX.nodes.map((n, i) => i).sort((a, b) => (near.has(b) - near.has(a)) || (GX.nodes[b].isHub - GX.nodes[a].isHub) || GX.nodes[b].r - GX.nodes[a].r);
+  for (const i of order) {
+    const n = GX.nodes[i];
+    const show = near.has(i) || n.isHub || n.r * t.k > 7.5;
+    if (!show || (ai >= 0 && !near.has(i) && !n.isHub)) continue;
+    const sx = n.x * t.k + t.x, sy = n.y * t.k + t.y - n.r * t.k - 6;
+    if (sx < -50 || sx > W + 50 || sy < -20 || sy > H + 20) continue;
+    const label = n.label.length > 28 ? n.label.slice(0, 27) + '…' : n.label;
+    const big = n.isHub || i === ai;
+    c.font = big ? '700 14px Cairo, sans-serif' : '600 11.5px Cairo, sans-serif';
+    const w = c.measureText(label).width, box = [sx - w / 2 - 3, sy - 13, sx + w / 2 + 3, sy + 4];
+    if (!near.has(i) && placed.some(p => box[0] < p[2] && box[2] > p[0] && box[1] < p[3] && box[3] > p[1])) continue;
+    placed.push(box);
+    c.fillStyle = 'rgba(2,4,12,.55)'; c.fillText(label, sx + 1, sy + 1);
+    c.fillStyle = big ? '#ffffff' : 'rgba(220,230,255,.88)';
+    c.fillText(label, sx, sy);
+  }
+  GX.raf = requestAnimationFrame(gxFrame);
+}
+
+readUrl();
+loadAll();
+</script>
+</body>
+</html>

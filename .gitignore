@@ -1,0 +1,14 @@
+# Large data files are fetched automatically from the GitHub Release (data-v1)
+data/*
+!data/analytics_cache.json
+!data/kiqp_manuscripts_cataloging_guide.json
+
+# Binaries and dependencies
+bin/
+node_modules/
+
+# Temporary files
+*.tmp
+
+# Local editor / Claude Code settings
+.claude/

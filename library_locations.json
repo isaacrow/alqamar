@@ -1,0 +1,3750 @@
+{
+  "about": "Holding libraries of the Al-Qamar catalogue, one entry per institution (catalogue volumes grouped), largest first. location: exact = its building, from OpenStreetMap or Wikidata (see source); approximate = no building found, shown 1.5-4 km from the city centre. lat/lon are what the map uses now.",
+  "generated": "2026-11-08",
+  "totals": {
+    "institutions": 182,
+    "manuscripts": 107143,
+    "exact": {
+      "institutions": 40,
+      "manuscripts": 70280
+    },
+    "approximate": {
+      "institutions": 142,
+      "manuscripts": 36863
+    }
+  },
+  "libraries": [
+    {
+      "rank": 1,
+      "name": "مكتبة مجلس الشورى",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 16265,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مجلس الشورى - طهران",
+          "manuscripts": 16265
+        }
+      ],
+      "location": "exact",
+      "lat": 35.69032,
+      "lon": 51.43337,
+      "source": "https://www.openstreetmap.org/way/609222998",
+      "matched_place": "مرکز اسناد و کتابخانه مجلس شورای اسلامی",
+      "key": "مكتبه مجلس الشوري|tehran"
+    },
+    {
+      "rank": 2,
+      "name": "مكتبة جامعة طهران",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 8027,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة جامعة طهران - ايران",
+          "manuscripts": 8027
+        }
+      ],
+      "location": "exact",
+      "lat": 35.70328,
+      "lon": 51.39527,
+      "source": "https://www.openstreetmap.org/way/118574393",
+      "matched_place": "Central library of University of Tehran",
+      "key": "مكتبه جامعه طهران|tehran"
+    },
+    {
+      "rank": 3,
+      "name": "مكتبة ملك الوطنية",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 6376,
+      "catalogue_names": [
+        {
+          "name": "مكتبة ملك الوطنية - طهران",
+          "manuscripts": 6376
+        }
+      ],
+      "location": "exact",
+      "lat": 35.687,
+      "lon": 51.41628,
+      "source": "https://www.openstreetmap.org/way/211028560",
+      "matched_place": "Malek National Museum and Library",
+      "key": "مكتبه ملك الوطنيه|tehran"
+    },
+    {
+      "rank": 4,
+      "name": "الجامعة المستنصرية",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 3532,
+      "catalogue_names": [
+        {
+          "name": "مصورات المايكروفيلمية في الجامعة المستنصرية - بغداد",
+          "manuscripts": 3532
+        }
+      ],
+      "location": "exact",
+      "lat": 33.27421,
+      "lon": 44.35692,
+      "source": "https://www.openstreetmap.org/way/86177138",
+      "matched_place": "كليه الصيدلة الجامعة المستنصرية",
+      "key": "الجامعه المستنصريه|baghdad"
+    },
+    {
+      "rank": 5,
+      "name": "مكتبة العتبة الرضوية المقدسة",
+      "city": "مشهد",
+      "city_en": "Mashhad",
+      "country": "إيران",
+      "manuscripts": 3375,
+      "catalogue_names": [
+        {
+          "name": "مكتبة العتبة الرضوية المقدسة في مشهد-ايران",
+          "manuscripts": 3375
+        }
+      ],
+      "location": "exact",
+      "lat": 36.28926,
+      "lon": 59.61572,
+      "source": "https://www.openstreetmap.org/way/1050515201",
+      "matched_place": "مكتبة العتبة الرضوية المقدسة",
+      "key": "مكتبه العتبه الرضويه المقدسه|mashhad"
+    },
+    {
+      "rank": 6,
+      "name": "مكتبة المدرسة الفيضية",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 2798,
+      "catalogue_names": [
+        {
+          "name": "مكتبة المدرسة الفيضية - قم",
+          "manuscripts": 2798
+        }
+      ],
+      "location": "exact",
+      "lat": 34.64283,
+      "lon": 50.87933,
+      "source": "https://www.openstreetmap.org/relation/4509252",
+      "matched_place": "مدرسه علمیه فیضیه",
+      "key": "مكتبه المدرسه الفيضيه|qom"
+    },
+    {
+      "rank": 7,
+      "name": "مكتبة العتبة العباسية المقدسة",
+      "city": "كربلاء",
+      "city_en": "Karbala",
+      "country": "العراق",
+      "manuscripts": 2678,
+      "catalogue_names": [
+        {
+          "name": "مكتبة العتبة العباسية المقدسة (ج1) في كربلاء المقدسة - العراق",
+          "manuscripts": 601
+        },
+        {
+          "name": "مكتبة العتبة العباسية المقدسة (ج3) في كربلاء المقدسة - العراق",
+          "manuscripts": 529
+        },
+        {
+          "name": "مكتبة العتبة العباسية المقدسة (ج4) - كربلاء المقدسة",
+          "manuscripts": 519
+        },
+        {
+          "name": "مكتبة العتبة العباسية المقدسة (ج2) في كربلاء المقدسة - العراق",
+          "manuscripts": 515
+        },
+        {
+          "name": "مكتبة العتبة العباسية المقدسة (ج5) - كربلاء المقدسة",
+          "manuscripts": 514
+        }
+      ],
+      "location": "exact",
+      "lat": 32.61669,
+      "lon": 44.03631,
+      "source": "https://www.openstreetmap.org/node/13337194330",
+      "matched_place": "Library of Al-Abbas holy shrine",
+      "key": "مكتبه العتبه العباسيه المقدسه|karbala"
+    },
+    {
+      "rank": 8,
+      "name": "مكتبة جامعة الملك سعود",
+      "city": "الرياض",
+      "city_en": "Riyadh",
+      "country": "السعودية",
+      "manuscripts": 2643,
+      "catalogue_names": [
+        {
+          "name": "مكتبة جامعة الملك سعود - السعودية",
+          "manuscripts": 2643
+        }
+      ],
+      "location": "exact",
+      "lat": 24.71827,
+      "lon": 46.61961,
+      "source": "https://www.openstreetmap.org/way/133795316",
+      "matched_place": "مكتبة الملك سلمان المركزية",
+      "key": "مكتبه جامعه الملك سعود|riyadh"
+    },
+    {
+      "rank": 9,
+      "name": "مكتبة فيض الله افندي",
+      "city": "إسطنبول",
+      "city_en": "Istanbul",
+      "country": "تركيا",
+      "manuscripts": 2607,
+      "catalogue_names": [
+        {
+          "name": "مكتبة فيض الله افندي-تركيا",
+          "manuscripts": 2607
+        }
+      ],
+      "location": "exact",
+      "lat": 41.017,
+      "lon": 28.94972,
+      "source": "https://www.openstreetmap.org/relation/7604178",
+      "matched_place": "مكتبة ميليت",
+      "key": "مكتبه فيض الله افندي|istanbul"
+    },
+    {
+      "rank": 10,
+      "name": "المكتبة الوطنية",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 2538,
+      "catalogue_names": [
+        {
+          "name": "المكتبة الوطنية - طهران",
+          "manuscripts": 2538
+        }
+      ],
+      "location": "exact",
+      "lat": 35.75222,
+      "lon": 51.4341,
+      "source": "https://www.openstreetmap.org/relation/2064918",
+      "matched_place": "Iran National Library",
+      "key": "المكتبه الوطنيه|tehran"
+    },
+    {
+      "rank": 11,
+      "name": "مكتبة راغب باشا",
+      "city": "إسطنبول",
+      "city_en": "Istanbul",
+      "country": "تركيا",
+      "manuscripts": 2462,
+      "catalogue_names": [
+        {
+          "name": "مكتبة راغب باشا -اسطنبول",
+          "manuscripts": 2462
+        }
+      ],
+      "location": "exact",
+      "lat": 41.00915,
+      "lon": 28.95868,
+      "source": "https://www.openstreetmap.org/way/522510648",
+      "matched_place": "Ragip Pasa Library",
+      "key": "مكتبه راغب باشا|istanbul"
+    },
+    {
+      "rank": 12,
+      "name": "مكتبة جامعة اصفهان",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 1840,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة جامعة اصفهان",
+          "manuscripts": 1840
+        }
+      ],
+      "location": "exact",
+      "lat": 32.61361,
+      "lon": 51.66139,
+      "source": "https://www.wikidata.org/wiki/Q495347",
+      "matched_place": "University of Isfahan",
+      "key": "مكتبه جامعه اصفهان|isfahan"
+    },
+    {
+      "rank": 13,
+      "name": "مركز إحياء التراث الإسلامي",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 1799,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مركز إحياء التراث الإسلامي - قم",
+          "manuscripts": 1014
+        },
+        {
+          "name": "مصورات مركز إحياء التراث الإسلامي - قم",
+          "manuscripts": 785
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.62508,
+      "lon": 50.8953,
+      "source": null,
+      "matched_place": null,
+      "key": "مركز احياء التراث الاسلامي|qom"
+    },
+    {
+      "rank": 14,
+      "name": "مكتبة مركز الدراسات والتحقيقات الاسلامي",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 1797,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مركز الدراسات والتحقيقات الاسلامي - قم",
+          "manuscripts": 1797
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.61605,
+      "lon": 50.85516,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مركز الدراسات والتحقيقات الاسلامي|qom"
+    },
+    {
+      "rank": 15,
+      "name": "دار الكتب القطرية",
+      "city": "الدوحة",
+      "city_en": "Doha",
+      "country": "قطر",
+      "manuscripts": 1771,
+      "catalogue_names": [
+        {
+          "name": "دار الكتب القطرية",
+          "manuscripts": 1771
+        }
+      ],
+      "location": "exact",
+      "lat": 25.31807,
+      "lon": 51.44162,
+      "source": "https://www.openstreetmap.org/way/159453474",
+      "matched_place": "مكتبة قطر الوطنية",
+      "key": "دار الكتب القطريه|doha"
+    },
+    {
+      "rank": 16,
+      "name": "مكتبة ولي عصر",
+      "city": "خوانسار",
+      "city_en": "Khansar",
+      "country": "إيران",
+      "manuscripts": 1720,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة ولي عصر في خوانسار-ايران",
+          "manuscripts": 1720
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.2102,
+      "lon": 50.29866,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه ولي عصر|khansar"
+    },
+    {
+      "rank": 17,
+      "name": "مكتبة السيدة معصومة",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 1541,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيدة معصومة (ع) - قم",
+          "manuscripts": 1541
+        }
+      ],
+      "location": "exact",
+      "lat": 34.64156,
+      "lon": 50.87885,
+      "source": "https://www.openstreetmap.org/node/13416585640",
+      "matched_place": "Tomb of Hazrat Fatima Masoumeh",
+      "key": "مكتبه السيده معصومه|qom"
+    },
+    {
+      "rank": 18,
+      "name": "مكتبة الامام الحكيم العامة",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 1407,
+      "catalogue_names": [
+        {
+          "name": "مصورات مكتبة الامام الحكيم العامة في النجف الاشرف-العراق",
+          "manuscripts": 793
+        },
+        {
+          "name": "مخطوطات مكتبة الامام الحكيم العامة - النجف الاشرف",
+          "manuscripts": 614
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.01718,
+      "lon": 44.34866,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الامام الحكيم العامه|najaf"
+    },
+    {
+      "rank": 19,
+      "name": "المجمع العلمي العراقي",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 1402,
+      "catalogue_names": [
+        {
+          "name": "مصورات المايكروفيلم في المجمع العلمي العراقي - بغداد",
+          "manuscripts": 1402
+        }
+      ],
+      "location": "exact",
+      "lat": 33.37087,
+      "lon": 44.38398,
+      "source": "https://www.openstreetmap.org/way/856206450",
+      "matched_place": "المجمع العلمي العراقي",
+      "key": "المجمع العلمي العراقي|baghdad"
+    },
+    {
+      "rank": 20,
+      "name": "مكتبة معهد الدراسات الثقافية الاسلامية بجامعة طوكيو",
+      "city": "طوكيو",
+      "city_en": "Tokyo",
+      "country": "اليابان",
+      "manuscripts": 1325,
+      "catalogue_names": [
+        {
+          "name": "مكتبة معهد الدراسات الثقافية الاسلامية بجامعة طوكيو - اليابان",
+          "manuscripts": 1325
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.73049,
+      "lon": 139.76623,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه معهد الدراسات الثقافيه الاسلاميه بجامعه طوكيو|tokyo"
+    },
+    {
+      "rank": 21,
+      "name": "مكتبة صدر بازار",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 1289,
+      "catalogue_names": [
+        {
+          "name": "مكتبة صدر بازار - اصفهان",
+          "manuscripts": 1289
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.63949,
+      "lon": 51.666,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه صدر بازار|isfahan"
+    },
+    {
+      "rank": 22,
+      "name": "مكتبات اليمن",
+      "city": "صنعاء",
+      "city_en": "Sanaa",
+      "country": "اليمن",
+      "manuscripts": 1259,
+      "catalogue_names": [
+        {
+          "name": "مكتبات اليمن",
+          "manuscripts": 1259
+        }
+      ],
+      "location": "country only (approximate)",
+      "lat": 15.35499,
+      "lon": 44.191,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات اليمن|sanaa"
+    },
+    {
+      "rank": 23,
+      "name": "مكتبة نمازى خويى",
+      "city": "خوي",
+      "city_en": "Khoy",
+      "country": "إيران",
+      "manuscripts": 1227,
+      "catalogue_names": [
+        {
+          "name": "مكتبة نمازى خويى- خويى",
+          "manuscripts": 1227
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 38.57365,
+      "lon": 44.98411,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه نمازي خويي|khoy"
+    },
+    {
+      "rank": 24,
+      "name": "مكتبة ابن مسكويه",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 1192,
+      "catalogue_names": [
+        {
+          "name": "مكتبة ابن مسكويه - اصفهان",
+          "manuscripts": 1192
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.62941,
+      "lon": 51.65243,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه ابن مسكويه|isfahan"
+    },
+    {
+      "rank": 25,
+      "name": "مكتبة مدرسة مروي",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 1172,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة مروي في طهران - ايران",
+          "manuscripts": 1171
+        },
+        {
+          "name": "مكتبة مدرسة مروي",
+          "manuscripts": 1
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.66817,
+      "lon": 51.39894,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه مروي|tehran"
+    },
+    {
+      "rank": 26,
+      "name": "مكتبة طاووس اليماني",
+      "city": "صنعاء",
+      "city_en": "Sanaa",
+      "country": "اليمن",
+      "manuscripts": 1155,
+      "catalogue_names": [
+        {
+          "name": "مكتبة طاووس اليماني - اليمن",
+          "manuscripts": 1155
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 15.33975,
+      "lon": 44.20875,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه طاووس اليماني|sanaa"
+    },
+    {
+      "rank": 27,
+      "name": "مكتبة سريزدي",
+      "city": "يزد",
+      "city_en": "Yazd",
+      "country": "إيران",
+      "manuscripts": 1146,
+      "catalogue_names": [
+        {
+          "name": "مكتبة سريزدي - يزد",
+          "manuscripts": 1146
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.87928,
+      "lon": 54.36873,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه سريزدي|yazd"
+    },
+    {
+      "rank": 28,
+      "name": "مكتبة شاه چراغ",
+      "city": "شيراز",
+      "city_en": "Shiraz",
+      "country": "إيران",
+      "manuscripts": 1114,
+      "catalogue_names": [
+        {
+          "name": "مكتبة شاه چراغ (ع) - شيراز",
+          "manuscripts": 1114
+        }
+      ],
+      "location": "exact",
+      "lat": 29.60971,
+      "lon": 52.54302,
+      "source": "https://www.openstreetmap.org/way/1198637663",
+      "matched_place": "ضريح شاه جراغ المقدس",
+      "key": "مكتبه شاه چراغ|shiraz"
+    },
+    {
+      "rank": 29,
+      "name": "مكتبة علي أميري",
+      "city": "إسطنبول",
+      "city_en": "Istanbul",
+      "country": "تركيا",
+      "manuscripts": 1107,
+      "catalogue_names": [
+        {
+          "name": "مكتبة علي أميري - تركيا",
+          "manuscripts": 1107
+        }
+      ],
+      "location": "exact",
+      "lat": 41.017,
+      "lon": 28.94972,
+      "source": "https://www.openstreetmap.org/relation/7604178",
+      "matched_place": "مكتبة ميليت",
+      "key": "مكتبه علي اميري|istanbul"
+    },
+    {
+      "rank": 30,
+      "name": "مكتبة دار المثنوي",
+      "city": "إسطنبول",
+      "city_en": "Istanbul",
+      "country": "تركيا",
+      "manuscripts": 959,
+      "catalogue_names": [
+        {
+          "name": "مكتبة دار المثنوي في إسطنبول- تركيا",
+          "manuscripts": 959
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 40.99125,
+      "lon": 28.98156,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه دار المثنوي|istanbul"
+    },
+    {
+      "rank": 31,
+      "name": "مكتبة السيد البروجردي",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 931,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيد البروجردي - قم",
+          "manuscripts": 931
+        }
+      ],
+      "location": "exact",
+      "lat": 34.64243,
+      "lon": 50.87791,
+      "source": "https://www.openstreetmap.org/way/323644053",
+      "matched_place": "Azam Mosque",
+      "key": "مكتبه السيد البروجردي|qom"
+    },
+    {
+      "rank": 32,
+      "name": "المكتبة المركزية",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 884,
+      "catalogue_names": [
+        {
+          "name": "المصورات الميكروفيلمية في المكتبة المركزية - جامعة بغداد",
+          "manuscripts": 804
+        },
+        {
+          "name": "المصورات الورقية للنسخ المايكروفيلمية المحفوظة في المكتبة المركزية - جامعة بغداد",
+          "manuscripts": 80
+        }
+      ],
+      "location": "exact",
+      "lat": 33.2727,
+      "lon": 44.37955,
+      "source": "https://www.openstreetmap.org/way/4493601",
+      "matched_place": "جامعة بغداد",
+      "key": "المكتبه المركزيه|baghdad"
+    },
+    {
+      "rank": 33,
+      "name": "مكتبة مدرسة چهل ستون",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 838,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة مدرسة چهل ستون في طهران-ايران",
+          "manuscripts": 838
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.70108,
+      "lon": 51.4099,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه چهل ستون|tehran"
+    },
+    {
+      "rank": 34,
+      "name": "مكتبة مسجد الكوفة المعظم",
+      "city": "الكوفة",
+      "city_en": "Kufa",
+      "country": "العراق",
+      "manuscripts": 837,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مسجد الكوفة المعظم - العراق",
+          "manuscripts": 837
+        }
+      ],
+      "location": "exact",
+      "lat": 32.02917,
+      "lon": 44.40024,
+      "source": "https://www.openstreetmap.org/relation/15610020",
+      "matched_place": "مسجد الكوفة المعظم",
+      "key": "مكتبه مسجد الكوفه المعظم|kufa"
+    },
+    {
+      "rank": 35,
+      "name": "مكتبة صاحب الجواهر",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 776,
+      "catalogue_names": [
+        {
+          "name": "مكتبة صاحب الجواهر في النجف الاشرف",
+          "manuscripts": 776
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.97224,
+      "lon": 44.34756,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه صاحب الجواهر|najaf"
+    },
+    {
+      "rank": 36,
+      "name": "مكتبة جامعة لايبزك",
+      "city": "لايبزك",
+      "city_en": "Leipzig",
+      "country": "ألمانيا",
+      "manuscripts": 746,
+      "catalogue_names": [
+        {
+          "name": "مكتبة جامعة لايبزك – المانيا",
+          "manuscripts": 746
+        }
+      ],
+      "location": "exact",
+      "lat": 51.33249,
+      "lon": 12.36826,
+      "source": "https://www.openstreetmap.org/way/766030637",
+      "matched_place": "Leipzig University Library",
+      "key": "مكتبه جامعه لايبزك|leipzig"
+    },
+    {
+      "rank": 37,
+      "name": "مكتبة الازهرية",
+      "city": "القاهرة",
+      "city_en": "Cairo",
+      "country": "مصر",
+      "manuscripts": 739,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الازهرية - مصر",
+          "manuscripts": 739
+        }
+      ],
+      "location": "exact",
+      "lat": 30.04575,
+      "lon": 31.26268,
+      "source": "https://www.openstreetmap.org/way/24749059",
+      "matched_place": "الجامع الأزهر",
+      "key": "مكتبه الازهريه|cairo"
+    },
+    {
+      "rank": 38,
+      "name": "مركز تحقيقات دار الحديث",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 709,
+      "catalogue_names": [
+        {
+          "name": "مركز تحقيقات دار الحديث - قم",
+          "manuscripts": 709
+        }
+      ],
+      "location": "exact",
+      "lat": 34.63772,
+      "lon": 50.92034,
+      "source": "https://www.openstreetmap.org/node/5003796203",
+      "matched_place": "دارالحدیث",
+      "key": "مركز تحقيقات دار الحديث|qom"
+    },
+    {
+      "rank": 39,
+      "name": "مكتبة السيد مرتضى الحجة",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 665,
+      "catalogue_names": [
+        {
+          "name": "وثائق مكتبة السيد مرتضى الحجة في النجف الأشرف",
+          "manuscripts": 665
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.98855,
+      "lon": 44.32,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد مرتضي الحجه|najaf"
+    },
+    {
+      "rank": 40,
+      "name": "مكتبة آية الله گلپايگاني",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 634,
+      "catalogue_names": [
+        {
+          "name": "مكتبة آية الله گلپايگاني - قم",
+          "manuscripts": 634
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.62887,
+      "lon": 50.8921,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه ايه الله گلپايگاني|qom"
+    },
+    {
+      "rank": 41,
+      "name": "مكتبة جامعة النجف الدينية",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 615,
+      "catalogue_names": [
+        {
+          "name": "مكتبة جامعة النجف الدينية - النجف الاشرف",
+          "manuscripts": 615
+        }
+      ],
+      "location": "exact",
+      "lat": 32.00234,
+      "lon": 44.33603,
+      "source": "https://www.openstreetmap.org/node/4374474405",
+      "matched_place": "جامعة النجف الاشرف الدينية",
+      "key": "مكتبه جامعه النجف الدينيه|najaf"
+    },
+    {
+      "rank": 42,
+      "name": "مكتبة الحوزة العلمية الامام الصادق",
+      "city": "أردكان",
+      "city_en": "Ardakan, Yazd",
+      "country": "إيران",
+      "manuscripts": 609,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الحوزة العلمية الامام الصادق (ع) - اردكان",
+          "manuscripts": 609
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.31829,
+      "lon": 53.99738,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الحوزه العلميه الامام الصادق|ardakan"
+    },
+    {
+      "rank": 43,
+      "name": "مكتبة آية الله الخادمي الاصفهاني",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 522,
+      "catalogue_names": [
+        {
+          "name": "مكتبة آية الله الخادمي الاصفهاني -قم",
+          "manuscripts": 522
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.6425,
+      "lon": 50.89479,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه ايه الله الخادمي الاصفهاني|qom"
+    },
+    {
+      "rank": 44,
+      "name": "مكتبة المدرسة الشبرية",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 516,
+      "catalogue_names": [
+        {
+          "name": "فهرس مخطوطات مكتبة المدرسة الشبرية في النجف الاشرف",
+          "manuscripts": 516
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.98912,
+      "lon": 44.34615,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه المدرسه الشبريه|najaf"
+    },
+    {
+      "rank": 45,
+      "name": "مكتبة السيد الطبسي الحائري",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 503,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيد الطبسي الحائري - قم",
+          "manuscripts": 503
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.61539,
+      "lon": 50.85835,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد الطبسي الحائري|qom"
+    },
+    {
+      "rank": 46,
+      "name": "مكتبة تشستربيتي بدبلن",
+      "city": "دبلن",
+      "city_en": "Dublin",
+      "country": "أيرلندا",
+      "manuscripts": 483,
+      "catalogue_names": [
+        {
+          "name": "مكتبة تشستربيتي بدبلن – ايرلندا",
+          "manuscripts": 483
+        }
+      ],
+      "location": "exact",
+      "lat": 53.3422,
+      "lon": -6.26745,
+      "source": "https://www.openstreetmap.org/node/10020524598",
+      "matched_place": "Chester Beatty Library",
+      "key": "مكتبه تشستربيتي بدبلن|dublin"
+    },
+    {
+      "rank": 47,
+      "name": "دار الحديث",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 482,
+      "catalogue_names": [
+        {
+          "name": "مصورات دار الحديث - قم",
+          "manuscripts": 482
+        }
+      ],
+      "location": "exact",
+      "lat": 34.63772,
+      "lon": 50.92034,
+      "source": "https://www.openstreetmap.org/node/5003796203",
+      "matched_place": "دارالحدیث",
+      "key": "دار الحديث|qom"
+    },
+    {
+      "rank": 48,
+      "name": "مكتبة مزار محمد هلال بن علي",
+      "city": "آران",
+      "city_en": "Aran va Bidgol",
+      "country": "إيران",
+      "manuscripts": 479,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مزار محمد هلال بن علي في آران - كاشان",
+          "manuscripts": 479
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.0577,
+      "lon": 51.46046,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مزار محمد هلال بن علي|aran"
+    },
+    {
+      "rank": 49,
+      "name": "مكتبة الامام جمعه زنجان",
+      "city": "زنجان",
+      "city_en": "Zanjan",
+      "country": "إيران",
+      "manuscripts": 478,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الامام جمعه زنجان - زنجان",
+          "manuscripts": 478
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.65849,
+      "lon": 48.49094,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الامام جمعه زنجان|zanjan"
+    },
+    {
+      "rank": 50,
+      "name": "مكتبة السيد حسن الصدر",
+      "city": "الكاظمية",
+      "city_en": "Kadhimiya, Baghdad",
+      "country": "العراق",
+      "manuscripts": 464,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيد حسن الصدر في الكاظمية - العراق",
+          "manuscripts": 464
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.35269,
+      "lon": 44.33863,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد حسن الصدر|kadhimiya"
+    },
+    {
+      "rank": 51,
+      "name": "مكتبة المدرسة المعصومية",
+      "city": "بيرجند",
+      "city_en": "Birjand",
+      "country": "إيران",
+      "manuscripts": 459,
+      "catalogue_names": [
+        {
+          "name": "مكتبة المدرسة المعصومية في بيرجند- ايران",
+          "manuscripts": 459
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.88889,
+      "lon": 59.20156,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه المدرسه المعصوميه|birjand"
+    },
+    {
+      "rank": 52,
+      "name": "مكتبة العلامة رفيعي القزويني",
+      "city": "قزوين",
+      "city_en": "Qazvin",
+      "country": "إيران",
+      "manuscripts": 444,
+      "catalogue_names": [
+        {
+          "name": "مكتبة العلامة رفيعي القزويني في قزوين-ايران",
+          "manuscripts": 444
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.27218,
+      "lon": 49.9762,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه العلامه رفيعي القزويني|qazvin"
+    },
+    {
+      "rank": 53,
+      "name": "مكتبة الامام زيد بن علي",
+      "city": "صنعاء",
+      "city_en": "Sanaa",
+      "country": "اليمن",
+      "manuscripts": 435,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الامام زيد بن علي (ع) - اليمن",
+          "manuscripts": 435
+        }
+      ],
+      "location": "exact",
+      "lat": 15.34974,
+      "lon": 44.1905,
+      "source": "https://www.openstreetmap.org/node/13504835101",
+      "matched_place": "مؤسسة الإمام زيد بن علي الثقافية (IZBACF)",
+      "key": "مكتبه الامام زيد بن علي|sanaa"
+    },
+    {
+      "rank": 54,
+      "name": "المدرسة الجعفرية",
+      "city": "قائن",
+      "city_en": "Qaen",
+      "country": "إيران",
+      "manuscripts": 420,
+      "catalogue_names": [
+        {
+          "name": "المدرسة الجعفرية في قائن - ايران",
+          "manuscripts": 327
+        },
+        {
+          "name": "المدرسة الجعفرية في زهان /قائن-ايران",
+          "manuscripts": 93
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.74004,
+      "lon": 59.21377,
+      "source": null,
+      "matched_place": null,
+      "key": "المدرسه الجعفريه|qaen"
+    },
+    {
+      "rank": 55,
+      "name": "مكتبة يوسف أغا",
+      "city": "إسطنبول",
+      "city_en": "Istanbul",
+      "country": "تركيا",
+      "manuscripts": 412,
+      "catalogue_names": [
+        {
+          "name": "مكتبة يوسف أغا - اسطنبول",
+          "manuscripts": 412
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 41.02809,
+      "lon": 29.00768,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه يوسف اغا|istanbul"
+    },
+    {
+      "rank": 56,
+      "name": "مكتبات سوريا",
+      "city": "دمشق",
+      "city_en": "Damascus",
+      "country": "سوريا",
+      "manuscripts": 387,
+      "catalogue_names": [
+        {
+          "name": "مصورات مكتبات سوريا",
+          "manuscripts": 387
+        }
+      ],
+      "location": "country only (approximate)",
+      "lat": 33.50705,
+      "lon": 36.29654,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات سوريا|damascus"
+    },
+    {
+      "rank": 57,
+      "name": "مركز احياء التراث العلمي العربي",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 374,
+      "catalogue_names": [
+        {
+          "name": "المصورات الميكروفيلمية في مركز احياء التراث العلمي العربي - جامعة بغداد",
+          "manuscripts": 374
+        }
+      ],
+      "location": "exact",
+      "lat": 33.2727,
+      "lon": 44.37955,
+      "source": "https://www.openstreetmap.org/way/4493601",
+      "matched_place": "جامعة بغداد",
+      "key": "مركز احياء التراث العلمي العربي|baghdad"
+    },
+    {
+      "rank": 58,
+      "name": "مكتبة مولانا سيد علي حسين زنكي بور",
+      "city": "زنكي بور",
+      "city_en": "Zangipur, Uttar Pradesh",
+      "country": "الهند",
+      "manuscripts": 356,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مولانا سيد علي حسين زنكي بور - الهند",
+          "manuscripts": 356
+        }
+      ],
+      "location": "country only (approximate)",
+      "lat": 25.74587,
+      "lon": 83.46522,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مولانا سيد علي حسين زنكي بور|zangipur"
+    },
+    {
+      "rank": 59,
+      "name": "مكتبة مدرسة الحجة",
+      "city": "نجف آباد",
+      "city_en": "Najafabad",
+      "country": "إيران",
+      "manuscripts": 344,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة مدرسة الحجة - نجف آباد",
+          "manuscripts": 344
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.63194,
+      "lon": 51.39223,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه الحجه|najafabad"
+    },
+    {
+      "rank": 60,
+      "name": "مكتبة جامعة برنستون",
+      "city": "برنستون",
+      "city_en": "Princeton, New Jersey",
+      "country": "أمريكا",
+      "manuscripts": 331,
+      "catalogue_names": [
+        {
+          "name": "مكتبة جامعة برنستون - امريكا",
+          "manuscripts": 331
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 40.3654,
+      "lon": -74.6876,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه جامعه برنستون|princeton"
+    },
+    {
+      "rank": 61,
+      "name": "المركز الوطني للمخطوطات",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 330,
+      "catalogue_names": [
+        {
+          "name": "المركز الوطني للمخطوطات-بغداد",
+          "manuscripts": 329
+        },
+        {
+          "name": "المركز الوطني للمخطوطات-بغداد.",
+          "manuscripts": 1
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.30613,
+      "lon": 44.38219,
+      "source": null,
+      "matched_place": null,
+      "key": "المركز الوطني للمخطوطات|baghdad"
+    },
+    {
+      "rank": 62,
+      "name": "مكتبة السيد محمد صادق بحر العلوم",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 324,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيد محمد صادق بحر العلوم - النجف الاشرف",
+          "manuscripts": 324
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.03141,
+      "lon": 44.33824,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد محمد صادق بحر العلوم|najaf"
+    },
+    {
+      "rank": 63,
+      "name": "المكتبة التخصصية",
+      "city": null,
+      "city_en": null,
+      "country": null,
+      "manuscripts": 322,
+      "catalogue_names": [
+        {
+          "name": "المصورات الورقية في المكتبة التخصصية",
+          "manuscripts": 322
+        }
+      ],
+      "location": "unknown",
+      "lat": null,
+      "lon": null,
+      "source": null,
+      "matched_place": null,
+      "key": "?|المصورات الورقية في المكتبة التخصصية"
+    },
+    {
+      "rank": 64,
+      "name": "مكتبة مؤسسة بساتين للتراث الاسلامي",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 321,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مؤسسة بساتين للتراث الاسلامي في قم-ايران",
+          "manuscripts": 321
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.64932,
+      "lon": 50.86439,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مؤسسه بساتين للتراث الاسلامي|qom"
+    },
+    {
+      "rank": 65,
+      "name": "مكتبات نجفية خاصة ج2",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 316,
+      "catalogue_names": [
+        {
+          "name": "مكتبات نجفية خاصة ج2 -مكتبة الشيخ محمد رضا الشبيبي",
+          "manuscripts": 144
+        },
+        {
+          "name": "مكتبات نجفية خاصة ج2 - مكتبة الشيخ محمد علي الراضي المظفر",
+          "manuscripts": 97
+        },
+        {
+          "name": "مكتبات نجفية خاصة ج2 - مكتبة الشيخ محمد علي الأوردبادي",
+          "manuscripts": 54
+        },
+        {
+          "name": "مكتبات نجفية خاصة ج2 - مكتبة الشيخ جعفر الهلالي",
+          "manuscripts": 21
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.98877,
+      "lon": 44.31977,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات نجفيه خاصه ج2|najaf"
+    },
+    {
+      "rank": 66,
+      "name": "مكتبة كاظميني",
+      "city": "يزد",
+      "city_en": "Yazd",
+      "country": "إيران",
+      "manuscripts": 305,
+      "catalogue_names": [
+        {
+          "name": "مكتبة كاظميني - يزد",
+          "manuscripts": 305
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.90823,
+      "lon": 54.34414,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه كاظميني|yazd"
+    },
+    {
+      "rank": 67,
+      "name": "مكتبة الزهراء",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 295,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الزهراء(ع) في أصفهان - ايران",
+          "manuscripts": 295
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.64721,
+      "lon": 51.70041,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الزهراء|isfahan"
+    },
+    {
+      "rank": 68,
+      "name": "مكتبة مراغة العامة",
+      "city": "مراغة",
+      "city_en": "Maragheh",
+      "country": "إيران",
+      "manuscripts": 291,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مراغة العامة - ايران",
+          "manuscripts": 291
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 37.38798,
+      "lon": 46.22335,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مراغه العامه|maragheh"
+    },
+    {
+      "rank": 69,
+      "name": "مكتبة السيّد البروجردي",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 281,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيّد البروجردي في النجف الأشرف",
+          "manuscripts": 281
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.00407,
+      "lon": 44.3078,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيّد البروجردي|najaf"
+    },
+    {
+      "rank": 70,
+      "name": "مكتبات نجفية ج1",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 278,
+      "catalogue_names": [
+        {
+          "name": "مكتبات نجفية ج1- مكتبة السيد مجيد الحكيم",
+          "manuscripts": 73
+        },
+        {
+          "name": "مكتبات نجفية ج1- مكتبة الشيخ عبد الواحد المظفر",
+          "manuscripts": 56
+        },
+        {
+          "name": "مكتبات نجفية ج1- مكتبة السيد محسن الحمامي",
+          "manuscripts": 53
+        },
+        {
+          "name": "مكتبات نجفية ج1- مكتبة الشيخ شاكر القرشي",
+          "manuscripts": 38
+        },
+        {
+          "name": "مكتبات نجفية ج1- مكتبة الأستاذ كاظم بن محمد آل شكر الفضلي",
+          "manuscripts": 32
+        },
+        {
+          "name": "مكتبات نجفية ج1- مكتبة الشيخ محمد طاهر آل الشيخ راضي",
+          "manuscripts": 26
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.99493,
+      "lon": 44.29723,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات نجفيه ج1|najaf"
+    },
+    {
+      "rank": 71,
+      "name": "مكتبة سيد حسن فقيه امامي",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 248,
+      "catalogue_names": [
+        {
+          "name": "مكتبة سيد حسن فقيه امامي - اصفهان",
+          "manuscripts": 248
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.63823,
+      "lon": 51.64533,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه سيد حسن فقيه امامي|isfahan"
+    },
+    {
+      "rank": 72,
+      "name": "مكتبة فحول قزوين",
+      "city": "قزوين",
+      "city_en": "Qazvin",
+      "country": "إيران",
+      "manuscripts": 245,
+      "catalogue_names": [
+        {
+          "name": "مكتبة فحول قزوين - قزوين",
+          "manuscripts": 245
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.24774,
+      "lon": 50.02012,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه فحول قزوين|qazvin"
+    },
+    {
+      "rank": 73,
+      "name": "مكتبة مدرسة اية الله العظمى الخوئي",
+      "city": "مشهد",
+      "city_en": "Mashhad",
+      "country": "إيران",
+      "manuscripts": 245,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة اية الله العظمى الخوئي - مشهد",
+          "manuscripts": 245
+        }
+      ],
+      "location": "exact",
+      "lat": 36.29309,
+      "lon": 59.60812,
+      "source": "https://www.openstreetmap.org/node/5002506223",
+      "matched_place": "مدرسة آية آلله العظمى السيد الخوئي (قدس سره)",
+      "key": "مكتبه مدرسه ايه الله العظمي الخوئي|mashhad"
+    },
+    {
+      "rank": 74,
+      "name": "مكتبة هادي النجفي",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 242,
+      "catalogue_names": [
+        {
+          "name": "مكتبة هادي النجفي - اصفهان",
+          "manuscripts": 242
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.66075,
+      "lon": 51.64854,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه هادي النجفي|isfahan"
+    },
+    {
+      "rank": 75,
+      "name": "مكتبة امير المؤمنين",
+      "city": "بشرويه",
+      "city_en": "Boshruyeh",
+      "country": "إيران",
+      "manuscripts": 227,
+      "catalogue_names": [
+        {
+          "name": "مكتبة امير المؤمنين (ع) في بشرويه- ايران",
+          "manuscripts": 227
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.88231,
+      "lon": 57.41122,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه امير المؤمنين|boshruyeh"
+    },
+    {
+      "rank": 76,
+      "name": "مكتبة آل المزيدي",
+      "city": "الكويت",
+      "city_en": "Kuwait City",
+      "country": "الكويت",
+      "manuscripts": 225,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة آل المزيدي-الكويت",
+          "manuscripts": 208
+        },
+        {
+          "name": "وثائق مكتبة آل المزيدي - الكويت",
+          "manuscripts": 17
+        }
+      ],
+      "location": "exact",
+      "lat": 29.37783,
+      "lon": 47.97693,
+      "source": "https://www.openstreetmap.org/way/154718559",
+      "matched_place": "المزيدي",
+      "key": "مكتبه ال المزيدي|kuwait"
+    },
+    {
+      "rank": 77,
+      "name": "مكتبة الدكتور زهير الطيب",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 222,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الدكتور زهير الطيب في طهران - ايران",
+          "manuscripts": 222
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.71361,
+      "lon": 51.42012,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الدكتور زهير الطيب|tehran"
+    },
+    {
+      "rank": 78,
+      "name": "المكتبة العباسية (باشا أعيان)",
+      "city": "البصرة",
+      "city_en": "Basra",
+      "country": "العراق",
+      "manuscripts": 208,
+      "catalogue_names": [
+        {
+          "name": "المكتبة العباسية (باشا أعيان) - البصرة",
+          "manuscripts": 208
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 30.53366,
+      "lon": 47.80578,
+      "source": null,
+      "matched_place": null,
+      "key": "المكتبه العباسيه (باشا اعيان)|basra"
+    },
+    {
+      "rank": 79,
+      "name": "مكتبة الامام الهادي",
+      "city": "مشهد",
+      "city_en": "Mashhad",
+      "country": "إيران",
+      "manuscripts": 205,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الامام الهادي (ع) - مشهد",
+          "manuscripts": 205
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.2833,
+      "lon": 59.59634,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الامام الهادي|mashhad"
+    },
+    {
+      "rank": 80,
+      "name": "اجازات حضرت آية الله العظمى الشيخ عبد الكريم الحائري اليزدي",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 202,
+      "catalogue_names": [
+        {
+          "name": "اجازات حضرت آية الله العظمى الشيخ عبد الكريم الحائري اليزدي- مركز نور ومركز الحوزة العلمية في قم - ايران",
+          "manuscripts": 202
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.67077,
+      "lon": 50.88923,
+      "source": null,
+      "matched_place": null,
+      "key": "اجازات حضرت ايه الله العظمي الشيخ عبد الكريم الحائري اليزدي|qom"
+    },
+    {
+      "rank": 81,
+      "name": "مكتبة السيد مصلح الدين مهدوي",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 189,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيد مصلح الدين مهدوي - اصفهان",
+          "manuscripts": 189
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.65947,
+      "lon": 51.68522,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد مصلح الدين مهدوي|isfahan"
+    },
+    {
+      "rank": 82,
+      "name": "مكتبة نوربانو (NURBANU)",
+      "city": "إسطنبول",
+      "city_en": "Istanbul",
+      "country": "تركيا",
+      "manuscripts": 188,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة نوربانو (NURBANU)- تركيا",
+          "manuscripts": 188
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 40.98504,
+      "lon": 28.94662,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه نوربانو (NURBANU)|istanbul"
+    },
+    {
+      "rank": 83,
+      "name": "مكتبة ممتاز العلماء",
+      "city": "لكهنو",
+      "city_en": "Lucknow",
+      "country": "الهند",
+      "manuscripts": 187,
+      "catalogue_names": [
+        {
+          "name": "مكتبة ممتاز العلماء - لكنهو / الهند",
+          "manuscripts": 187
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 26.86449,
+      "lon": 80.96479,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه ممتاز العلماء|lucknow"
+    },
+    {
+      "rank": 84,
+      "name": "مكتبة امير المؤمنين العامة",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 182,
+      "catalogue_names": [
+        {
+          "name": "مكتبة امير المؤمنين العامة في أصفهان",
+          "manuscripts": 182
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.67034,
+      "lon": 51.64188,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه امير المؤمنين العامه|isfahan"
+    },
+    {
+      "rank": 85,
+      "name": "مكتبة مدرسة خان يزد",
+      "city": "يزد",
+      "city_en": "Yazd",
+      "country": "إيران",
+      "manuscripts": 175,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة خان يزد - يزد",
+          "manuscripts": 175
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.89187,
+      "lon": 54.33559,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه خان يزد|yazd"
+    },
+    {
+      "rank": 86,
+      "name": "مكتبة مؤسسة الامام الصادق",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 174,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مؤسسة الامام الصادق(ع) في قم - ايران",
+          "manuscripts": 174
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.61279,
+      "lon": 50.85724,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مؤسسه الامام الصادق|qom"
+    },
+    {
+      "rank": 87,
+      "name": "مكتبة المدرسة الإسماعيلية",
+      "city": "شاهرود",
+      "city_en": "Shahrud",
+      "country": "إيران",
+      "manuscripts": 168,
+      "catalogue_names": [
+        {
+          "name": "مكتبة المدرسة الإسماعيلية في شاهرود-ايران",
+          "manuscripts": 168
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.39751,
+      "lon": 54.97495,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه المدرسه الاسماعيليه|shahroud"
+    },
+    {
+      "rank": 88,
+      "name": "المخطوطات المحفوظة في مكتبات كربلائية خاصة",
+      "city": "كربلاء",
+      "city_en": "Karbala",
+      "country": "العراق",
+      "manuscripts": 167,
+      "catalogue_names": [
+        {
+          "name": "المخطوطات المحفوظة في مكتبات كربلائية خاصة",
+          "manuscripts": 167
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.60429,
+      "lon": 44.06309,
+      "source": null,
+      "matched_place": null,
+      "key": "المخطوطات المحفوظه في مكتبات كربلائيه خاصه|karbala"
+    },
+    {
+      "rank": 89,
+      "name": "مكتبة مدرسة اية الله العظمى الخوئي",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 162,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة اية الله العظمى الخوئي - النجف الاشرف",
+          "manuscripts": 162
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.99392,
+      "lon": 44.36605,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه ايه الله العظمي الخوئي|najaf"
+    },
+    {
+      "rank": 90,
+      "name": "جامعة الكوثر الدينية",
+      "city": "إسلام آباد",
+      "city_en": "Islamabad",
+      "country": "باكستان",
+      "manuscripts": 157,
+      "catalogue_names": [
+        {
+          "name": "جامعة الكوثر الدينية - باكستان",
+          "manuscripts": 157
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.6669,
+      "lon": 73.02759,
+      "source": null,
+      "matched_place": null,
+      "key": "جامعه الكوثر الدينيه|islamabad"
+    },
+    {
+      "rank": 91,
+      "name": "مكتبة الامامين الجوادين العامة الكاظمية",
+      "city": "الكاظمية",
+      "city_en": "Kadhimiya, Baghdad",
+      "country": "العراق",
+      "manuscripts": 156,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الامامين الجوادين(ع) العامة الكاظمية - بغداد",
+          "manuscripts": 156
+        }
+      ],
+      "location": "exact",
+      "lat": 33.38036,
+      "lon": 44.33817,
+      "source": "https://www.openstreetmap.org/way/1245988816",
+      "matched_place": "Kadhimain Shrine",
+      "key": "مكتبه الامامين الجوادين العامه الكاظميه|kadhimiya"
+    },
+    {
+      "rank": 92,
+      "name": "مكتبة مدرسة سبهسالار",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 152,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة سبهسالار في طهران-ايران",
+          "manuscripts": 152
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.68876,
+      "lon": 51.35795,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه سبهسالار|tehran"
+    },
+    {
+      "rank": 93,
+      "name": "مكتبة اية الله المرعشي",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 149,
+      "catalogue_names": [
+        {
+          "name": "مكتبة اية الله المرعشي - قم",
+          "manuscripts": 149
+        }
+      ],
+      "location": "exact",
+      "lat": 34.63925,
+      "lon": 50.87761,
+      "source": "https://www.openstreetmap.org/way/350579174",
+      "matched_place": "مكتبة آية الله مرعشي",
+      "key": "مكتبه ايه الله المرعشي|qom"
+    },
+    {
+      "rank": 94,
+      "name": "مكتبة عبد الله بن عباس",
+      "city": "الطائف",
+      "city_en": "Taif",
+      "country": "السعودية",
+      "manuscripts": 138,
+      "catalogue_names": [
+        {
+          "name": "مكتبة عبد الله بن عباس - السعودية",
+          "manuscripts": 138
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 21.27203,
+      "lon": 40.39461,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه عبد الله بن عباس|taif"
+    },
+    {
+      "rank": 95,
+      "name": "مكتبات الحله",
+      "city": "الحلة",
+      "city_en": "Hillah",
+      "country": "العراق",
+      "manuscripts": 127,
+      "catalogue_names": [
+        {
+          "name": "مكتبات الحله",
+          "manuscripts": 127
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.46677,
+      "lon": 44.3892,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات الحله|hilla"
+    },
+    {
+      "rank": 96,
+      "name": "مكتبات نجفية ج2",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 125,
+      "catalogue_names": [
+        {
+          "name": "مكتبات نجفية ج2 - مكتبة السيد عباس البراقي",
+          "manuscripts": 63
+        },
+        {
+          "name": "مكتبات نجفية ج2 - مكتبة السيد علي محمد حسين محسن الحكيم",
+          "manuscripts": 31
+        },
+        {
+          "name": "مكتبات نجفية ج2 - مكتبة السيد حسن بن علي القبانجي",
+          "manuscripts": 13
+        },
+        {
+          "name": "مكتبات نجفية ج2 - مكتبة الشيخ جعفر الهلالي",
+          "manuscripts": 12
+        },
+        {
+          "name": "مكتبات نجفية ج2- مكتبة الشيخ شاكر القرشي-ملحق",
+          "manuscripts": 6
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.96849,
+      "lon": 44.3337,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات نجفيه ج2|najaf"
+    },
+    {
+      "rank": 97,
+      "name": "مكتبة الاوقاف العامة",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 118,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الاوقاف العامة - بغداد",
+          "manuscripts": 118
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.33208,
+      "lon": 44.38853,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الاوقاف العامه|baghdad"
+    },
+    {
+      "rank": 98,
+      "name": "مكتبة السيد كاظم مير يحيى",
+      "city": "أراك",
+      "city_en": "Arak, Iran",
+      "country": "إيران",
+      "manuscripts": 113,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيد كاظم مير يحيى في آراك-ايران",
+          "manuscripts": 113
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.07548,
+      "lon": 49.6892,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد كاظم مير يحيي|arak"
+    },
+    {
+      "rank": 99,
+      "name": "مكتبة صدر خواجة",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 112,
+      "catalogue_names": [
+        {
+          "name": "مكتبة صدر خواجة - اصفهان",
+          "manuscripts": 112
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.66808,
+      "lon": 51.67534,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه صدر خواجه|isfahan"
+    },
+    {
+      "rank": 100,
+      "name": "مكتبة الحجيات",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 110,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الحجيات - الموصل",
+          "manuscripts": 110
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.32593,
+      "lon": 43.13281,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الحجيات|mosul"
+    },
+    {
+      "rank": 101,
+      "name": "مكتبة بيت الحكمة",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 109,
+      "catalogue_names": [
+        {
+          "name": "مكتبة بيت الحكمة - بغداد",
+          "manuscripts": 109
+        }
+      ],
+      "location": "exact",
+      "lat": 33.3424,
+      "lon": 44.38385,
+      "source": "https://www.openstreetmap.org/way/888025750",
+      "matched_place": "مكتبة بيت الحكمة",
+      "key": "مكتبه بيت الحكمه|baghdad"
+    },
+    {
+      "rank": 102,
+      "name": "مكتبة السيد محمد تقي الموسوي الشفتي",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 106,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيد محمد تقي الموسوي الشفتي - اصفهان",
+          "manuscripts": 106
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.63229,
+      "lon": 51.6669,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد محمد تقي الموسوي الشفتي|isfahan"
+    },
+    {
+      "rank": 103,
+      "name": "مكتبات المغرب",
+      "city": "الرباط (المغرب)",
+      "city_en": "Rabat",
+      "country": "المغرب",
+      "manuscripts": 103,
+      "catalogue_names": [
+        {
+          "name": "مكتبات المغرب",
+          "manuscripts": 103
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.02227,
+      "lon": -6.81012,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات المغرب|rabat"
+    },
+    {
+      "rank": 104,
+      "name": "مكتبة المدرسة الأحمدية",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 100,
+      "catalogue_names": [
+        {
+          "name": "مكتبة المدرسة الأحمدية - الموصل",
+          "manuscripts": 100
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.33174,
+      "lon": 43.09011,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه المدرسه الاحمديه|mosul"
+    },
+    {
+      "rank": 105,
+      "name": "مكتبات الامارات",
+      "city": "دبي (الإمارات)",
+      "city_en": "Dubai",
+      "country": "الإمارات",
+      "manuscripts": 96,
+      "catalogue_names": [
+        {
+          "name": "مكتبات الامارات",
+          "manuscripts": 96
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 25.21394,
+      "lon": 55.29246,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات الامارات|dubai"
+    },
+    {
+      "rank": 106,
+      "name": "مكتبة اليزدي والاخوند",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 96,
+      "catalogue_names": [
+        {
+          "name": "مكتبة اليزدي والاخوند - النجف الاشرف",
+          "manuscripts": 96
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.99018,
+      "lon": 44.35772,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه اليزدي والاخوند|najaf"
+    },
+    {
+      "rank": 107,
+      "name": "مركز الدراسات التخصصية في الامام المهدي (عج)",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 83,
+      "catalogue_names": [
+        {
+          "name": "مركز الدراسات التخصصية في الامام المهدي (عج)- النجف الاشرف",
+          "manuscripts": 83
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.00724,
+      "lon": 44.30873,
+      "source": null,
+      "matched_place": null,
+      "key": "مركز الدراسات التخصصيه في الامام المهدي (عج)|najaf"
+    },
+    {
+      "rank": 108,
+      "name": "مكتبة السيد مهدي شفتي (مسجد سيد)",
+      "city": "أصفهان",
+      "city_en": "Isfahan",
+      "country": "إيران",
+      "manuscripts": 79,
+      "catalogue_names": [
+        {
+          "name": "مكتبة السيد مهدي شفتي (مسجد سيد) - اصفهان",
+          "manuscripts": 79
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.6619,
+      "lon": 51.64563,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد مهدي شفتي (مسجد سيد)|isfahan"
+    },
+    {
+      "rank": 109,
+      "name": "مكتبة الحاج الشيخ هادي نجم آبادي",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 69,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الحاج الشيخ هادي نجم آبادي في طهران",
+          "manuscripts": 69
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.68893,
+      "lon": 51.40785,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الحاج الشيخ هادي نجم ابادي|tehran"
+    },
+    {
+      "rank": 110,
+      "name": "مكتبة مولانا سيد محمد ابراهيم زنكي بور",
+      "city": "زنكي بور",
+      "city_en": "Zangipur, Uttar Pradesh",
+      "country": "الهند",
+      "manuscripts": 67,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مولانا سيد محمد ابراهيم زنكي بور - الهند",
+          "manuscripts": 67
+        }
+      ],
+      "location": "country only (approximate)",
+      "lat": 25.73676,
+      "lon": 83.49299,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مولانا سيد محمد ابراهيم زنكي بور|zangipur"
+    },
+    {
+      "rank": 111,
+      "name": "مكتبة حسين الامام",
+      "city": "قائن",
+      "city_en": "Qaen",
+      "country": "إيران",
+      "manuscripts": 63,
+      "catalogue_names": [
+        {
+          "name": "مكتبة حسين الامام في قائن-ايران",
+          "manuscripts": 63
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.71122,
+      "lon": 59.2138,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه حسين الامام|qaen"
+    },
+    {
+      "rank": 112,
+      "name": "مكتبة قنبرعلي خان",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 63,
+      "catalogue_names": [
+        {
+          "name": "مكتبة قنبرعلي خان - طهران",
+          "manuscripts": 63
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.66793,
+      "lon": 51.40352,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه قنبرعلي خان|tehran"
+    },
+    {
+      "rank": 113,
+      "name": "مكتبة الشيخ محمد علي الانصاري الآراكي",
+      "city": "أراك",
+      "city_en": "Arak, Iran",
+      "country": "إيران",
+      "manuscripts": 61,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة الشيخ محمد علي الانصاري الآراكي في آراك - ايران",
+          "manuscripts": 61
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.05848,
+      "lon": 49.67539,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الشيخ محمد علي الانصاري الاراكي|arak"
+    },
+    {
+      "rank": 114,
+      "name": "مركز الفقيه العاملي",
+      "city": "بيروت",
+      "city_en": "Beirut",
+      "country": "لبنان",
+      "manuscripts": 59,
+      "catalogue_names": [
+        {
+          "name": "مصورات مركز الفقيه العاملي - لبنان",
+          "manuscripts": 59
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.90319,
+      "lon": 35.49009,
+      "source": null,
+      "matched_place": null,
+      "key": "مركز الفقيه العاملي|beirut"
+    },
+    {
+      "rank": 115,
+      "name": "مكتبة ميونخ",
+      "city": "ميونخ",
+      "city_en": "Munich",
+      "country": "ألمانيا",
+      "manuscripts": 59,
+      "catalogue_names": [
+        {
+          "name": "مكتبة ميونخ - المانيا",
+          "manuscripts": 59
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 48.15353,
+      "lon": 11.57562,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه ميونخ|munich"
+    },
+    {
+      "rank": 116,
+      "name": "مكتبة الشيخ محمود العلومي",
+      "city": "يزد",
+      "city_en": "Yazd",
+      "country": "إيران",
+      "manuscripts": 58,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الشيخ محمود العلومي في يزد - ايران",
+          "manuscripts": 58
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.92354,
+      "lon": 54.37767,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الشيخ محمود العلومي|yazd"
+    },
+    {
+      "rank": 117,
+      "name": "مكتبة دائرة التراث الثقافي",
+      "city": "بيرجند",
+      "city_en": "Birjand",
+      "country": "إيران",
+      "manuscripts": 58,
+      "catalogue_names": [
+        {
+          "name": "مكتبة دائرة التراث الثقافي في بيرجند - ايران",
+          "manuscripts": 58
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.88639,
+      "lon": 59.2442,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه دائره التراث الثقافي|birjand"
+    },
+    {
+      "rank": 118,
+      "name": "المكتبه الملكية البريطانيه",
+      "city": "لندن",
+      "city_en": "London",
+      "country": "بريطانيا",
+      "manuscripts": 54,
+      "catalogue_names": [
+        {
+          "name": "المكتبه الملكية البريطانيه",
+          "manuscripts": 54
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 51.51586,
+      "lon": -0.11397,
+      "source": null,
+      "matched_place": null,
+      "key": "المكتبه الملكيه البريطانيه|london"
+    },
+    {
+      "rank": 119,
+      "name": "مكتبة الأوقاف العامة",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 53,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الأوقاف العامة - الموصل",
+          "manuscripts": 53
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.35385,
+      "lon": 43.12095,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الاوقاف العامه|mosul"
+    },
+    {
+      "rank": 120,
+      "name": "مكتبة السيد كاظم المدرسي اليزدي",
+      "city": "يزد",
+      "city_en": "Yazd",
+      "country": "إيران",
+      "manuscripts": 50,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات مكتبة السيد كاظم المدرسي اليزدي في يزد-ايران",
+          "manuscripts": 50
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.90967,
+      "lon": 54.37915,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه السيد كاظم المدرسي اليزدي|yazd"
+    },
+    {
+      "rank": 121,
+      "name": "السيد حسين بحر العلوم",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 44,
+      "catalogue_names": [
+        {
+          "name": "السيد حسين بحر العلوم في النجف الأشرف-العراق",
+          "manuscripts": 44
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.02571,
+      "lon": 44.32213,
+      "source": null,
+      "matched_place": null,
+      "key": "السيد حسين بحر العلوم|najaf"
+    },
+    {
+      "rank": 122,
+      "name": "مكتبة سعيد الديوه جي",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 44,
+      "catalogue_names": [
+        {
+          "name": "مكتبة سعيد الديوه جي - الموصل",
+          "manuscripts": 44
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.30504,
+      "lon": 43.13704,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه سعيد الديوه جي|mosul"
+    },
+    {
+      "rank": 123,
+      "name": "مدرسة يحيى باشا الجليلي",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 43,
+      "catalogue_names": [
+        {
+          "name": "مدرسة يحيى باشا الجليلي - الموصل",
+          "manuscripts": 43
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.33299,
+      "lon": 43.13662,
+      "source": null,
+      "matched_place": null,
+      "key": "مدرسه يحيي باشا الجليلي|mosul"
+    },
+    {
+      "rank": 124,
+      "name": "مكتبة مدرسة صدر",
+      "city": "طهران",
+      "city_en": "Tehran",
+      "country": "إيران",
+      "manuscripts": 41,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة صدر في طهران-ايران",
+          "manuscripts": 41
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.69292,
+      "lon": 51.37301,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه صدر|tehran"
+    },
+    {
+      "rank": 125,
+      "name": "مكتبة المدرسة المنصورية",
+      "city": "شيراز",
+      "city_en": "Shiraz",
+      "country": "إيران",
+      "manuscripts": 39,
+      "catalogue_names": [
+        {
+          "name": "مكتبة المدرسة المنصورية في شيراز-ايران",
+          "manuscripts": 39
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 29.60324,
+      "lon": 52.49993,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه المدرسه المنصوريه|shiraz"
+    },
+    {
+      "rank": 126,
+      "name": "مكتبة الحوزة العلمية الحسنية/كاخك",
+      "city": "كاخك",
+      "city_en": "Kakhk",
+      "country": "إيران",
+      "manuscripts": 39,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الحوزة العلمية الحسنية/كاخك-ايران",
+          "manuscripts": 39
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.15519,
+      "lon": 58.67906,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الحوزه العلميه الحسنيه/كاخك|kakhk"
+    },
+    {
+      "rank": 127,
+      "name": "مكتبة مؤسسة احياء الطب الطبيعي",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 38,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مؤسسة احياء الطب الطبيعي - قم",
+          "manuscripts": 38
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.64996,
+      "lon": 50.90933,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مؤسسه احياء الطب الطبيعي|qom"
+    },
+    {
+      "rank": 128,
+      "name": "مكتبة الشيخ محمد حسن آل ياسين",
+      "city": "الكاظمية",
+      "city_en": "Kadhimiya, Baghdad",
+      "country": "العراق",
+      "manuscripts": 37,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الشيخ محمد حسن آل ياسين في الكاظمية -بغداد",
+          "manuscripts": 37
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.39034,
+      "lon": 44.35216,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الشيخ محمد حسن ال ياسين|kadhimiya"
+    },
+    {
+      "rank": 129,
+      "name": "فهرس مكتبة مدرسة الحكيم",
+      "city": "شيراز",
+      "city_en": "Shiraz",
+      "country": "إيران",
+      "manuscripts": 34,
+      "catalogue_names": [
+        {
+          "name": "فهرس مكتبة مدرسة الحكيم في شيراز - ايران",
+          "manuscripts": 34
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 29.58229,
+      "lon": 52.52196,
+      "source": null,
+      "matched_place": null,
+      "key": "فهرس مكتبه مدرسه الحكيم|shiraz"
+    },
+    {
+      "rank": 130,
+      "name": "مكتبة قائم",
+      "city": "فردوس (تون)",
+      "city_en": "Ferdows, South Khorasan",
+      "country": "إيران",
+      "manuscripts": 32,
+      "catalogue_names": [
+        {
+          "name": "مكتبة قائم في فردوس - ايران",
+          "manuscripts": 32
+        }
+      ],
+      "location": "exact",
+      "lat": 34.0111,
+      "lon": 58.16753,
+      "source": "https://www.openstreetmap.org/way/1196304484",
+      "matched_place": "کتابخانه قائم",
+      "key": "مكتبه قائم|ferdows"
+    },
+    {
+      "rank": 131,
+      "name": "مكتبة الشيخ علي فضل البيرجندي",
+      "city": "مشهد",
+      "city_en": "Mashhad",
+      "country": "إيران",
+      "manuscripts": 29,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الشيخ علي فضل البيرجندي في مشهد - ايران",
+          "manuscripts": 29
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.28087,
+      "lon": 59.62253,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الشيخ علي فضل البيرجندي|mashhad"
+    },
+    {
+      "rank": 132,
+      "name": "مكتبة كرماني",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 29,
+      "catalogue_names": [
+        {
+          "name": "مكتبة كرماني - النجف الاشرف",
+          "manuscripts": 29
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.01559,
+      "lon": 44.32973,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه كرماني|najaf"
+    },
+    {
+      "rank": 133,
+      "name": "مكتبات تونس الوطنية",
+      "city": "تونس",
+      "city_en": "Tunis",
+      "country": "تونس",
+      "manuscripts": 27,
+      "catalogue_names": [
+        {
+          "name": "مكتبات تونس الوطنية",
+          "manuscripts": 27
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.82245,
+      "lon": 10.2206,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات تونس الوطنيه|tunis"
+    },
+    {
+      "rank": 134,
+      "name": "مكتبة الإمام الصادق",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 23,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الإمام الصادق (ع) - النجف الاشرف",
+          "manuscripts": 23
+        }
+      ],
+      "location": "exact",
+      "lat": 32.00086,
+      "lon": 44.34293,
+      "source": "https://www.openstreetmap.org/node/8121489617",
+      "matched_place": "Library alsadiq",
+      "key": "مكتبه الامام الصادق|najaf"
+    },
+    {
+      "rank": 135,
+      "name": "فيلم مكتبة الدكتور حسين علي محفوظ",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 22,
+      "catalogue_names": [
+        {
+          "name": "فيلم مكتبة الدكتور حسين علي محفوظ",
+          "manuscripts": 22
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.29684,
+      "lon": 44.3852,
+      "source": null,
+      "matched_place": null,
+      "key": "فيلم مكتبه الدكتور حسين علي محفوظ|baghdad"
+    },
+    {
+      "rank": 136,
+      "name": "مكتبة الأمير غازي العامة",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 22,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الأمير غازي العامة - الموصل",
+          "manuscripts": 22
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.32066,
+      "lon": 43.11703,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الامير غازي العامه|mosul"
+    },
+    {
+      "rank": 137,
+      "name": "المكتبة الشبرية",
+      "city": "خانقين",
+      "city_en": "Khanaqin",
+      "country": "العراق",
+      "manuscripts": 22,
+      "catalogue_names": [
+        {
+          "name": "المكتبة الشبرية في خانقين - ديالى",
+          "manuscripts": 22
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.37276,
+      "lon": 45.38517,
+      "source": null,
+      "matched_place": null,
+      "key": "المكتبه الشبريه|khanaqin"
+    },
+    {
+      "rank": 138,
+      "name": "مكتبة سعيدي",
+      "city": "بيرجند",
+      "city_en": "Birjand",
+      "country": "إيران",
+      "manuscripts": 20,
+      "catalogue_names": [
+        {
+          "name": "مكتبة سعيدي في بيرجند - ايران",
+          "manuscripts": 20
+        }
+      ],
+      "location": "exact",
+      "lat": 32.8742,
+      "lon": 59.2158,
+      "source": "https://www.openstreetmap.org/node/4332768807",
+      "matched_place": "Ostad Saeedi Library",
+      "key": "مكتبه سعيدي|birjand"
+    },
+    {
+      "rank": 139,
+      "name": "خزائن المدرسة الأمينية جامع الباشا",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 20,
+      "catalogue_names": [
+        {
+          "name": "خزائن المدرسة الأمينية جامع الباشا - الموصل",
+          "manuscripts": 20
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.30691,
+      "lon": 43.13903,
+      "source": null,
+      "matched_place": null,
+      "key": "خزائن المدرسه الامينيه جامع الباشا|mosul"
+    },
+    {
+      "rank": 140,
+      "name": "المكتبة المركزية العامة",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 19,
+      "catalogue_names": [
+        {
+          "name": "المكتبة المركزية العامة - الموصل",
+          "manuscripts": 19
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.35119,
+      "lon": 43.08795,
+      "source": null,
+      "matched_place": null,
+      "key": "المكتبه المركزيه العامه|mosul"
+    },
+    {
+      "rank": 141,
+      "name": "المكتبة القادرية العامة",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 19,
+      "catalogue_names": [
+        {
+          "name": "المكتبة القادرية العامة - بغداد",
+          "manuscripts": 19
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.31144,
+      "lon": 44.33407,
+      "source": null,
+      "matched_place": null,
+      "key": "المكتبه القادريه العامه|baghdad"
+    },
+    {
+      "rank": 142,
+      "name": "مكتبة حاجي احمد علي الحنفي",
+      "city": "بيرجند",
+      "city_en": "Birjand",
+      "country": "إيران",
+      "manuscripts": 17,
+      "catalogue_names": [
+        {
+          "name": "مكتبة حاجي احمد علي الحنفي في بيرجند - ايران",
+          "manuscripts": 17
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.87647,
+      "lon": 59.18784,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه حاجي احمد علي الحنفي|birjand"
+    },
+    {
+      "rank": 143,
+      "name": "مكتبة الشيخ محمد اللويمي الاحسائي",
+      "city": "قم",
+      "city_en": "Qom",
+      "country": "إيران",
+      "manuscripts": 17,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الشيخ محمد اللويمي الاحسائي في قم - ايران",
+          "manuscripts": 17
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.64264,
+      "lon": 50.89587,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الشيخ محمد اللويمي الاحسائي|qom"
+    },
+    {
+      "rank": 144,
+      "name": "مكتبة الحاج نصري النقيب",
+      "city": "الكاظمية",
+      "city_en": "Kadhimiya, Baghdad",
+      "country": "العراق",
+      "manuscripts": 17,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الحاج نصري النقيب في الكاظمية -بغداد",
+          "manuscripts": 17
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.36113,
+      "lon": 44.34182,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الحاج نصري النقيب|kadhimiya"
+    },
+    {
+      "rank": 145,
+      "name": "مكتبة مهدي اسدي مقدم الخاصة",
+      "city": "بشرويه",
+      "city_en": "Boshruyeh",
+      "country": "إيران",
+      "manuscripts": 11,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مهدي اسدي مقدم الخاصة في بشرويه - ايران",
+          "manuscripts": 11
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.89039,
+      "lon": 57.40414,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مهدي اسدي مقدم الخاصه|boshruyeh"
+    },
+    {
+      "rank": 146,
+      "name": "مكتبة مكتب مفيد",
+      "city": "فردوس (تون)",
+      "city_en": "Ferdows, South Khorasan",
+      "country": "إيران",
+      "manuscripts": 11,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مكتب مفيد في فردوس - ايران",
+          "manuscripts": 11
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.02221,
+      "lon": 58.14979,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مكتب مفيد|ferdows"
+    },
+    {
+      "rank": 147,
+      "name": "مكتبات القطيف",
+      "city": "القطيف",
+      "city_en": "Qatif",
+      "country": "السعودية",
+      "manuscripts": 11,
+      "catalogue_names": [
+        {
+          "name": "مكتبات القطيف",
+          "manuscripts": 11
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 26.5277,
+      "lon": 50.0339,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات القطيف|qatif"
+    },
+    {
+      "rank": 148,
+      "name": "مدرسة جامع مريم خاتون",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 11,
+      "catalogue_names": [
+        {
+          "name": "مدرسة جامع مريم خاتون - الموصل",
+          "manuscripts": 11
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.31112,
+      "lon": 43.12466,
+      "source": null,
+      "matched_place": null,
+      "key": "مدرسه جامع مريم خاتون|mosul"
+    },
+    {
+      "rank": 149,
+      "name": "مكتبة الفاروقي",
+      "city": "بيرجند",
+      "city_en": "Birjand",
+      "country": "إيران",
+      "manuscripts": 9,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الفاروقي في بيرجند- ايران",
+          "manuscripts": 9
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.84211,
+      "lon": 59.23772,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الفاروقي|birjand"
+    },
+    {
+      "rank": 150,
+      "name": "خزانة الدكتور داود الجلبي",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 9,
+      "catalogue_names": [
+        {
+          "name": "خزانة الدكتور داود الجلبي - الموصل",
+          "manuscripts": 9
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.33965,
+      "lon": 43.08245,
+      "source": null,
+      "matched_place": null,
+      "key": "خزانه الدكتور داود الجلبي|mosul"
+    },
+    {
+      "rank": 151,
+      "name": "المكتبة المركزية",
+      "city": "البصرة",
+      "city_en": "Basra",
+      "country": "العراق",
+      "manuscripts": 9,
+      "catalogue_names": [
+        {
+          "name": "المكتبة المركزية في جامعة البصرة",
+          "manuscripts": 9
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 30.5091,
+      "lon": 47.74067,
+      "source": null,
+      "matched_place": null,
+      "key": "المكتبه المركزيه|basra"
+    },
+    {
+      "rank": 152,
+      "name": "مكتبة مدرسة الشهيد بهشتي الثانوية",
+      "city": "فردوس (تون)",
+      "city_en": "Ferdows, South Khorasan",
+      "country": "إيران",
+      "manuscripts": 8,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة الشهيد بهشتي الثانوية في فردوس - ايران",
+          "manuscripts": 8
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 34.0067,
+      "lon": 58.18383,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه الشهيد بهشتي الثانويه|ferdows"
+    },
+    {
+      "rank": 153,
+      "name": "مكتبة مدرسة الوسطى العامة",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 8,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة الوسطى العامة - النجف الاشرف",
+          "manuscripts": 8
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.97911,
+      "lon": 44.36142,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه الوسطي العامه|najaf"
+    },
+    {
+      "rank": 154,
+      "name": "مكتبات قطر",
+      "city": "الدوحة",
+      "city_en": "Doha",
+      "country": "قطر",
+      "manuscripts": 7,
+      "catalogue_names": [
+        {
+          "name": "مكتبات قطر",
+          "manuscripts": 7
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 25.29119,
+      "lon": 51.49469,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات قطر|doha"
+    },
+    {
+      "rank": 155,
+      "name": "مكتبات البحرين",
+      "city": "المنامة",
+      "city_en": "Manama",
+      "country": "البحرين",
+      "manuscripts": 7,
+      "catalogue_names": [
+        {
+          "name": "مكتبات البحرين",
+          "manuscripts": 7
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 26.2363,
+      "lon": 50.55926,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبات البحرين|manama"
+    },
+    {
+      "rank": 156,
+      "name": "خزانة مدرسة الحاج حسين بك",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 7,
+      "catalogue_names": [
+        {
+          "name": "خزانة مدرسة الحاج حسين بك - الموصل",
+          "manuscripts": 7
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.35841,
+      "lon": 43.11789,
+      "source": null,
+      "matched_place": null,
+      "key": "خزانه مدرسه الحاج حسين بك|mosul"
+    },
+    {
+      "rank": 157,
+      "name": "الأستاذ صادق شاهين",
+      "city": "الحلة",
+      "city_en": "Hillah",
+      "country": "العراق",
+      "manuscripts": 7,
+      "catalogue_names": [
+        {
+          "name": "الأستاذ صادق شاهين - الحله",
+          "manuscripts": 7
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.45271,
+      "lon": 44.42658,
+      "source": null,
+      "matched_place": null,
+      "key": "الاستاذ صادق شاهين|hilla"
+    },
+    {
+      "rank": 158,
+      "name": "جامعة الحكمة",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 7,
+      "catalogue_names": [
+        {
+          "name": "جامعة الحكمة - بغداد",
+          "manuscripts": 7
+        }
+      ],
+      "location": "exact",
+      "lat": 33.30104,
+      "lon": 44.43558,
+      "source": "https://www.openstreetmap.org/node/11676570072",
+      "matched_place": "كلية الحكمة الجامعة",
+      "key": "جامعه الحكمه|baghdad"
+    },
+    {
+      "rank": 159,
+      "name": "مكتبة المدرسة المحمدية",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 6,
+      "catalogue_names": [
+        {
+          "name": "مكتبة المدرسة المحمدية في جامع الزيواني - الموصل",
+          "manuscripts": 6
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.33938,
+      "lon": 43.14974,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه المدرسه المحمديه|mosul"
+    },
+    {
+      "rank": 160,
+      "name": "مكتبة سامر الزبيدي النجفي",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 6,
+      "catalogue_names": [
+        {
+          "name": "مكتبة سامر الزبيدي النجفي - النجف الاشرف",
+          "manuscripts": 6
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.98958,
+      "lon": 44.34965,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه سامر الزبيدي النجفي|najaf"
+    },
+    {
+      "rank": 161,
+      "name": "مكتبة جلبي عبد الله أفندي",
+      "city": "إسطنبول",
+      "city_en": "Istanbul",
+      "country": "تركيا",
+      "manuscripts": 5,
+      "catalogue_names": [
+        {
+          "name": "مكتبة جلبي عبد الله أفندي - تركيا",
+          "manuscripts": 5
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 41.0015,
+      "lon": 29.0241,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه جلبي عبد الله افندي|istanbul"
+    },
+    {
+      "rank": 162,
+      "name": "مكتبة المدرسة النعمانية",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 5,
+      "catalogue_names": [
+        {
+          "name": "مكتبة المدرسة النعمانية - الموصل",
+          "manuscripts": 5
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.3238,
+      "lon": 43.10593,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه المدرسه النعمانيه|mosul"
+    },
+    {
+      "rank": 163,
+      "name": "خزائن حسن باشا الجليلي",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 5,
+      "catalogue_names": [
+        {
+          "name": "خزائن حسن باشا الجليلي - الموصل",
+          "manuscripts": 5
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.36019,
+      "lon": 43.11726,
+      "source": null,
+      "matched_place": null,
+      "key": "خزائن حسن باشا الجليلي|mosul"
+    },
+    {
+      "rank": 164,
+      "name": "مكتبة الحوزة العلمية البرز پژوهش سرا (مركز الأبحاث)",
+      "city": "كرج",
+      "city_en": "Karaj",
+      "country": "إيران",
+      "manuscripts": 4,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الحوزة العلمية البرز پژوهش سرا (مركز الأبحاث) في كرج-ايران",
+          "manuscripts": 4
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 35.85943,
+      "lon": 50.92104,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الحوزه العلميه البرز پژوهش سرا (مركز الابحاث)|karaj"
+    },
+    {
+      "rank": 165,
+      "name": "مدرسة الحاج زكر",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 4,
+      "catalogue_names": [
+        {
+          "name": "مدرسة الحاج زكر - الموصل",
+          "manuscripts": 4
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.35133,
+      "lon": 43.12835,
+      "source": null,
+      "matched_place": null,
+      "key": "مدرسه الحاج زكر|mosul"
+    },
+    {
+      "rank": 166,
+      "name": "د. محمد صديق الجليلي",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 4,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات د. محمد صديق الجليلي - الموصل",
+          "manuscripts": 4
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.31338,
+      "lon": 43.11937,
+      "source": null,
+      "matched_place": null,
+      "key": "د. محمد صديق الجليلي|mosul"
+    },
+    {
+      "rank": 167,
+      "name": "الموصل",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 4,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات الموصل",
+          "manuscripts": 4
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.33156,
+      "lon": 43.09467,
+      "source": null,
+      "matched_place": null,
+      "key": "الموصل|mosul"
+    },
+    {
+      "rank": 168,
+      "name": "عبد الله مخلص",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 3,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات عبد الله مخلص - الموصل",
+          "manuscripts": 3
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.31712,
+      "lon": 43.11617,
+      "source": null,
+      "matched_place": null,
+      "key": "عبد الله مخلص|mosul"
+    },
+    {
+      "rank": 169,
+      "name": "مكتبة محمد سعيد الجليلي",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 2,
+      "catalogue_names": [
+        {
+          "name": "مكتبة محمد سعيد الجليلي - الموصل",
+          "manuscripts": 2
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.35252,
+      "lon": 43.09637,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه محمد سعيد الجليلي|mosul"
+    },
+    {
+      "rank": 170,
+      "name": "مدرسة الصائغ الجلبي",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 2,
+      "catalogue_names": [
+        {
+          "name": "مدرسة الصائغ الجلبي - الموصل",
+          "manuscripts": 2
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.32999,
+      "lon": 43.09976,
+      "source": null,
+      "matched_place": null,
+      "key": "مدرسه الصائغ الجلبي|mosul"
+    },
+    {
+      "rank": 171,
+      "name": "مكتبة مدرسة الشربياني",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 2,
+      "catalogue_names": [
+        {
+          "name": "مكتبة مدرسة الشربياني - النجف الاشرف",
+          "manuscripts": 2
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 31.99404,
+      "lon": 44.35951,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه مدرسه الشربياني|najaf"
+    },
+    {
+      "rank": 172,
+      "name": "مكتبة النجف الاشرف",
+      "city": "النجف",
+      "city_en": "Najaf",
+      "country": "العراق",
+      "manuscripts": 2,
+      "catalogue_names": [
+        {
+          "name": "مكتبة النجف الاشرف",
+          "manuscripts": 2
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 32.01126,
+      "lon": 44.34876,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه النجف الاشرف|najaf"
+    },
+    {
+      "rank": 173,
+      "name": "مكتبة الدكتور محمد مكية",
+      "city": "بغداد",
+      "city_en": "Baghdad",
+      "country": "العراق",
+      "manuscripts": 2,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الدكتور محمد مكية - بغداد",
+          "manuscripts": 2
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 33.33028,
+      "lon": 44.36292,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الدكتور محمد مكيه|baghdad"
+    },
+    {
+      "rank": 174,
+      "name": "مكتبة الحاج محمد أفندي الرضواني",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الحاج محمد أفندي الرضواني - الموصل",
+          "manuscripts": 1
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.35021,
+      "lon": 43.08982,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الحاج محمد افندي الرضواني|mosul"
+    },
+    {
+      "rank": 175,
+      "name": "مكتبة الجامع الكبير",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "مكتبة الجامع الكبير - الموصل",
+          "manuscripts": 1
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.33182,
+      "lon": 43.15109,
+      "source": null,
+      "matched_place": null,
+      "key": "مكتبه الجامع الكبير|mosul"
+    },
+    {
+      "rank": 176,
+      "name": "مدرسة عبد الله بك",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "مدرسة عبد الله بك - الموصل",
+          "manuscripts": 1
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.30178,
+      "lon": 43.1047,
+      "source": null,
+      "matched_place": null,
+      "key": "مدرسه عبد الله بك|mosul"
+    },
+    {
+      "rank": 177,
+      "name": "مدرسة بكر أفندي",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "مدرسة بكر أفندي - الموصل",
+          "manuscripts": 1
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.36221,
+      "lon": 43.1267,
+      "source": null,
+      "matched_place": null,
+      "key": "مدرسه بكر افندي|mosul"
+    },
+    {
+      "rank": 178,
+      "name": "جامع النبي شيث",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات جامع النبي شيث - الموصل",
+          "manuscripts": 1
+        }
+      ],
+      "location": "exact",
+      "lat": 36.3351,
+      "lon": 43.1355,
+      "source": "https://www.openstreetmap.org/node/7260935585",
+      "matched_place": "جامع النبي شيث",
+      "key": "جامع النبي شيث|mosul"
+    },
+    {
+      "rank": 179,
+      "name": "جامع النبي شيت",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات جامع النبي شيت - الموصل",
+          "manuscripts": 1
+        }
+      ],
+      "location": "exact",
+      "lat": 36.33484,
+      "lon": 43.1353,
+      "source": "https://www.openstreetmap.org/node/4872766621",
+      "matched_place": "جامع النبي شيت",
+      "key": "جامع النبي شيت|mosul"
+    },
+    {
+      "rank": 180,
+      "name": "الشيخ عبد المجيد الخطيب",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "مخطوطات الشيخ عبد المجيد الخطيب - الموصل",
+          "manuscripts": 1
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.34965,
+      "lon": 43.13709,
+      "source": null,
+      "matched_place": null,
+      "key": "الشيخ عبد المجيد الخطيب|mosul"
+    },
+    {
+      "rank": 181,
+      "name": "خزائن مدرسة الخياط",
+      "city": "الموصل",
+      "city_en": "Mosul",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "خزائن مدرسة الخياط - الموصل",
+          "manuscripts": 1
+        }
+      ],
+      "location": "near city (approximate)",
+      "lat": 36.34557,
+      "lon": 43.09421,
+      "source": null,
+      "matched_place": null,
+      "key": "خزائن مدرسه الخياط|mosul"
+    },
+    {
+      "rank": 182,
+      "name": "جامعة الكوفة",
+      "city": "الكوفة",
+      "city_en": "Kufa",
+      "country": "العراق",
+      "manuscripts": 1,
+      "catalogue_names": [
+        {
+          "name": "جامعة الكوفة-النجف الاشرف",
+          "manuscripts": 1
+        }
+      ],
+      "location": "exact",
+      "lat": 32.0316,
+      "lon": 44.37252,
+      "source": "https://www.openstreetmap.org/relation/14664901",
+      "matched_place": "جامعة الكوفة",
+      "key": "جامعه الكوفه|kufa"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "alqamar",
+  "private": true,
+  "description": "القمر — منظومة فهرسة المخطوطات (MARC 21 / RDA)",
+  "scripts": {
+    "start": "node scripts/ensure-data.js && node server/server.js",
+    "test": "node --test tests/",
+    "clean-catalog": "node scripts/clean_catalog.js --files",
+    "build": "vite build && node -e \"fs.copyFileSync('public/index.html', 'public/ui.html')\"",
+    "dev": "vite"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "3d-force-graph": "1.73.4",
+    "better-sqlite3": "11.10.0",
+    "clsx": "^2.1.1",
+    "d3": "7.9.0",
+    "framer-motion": "^14.13.0",
+    "lucide-react": "^1.72.0",
+    "maplibre-gl": "4.7.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.4.11"
+  }
+}

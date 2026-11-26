@@ -1,0 +1,1151 @@
+{
+ "institutions": {
+  "مكتبه مجلس الشوري|tehran": {
+   "label": "مكتبة مجلس الشورى",
+   "city": "tehran",
+   "lat": 35.69032,
+   "lon": 51.43337,
+   "osm": "way/609222998",
+   "osmName": "مرکز اسناد و کتابخانه مجلس شورای اسلامی",
+   "kind": "amenity:library",
+   "query": "کتابخانه مجلس",
+   "km": 4
+  },
+  "مكتبه جامعه طهران|tehran": {
+   "label": "مكتبة جامعة طهران",
+   "city": "tehran",
+   "lat": 35.70328,
+   "lon": 51.39527,
+   "osm": "way/118574393",
+   "osmName": "Central library of University of Tehran",
+   "kind": "amenity:library",
+   "query": "Central Library University of Tehran",
+   "km": 1.7
+  },
+  "مكتبه ملك الوطنيه|tehran": {
+   "label": "مكتبة ملك الوطنية",
+   "city": "tehran",
+   "lat": 35.687,
+   "lon": 51.41628,
+   "osm": "way/211028560",
+   "osmName": "Malek National Museum and Library",
+   "kind": "tourism:museum",
+   "query": "Malek Museum",
+   "km": 2.5
+  },
+  "الجامعه المستنصريه|baghdad": {
+   "label": "الجامعة المستنصرية",
+   "city": "baghdad",
+   "lat": 33.27421,
+   "lon": 44.35692,
+   "osm": "way/86177138",
+   "osmName": "كليه الصيدلة الجامعة المستنصرية",
+   "kind": "amenity:university",
+   "query": "Mustansiriyah University",
+   "km": 4.6
+  },
+  "مكتبه العتبه الرضويه المقدسه|mashhad": {
+   "label": "مكتبة العتبة الرضوية المقدسة",
+   "city": "mashhad",
+   "lat": 36.28926,
+   "lon": 59.61572,
+   "osm": "way/1050515201",
+   "osmName": "مكتبة العتبة الرضوية المقدسة",
+   "kind": "amenity:library",
+   "query": "مكتبة العتبة الرضوية المقدسة",
+   "km": 1.2
+  },
+  "مكتبه المدرسه الفيضيه|qom": {
+   "label": "مكتبة المدرسة الفيضية",
+   "city": "qom",
+   "lat": 34.64283,
+   "lon": 50.87933,
+   "osm": "relation/4509252",
+   "osmName": "مدرسه علمیه فیضیه",
+   "kind": "building:college",
+   "query": "مدرسه فیضیه",
+   "km": 0.4
+  },
+  "مكتبه جامعه الملك سعود|riyadh": {
+   "label": "مكتبة جامعة الملك سعود",
+   "city": "riyadh",
+   "lat": 24.71827,
+   "lon": 46.61961,
+   "osm": "way/133795316",
+   "osmName": "مكتبة الملك سلمان المركزية",
+   "kind": "amenity:library",
+   "query": "King Saud University Library",
+   "km": 5.6
+  },
+  "مكتبه فيض الله افندي|istanbul": {
+   "label": "مكتبة فيض الله افندي",
+   "city": "istanbul",
+   "lat": 41.017,
+   "lon": 28.94972,
+   "osm": "relation/7604178",
+   "osmName": "مكتبة ميليت",
+   "kind": "amenity:library",
+   "query": "Millet Kütüphanesi",
+   "km": 2.6
+  },
+  "المكتبه الوطنيه|tehran": {
+   "label": "المكتبة الوطنية",
+   "city": "tehran",
+   "lat": 35.75222,
+   "lon": 51.4341,
+   "osm": "relation/2064918",
+   "osmName": "Iran National Library",
+   "kind": "amenity:library",
+   "query": "کتابخانه ملی ایران",
+   "km": 8.1
+  },
+  "مكتبه راغب باشا|istanbul": {
+   "label": "مكتبة راغب باشا",
+   "city": "istanbul",
+   "lat": 41.00915,
+   "lon": 28.95868,
+   "osm": "way/522510648",
+   "osmName": "Ragip Pasa Library",
+   "kind": "amenity:library",
+   "query": "Ragıp Paşa Kütüphanesi",
+   "km": 1.7
+  },
+  "مكتبه جامعه اصفهان|isfahan": {
+   "label": "مكتبة جامعة اصفهان",
+   "city": "isfahan",
+   "lat": 32.61361,
+   "lon": 51.66139,
+   "osm": "wikidata/Q495347",
+   "osmName": "University of Isfahan",
+   "kind": "amenity:school",
+   "query": "University of Isfahan",
+   "km": 4.5
+  },
+  "مكتبه مركز الدراسات والتحقيقات الاسلامي|qom": {
+   "label": "مكتبة مركز الدراسات والتحقيقات الاسلامي",
+   "city": "qom",
+   "approx": true
+  },
+  "دار الكتب القطريه|doha": {
+   "label": "دار الكتب القطرية",
+   "city": "doha",
+   "lat": 25.31807,
+   "lon": 51.44162,
+   "osm": "way/159453474",
+   "osmName": "مكتبة قطر الوطنية",
+   "kind": "amenity:library",
+   "query": "Qatar National Library",
+   "km": 9.7
+  },
+  "مكتبه ولي عصر|khansar": {
+   "label": "مكتبة ولي عصر",
+   "city": "khansar",
+   "approx": true
+  },
+  "مكتبه السيده معصومه|qom": {
+   "label": "مكتبة السيدة معصومة",
+   "city": "qom",
+   "lat": 34.64156,
+   "lon": 50.87885,
+   "osm": "node/13416585640",
+   "osmName": "Tomb of Hazrat Fatima Masoumeh",
+   "kind": "historic:tomb",
+   "query": "حرم حضرت معصومه",
+   "km": 0.3
+  },
+  "المجمع العلمي العراقي|baghdad": {
+   "label": "المجمع العلمي العراقي",
+   "city": "baghdad",
+   "lat": 33.37087,
+   "lon": 44.38398,
+   "osm": "way/856206450",
+   "osmName": "المجمع العلمي العراقي",
+   "kind": "office:research",
+   "query": "Iraqi Academy of Sciences",
+   "km": 6.4
+  },
+  "مكتبه معهد الدراسات الثقافيه الاسلاميه بجامعه طوكيو|tokyo": {
+   "label": "مكتبة معهد الدراسات الثقافية الاسلامية بجامعة طوكيو",
+   "city": "tokyo",
+   "approx": true
+  },
+  "مكتبه صدر بازار|isfahan": {
+   "label": "مكتبة صدر بازار",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبات اليمن|sanaa": {
+   "label": "مكتبات اليمن",
+   "city": "sanaa",
+   "approx": true
+  },
+  "مكتبه نمازي خويي|khoy": {
+   "label": "مكتبة نمازى خويى",
+   "city": "khoy",
+   "approx": true
+  },
+  "مكتبه ابن مسكويه|isfahan": {
+   "label": "مكتبة ابن مسكويه",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبه مدرسه مروي|tehran": {
+   "label": "مكتبة مدرسة مروي",
+   "city": "tehran",
+   "approx": true
+  },
+  "مكتبه طاووس اليماني|sanaa": {
+   "label": "مكتبة طاووس اليماني",
+   "city": "sanaa",
+   "approx": true
+  },
+  "مكتبه سريزدي|yazd": {
+   "label": "مكتبة سريزدي",
+   "city": "yazd",
+   "approx": true
+  },
+  "مكتبه شاه چراغ|shiraz": {
+   "label": "مكتبة شاه چراغ",
+   "city": "shiraz",
+   "lat": 29.60971,
+   "lon": 52.54302,
+   "osm": "way/1198637663",
+   "osmName": "ضريح شاه جراغ المقدس",
+   "kind": "amenity:place_of_worship",
+   "query": "Shah Cheragh",
+   "km": 1.2
+  },
+  "مكتبه علي اميري|istanbul": {
+   "label": "مكتبة علي أميري",
+   "city": "istanbul",
+   "lat": 41.017,
+   "lon": 28.94972,
+   "osm": "relation/7604178",
+   "osmName": "مكتبة ميليت",
+   "kind": "amenity:library",
+   "query": "Millet Kütüphanesi",
+   "km": 2.6
+  },
+  "مركز احياء التراث الاسلامي|qom": {
+   "label": "مركز إحياء التراث الإسلامي",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه دار المثنوي|istanbul": {
+   "label": "مكتبة دار المثنوي",
+   "city": "istanbul",
+   "approx": true
+  },
+  "مكتبه السيد البروجردي|qom": {
+   "label": "مكتبة السيد البروجردي",
+   "city": "qom",
+   "lat": 34.64243,
+   "lon": 50.87791,
+   "osm": "way/323644053",
+   "osmName": "Azam Mosque",
+   "kind": "amenity:place_of_worship",
+   "query": "مسجد اعظم قم",
+   "km": 0.3
+  },
+  "مكتبه مدرسه چهل ستون|tehran": {
+   "label": "مكتبة مدرسة چهل ستون",
+   "city": "tehran",
+   "approx": true
+  },
+  "مكتبه مسجد الكوفه المعظم|kufa": {
+   "label": "مكتبة مسجد الكوفة المعظم",
+   "city": "kufa",
+   "lat": 32.02917,
+   "lon": 44.40024,
+   "osm": "relation/15610020",
+   "osmName": "مسجد الكوفة المعظم",
+   "kind": "amenity:place_of_worship",
+   "query": "Great Mosque of Kufa",
+   "km": 0.1
+  },
+  "المكتبه المركزيه|baghdad": {
+   "label": "المكتبة المركزية",
+   "city": "baghdad",
+   "lat": 33.2727,
+   "lon": 44.37955,
+   "osm": "way/4493601",
+   "osmName": "جامعة بغداد",
+   "kind": "amenity:university",
+   "query": "University of Baghdad",
+   "km": 4.9
+  },
+  "مكتبه الامام الحكيم العامه|najaf": {
+   "label": "مكتبة الامام الحكيم العامة",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه صاحب الجواهر|najaf": {
+   "label": "مكتبة صاحب الجواهر",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه جامعه لايبزك|leipzig": {
+   "label": "مكتبة جامعة لايبزك",
+   "city": "leipzig",
+   "lat": 51.33249,
+   "lon": 12.36826,
+   "osm": "way/766030637",
+   "osmName": "Leipzig University Library",
+   "kind": "amenity:library",
+   "query": "Bibliotheca Albertina",
+   "km": 0.9
+  },
+  "مكتبه الازهريه|cairo": {
+   "label": "مكتبة الازهرية",
+   "city": "cairo",
+   "lat": 30.04575,
+   "lon": 31.26268,
+   "osm": "way/24749059",
+   "osmName": "الجامع الأزهر",
+   "kind": "amenity:place_of_worship",
+   "query": "Al-Azhar Mosque",
+   "km": 2.6
+  },
+  "مركز تحقيقات دار الحديث|qom": {
+   "label": "مركز تحقيقات دار الحديث",
+   "city": "qom",
+   "lat": 34.63772,
+   "lon": 50.92034,
+   "osm": "node/5003796203",
+   "osmName": "دارالحدیث",
+   "kind": "building:yes",
+   "query": "دارالحدیث",
+   "km": 4
+  },
+  "مكتبه السيد مرتضي الحجه|najaf": {
+   "label": "مكتبة السيد مرتضى الحجة",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه ايه الله گلپايگاني|qom": {
+   "label": "مكتبة آية الله گلپايگاني",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه جامعه النجف الدينيه|najaf": {
+   "label": "مكتبة جامعة النجف الدينية",
+   "city": "najaf",
+   "lat": 32.00234,
+   "lon": 44.33603,
+   "osm": "node/4374474405",
+   "osmName": "جامعة النجف الاشرف الدينية",
+   "kind": "amenity:school",
+   "query": "جامعة النجف الدينية",
+   "km": 0.3
+  },
+  "مكتبه الحوزه العلميه الامام الصادق|ardakan": {
+   "label": "مكتبة الحوزة العلمية الامام الصادق",
+   "city": "ardakan",
+   "approx": true
+  },
+  "مكتبه العتبه العباسيه المقدسه|karbala": {
+   "label": "مكتبة العتبة العباسية المقدسة",
+   "city": "karbala",
+   "lat": 32.61669,
+   "lon": 44.03631,
+   "osm": "node/13337194330",
+   "osmName": "Library of Al-Abbas holy shrine",
+   "kind": "shop:stationery",
+   "query": "Al-Abbas Shrine",
+   "km": 1.1
+  },
+  "مكتبه ايه الله الخادمي الاصفهاني|qom": {
+   "label": "مكتبة آية الله الخادمي الاصفهاني",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه المدرسه الشبريه|najaf": {
+   "label": "مكتبة المدرسة الشبرية",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه السيد الطبسي الحائري|qom": {
+   "label": "مكتبة السيد الطبسي الحائري",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه تشستربيتي بدبلن|dublin": {
+   "label": "مكتبة تشستربيتي بدبلن",
+   "city": "dublin",
+   "lat": 53.3422,
+   "lon": -6.26745,
+   "osm": "node/10020524598",
+   "osmName": "Chester Beatty Library",
+   "kind": "tourism:museum",
+   "query": "Chester Beatty",
+   "km": 0.1
+  },
+  "دار الحديث|qom": {
+   "label": "دار الحديث",
+   "city": "qom",
+   "lat": 34.63772,
+   "lon": 50.92034,
+   "osm": "node/5003796203",
+   "osmName": "دارالحدیث",
+   "kind": "building:yes",
+   "query": "دارالحدیث",
+   "km": 4
+  },
+  "مكتبه مزار محمد هلال بن علي|aran": {
+   "label": "مكتبة مزار محمد هلال بن علي",
+   "city": "aran",
+   "approx": true
+  },
+  "مكتبه الامام جمعه زنجان|zanjan": {
+   "label": "مكتبة الامام جمعه زنجان",
+   "city": "zanjan",
+   "approx": true
+  },
+  "مكتبه السيد حسن الصدر|kadhimiya": {
+   "label": "مكتبة السيد حسن الصدر",
+   "city": "kadhimiya",
+   "approx": true
+  },
+  "مكتبه المدرسه المعصوميه|birjand": {
+   "label": "مكتبة المدرسة المعصومية",
+   "city": "birjand",
+   "approx": true
+  },
+  "مكتبه العلامه رفيعي القزويني|qazvin": {
+   "label": "مكتبة العلامة رفيعي القزويني",
+   "city": "qazvin",
+   "approx": true
+  },
+  "مكتبه الامام زيد بن علي|sanaa": {
+   "label": "مكتبة الامام زيد بن علي",
+   "city": "sanaa",
+   "lat": 15.34974,
+   "lon": 44.1905,
+   "osm": "node/13504835101",
+   "osmName": "مؤسسة الإمام زيد بن علي الثقافية (IZBACF)",
+   "kind": "amenity:library",
+   "query": "مكتبة الامام زيد بن علي",
+   "km": 2.2
+  },
+  "مكتبه يوسف اغا|istanbul": {
+   "label": "مكتبة يوسف أغا",
+   "city": "istanbul",
+   "approx": true
+  },
+  "مكتبات سوريا|damascus": {
+   "label": "مكتبات سوريا",
+   "city": "damascus",
+   "approx": true
+  },
+  "مركز احياء التراث العلمي العربي|baghdad": {
+   "label": "مركز احياء التراث العلمي العربي",
+   "city": "baghdad",
+   "lat": 33.2727,
+   "lon": 44.37955,
+   "osm": "way/4493601",
+   "osmName": "جامعة بغداد",
+   "kind": "amenity:university",
+   "query": "University of Baghdad",
+   "km": 4.9
+  },
+  "مكتبه مولانا سيد علي حسين زنكي بور|zangipur": {
+   "label": "مكتبة مولانا سيد علي حسين زنكي بور",
+   "city": "zangipur",
+   "approx": true
+  },
+  "مكتبه مدرسه الحجه|najafabad": {
+   "label": "مكتبة مدرسة الحجة",
+   "city": "najafabad",
+   "approx": true
+  },
+  "مكتبه جامعه برنستون|princeton": {
+   "label": "مكتبة جامعة برنستون",
+   "city": "princeton",
+   "approx": true
+  },
+  "المركز الوطني للمخطوطات|baghdad": {
+   "label": "المركز الوطني للمخطوطات",
+   "city": "baghdad",
+   "approx": true
+  },
+  "المدرسه الجعفريه|qaen": {
+   "label": "المدرسة الجعفرية",
+   "city": "qaen",
+   "approx": true
+  },
+  "مكتبه السيد محمد صادق بحر العلوم|najaf": {
+   "label": "مكتبة السيد محمد صادق بحر العلوم",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه مؤسسه بساتين للتراث الاسلامي|qom": {
+   "label": "مكتبة مؤسسة بساتين للتراث الاسلامي",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه كاظميني|yazd": {
+   "label": "مكتبة كاظميني",
+   "city": "yazd",
+   "approx": true
+  },
+  "مكتبه الزهراء|isfahan": {
+   "label": "مكتبة الزهراء",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبه مراغه العامه|maragheh": {
+   "label": "مكتبة مراغة العامة",
+   "city": "maragheh",
+   "approx": true
+  },
+  "مكتبه السيّد البروجردي|najaf": {
+   "label": "مكتبة السيّد البروجردي",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه سيد حسن فقيه امامي|isfahan": {
+   "label": "مكتبة سيد حسن فقيه امامي",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبه فحول قزوين|qazvin": {
+   "label": "مكتبة فحول قزوين",
+   "city": "qazvin",
+   "approx": true
+  },
+  "مكتبه مدرسه ايه الله العظمي الخوئي|mashhad": {
+   "label": "مكتبة مدرسة اية الله العظمى الخوئي",
+   "city": "mashhad",
+   "lat": 36.29309,
+   "lon": 59.60812,
+   "osm": "node/5002506223",
+   "osmName": "مدرسة آية آلله العظمى السيد الخوئي (قدس سره)",
+   "kind": "amenity:school",
+   "query": "مدرسة اية الله العظمى الخوئي",
+   "km": 0.5
+  },
+  "مكتبه هادي النجفي|isfahan": {
+   "label": "مكتبة هادي النجفي",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبه امير المؤمنين|boshruyeh": {
+   "label": "مكتبة امير المؤمنين",
+   "city": "boshruyeh",
+   "approx": true
+  },
+  "مكتبه الدكتور زهير الطيب|tehran": {
+   "label": "مكتبة الدكتور زهير الطيب",
+   "city": "tehran",
+   "approx": true
+  },
+  "مكتبه ال المزيدي|kuwait": {
+   "label": "مكتبة آل المزيدي",
+   "city": "kuwait",
+   "lat": 29.37783,
+   "lon": 47.97693,
+   "osm": "way/154718559",
+   "osmName": "المزيدي",
+   "kind": "amenity:place_of_worship",
+   "query": "آل المزيدي",
+   "km": 0.2
+  },
+  "المكتبه العباسيه (باشا اعيان)|basra": {
+   "label": "المكتبة العباسية (باشا أعيان)",
+   "city": "basra",
+   "approx": true
+  },
+  "مكتبه الامام الهادي|mashhad": {
+   "label": "مكتبة الامام الهادي",
+   "city": "mashhad",
+   "approx": true
+  },
+  "اجازات حضرت ايه الله العظمي الشيخ عبد الكريم الحائري اليزدي|qom": {
+   "label": "اجازات حضرت آية الله العظمى الشيخ عبد الكريم الحائري اليزدي",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه السيد مصلح الدين مهدوي|isfahan": {
+   "label": "مكتبة السيد مصلح الدين مهدوي",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبه نوربانو (NURBANU)|istanbul": {
+   "label": "مكتبة نوربانو (NURBANU)",
+   "city": "istanbul",
+   "approx": true
+  },
+  "مكتبه ممتاز العلماء|lucknow": {
+   "label": "مكتبة ممتاز العلماء",
+   "city": "lucknow",
+   "approx": true
+  },
+  "مكتبه امير المؤمنين العامه|isfahan": {
+   "label": "مكتبة امير المؤمنين العامة",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبه مدرسه خان يزد|yazd": {
+   "label": "مكتبة مدرسة خان يزد",
+   "city": "yazd",
+   "approx": true
+  },
+  "مكتبه مؤسسه الامام الصادق|qom": {
+   "label": "مكتبة مؤسسة الامام الصادق",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه المدرسه الاسماعيليه|shahroud": {
+   "label": "مكتبة المدرسة الإسماعيلية",
+   "city": "shahroud",
+   "approx": true
+  },
+  "المخطوطات المحفوظه في مكتبات كربلائيه خاصه|karbala": {
+   "label": "المخطوطات المحفوظة في مكتبات كربلائية خاصة",
+   "city": "karbala",
+   "approx": true
+  },
+  "مكتبه مدرسه ايه الله العظمي الخوئي|najaf": {
+   "label": "مكتبة مدرسة اية الله العظمى الخوئي",
+   "city": "najaf",
+   "approx": true
+  },
+  "جامعه الكوثر الدينيه|islamabad": {
+   "label": "جامعة الكوثر الدينية",
+   "city": "islamabad",
+   "approx": true
+  },
+  "مكتبه الامامين الجوادين العامه الكاظميه|kadhimiya": {
+   "label": "مكتبة الامامين الجوادين العامة الكاظمية",
+   "city": "kadhimiya",
+   "lat": 33.38036,
+   "lon": 44.33817,
+   "osm": "way/1245988816",
+   "osmName": "Kadhimain Shrine",
+   "kind": "amenity:place_of_worship",
+   "query": "العتبة الكاظمية",
+   "km": 0.1
+  },
+  "مكتبه مدرسه سبهسالار|tehran": {
+   "label": "مكتبة مدرسة سبهسالار",
+   "city": "tehran",
+   "approx": true
+  },
+  "مكتبه ايه الله المرعشي|qom": {
+   "label": "مكتبة اية الله المرعشي",
+   "city": "qom",
+   "lat": 34.63925,
+   "lon": 50.87761,
+   "osm": "way/350579174",
+   "osmName": "مكتبة آية الله مرعشي",
+   "kind": "amenity:library",
+   "query": "کتابخانه آیت الله مرعشی نجفی",
+   "km": 0.1
+  },
+  "مكتبات نجفيه خاصه ج2|najaf": {
+   "label": "مكتبات نجفية خاصة ج2",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه عبد الله بن عباس|taif": {
+   "label": "مكتبة عبد الله بن عباس",
+   "city": "taif",
+   "approx": true
+  },
+  "مكتبات الحله|hilla": {
+   "label": "مكتبات الحله",
+   "city": "hilla",
+   "approx": true
+  },
+  "مكتبه الاوقاف العامه|baghdad": {
+   "label": "مكتبة الاوقاف العامة",
+   "city": "baghdad",
+   "approx": true
+  },
+  "مكتبه السيد كاظم مير يحيي|arak": {
+   "label": "مكتبة السيد كاظم مير يحيى",
+   "city": "arak",
+   "approx": true
+  },
+  "مكتبه صدر خواجه|isfahan": {
+   "label": "مكتبة صدر خواجة",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبه الحجيات|mosul": {
+   "label": "مكتبة الحجيات",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه بيت الحكمه|baghdad": {
+   "label": "مكتبة بيت الحكمة",
+   "city": "baghdad",
+   "lat": 33.3424,
+   "lon": 44.38385,
+   "osm": "way/888025750",
+   "osmName": "مكتبة بيت الحكمة",
+   "kind": "amenity:library",
+   "query": "مكتبة بيت الحكمة",
+   "km": 3.4
+  },
+  "مكتبه السيد محمد تقي الموسوي الشفتي|isfahan": {
+   "label": "مكتبة السيد محمد تقي الموسوي الشفتي",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبات المغرب|rabat": {
+   "label": "مكتبات المغرب",
+   "city": "rabat",
+   "approx": true
+  },
+  "مكتبه المدرسه الاحمديه|mosul": {
+   "label": "مكتبة المدرسة الأحمدية",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبات الامارات|dubai": {
+   "label": "مكتبات الامارات",
+   "city": "dubai",
+   "approx": true
+  },
+  "مكتبه اليزدي والاخوند|najaf": {
+   "label": "مكتبة اليزدي والاخوند",
+   "city": "najaf",
+   "approx": true
+  },
+  "مركز الدراسات التخصصيه في الامام المهدي (عج)|najaf": {
+   "label": "مركز الدراسات التخصصية في الامام المهدي (عج)",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه السيد مهدي شفتي (مسجد سيد)|isfahan": {
+   "label": "مكتبة السيد مهدي شفتي (مسجد سيد)",
+   "city": "isfahan",
+   "approx": true
+  },
+  "مكتبات نجفيه ج1|najaf": {
+   "label": "مكتبات نجفية ج1",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه الحاج الشيخ هادي نجم ابادي|tehran": {
+   "label": "مكتبة الحاج الشيخ هادي نجم آبادي",
+   "city": "tehran",
+   "approx": true
+  },
+  "مكتبه مولانا سيد محمد ابراهيم زنكي بور|zangipur": {
+   "label": "مكتبة مولانا سيد محمد ابراهيم زنكي بور",
+   "city": "zangipur",
+   "approx": true
+  },
+  "مكتبه حسين الامام|qaen": {
+   "label": "مكتبة حسين الامام",
+   "city": "qaen",
+   "approx": true
+  },
+  "مكتبات نجفيه ج2|najaf": {
+   "label": "مكتبات نجفية ج2",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه قنبرعلي خان|tehran": {
+   "label": "مكتبة قنبرعلي خان",
+   "city": "tehran",
+   "approx": true
+  },
+  "مكتبه الشيخ محمد علي الانصاري الاراكي|arak": {
+   "label": "مكتبة الشيخ محمد علي الانصاري الآراكي",
+   "city": "arak",
+   "approx": true
+  },
+  "مركز الفقيه العاملي|beirut": {
+   "label": "مركز الفقيه العاملي",
+   "city": "beirut",
+   "approx": true
+  },
+  "مكتبه ميونخ|munich": {
+   "label": "مكتبة ميونخ",
+   "city": "munich",
+   "approx": true
+  },
+  "مكتبه الشيخ محمود العلومي|yazd": {
+   "label": "مكتبة الشيخ محمود العلومي",
+   "city": "yazd",
+   "approx": true
+  },
+  "مكتبه دائره التراث الثقافي|birjand": {
+   "label": "مكتبة دائرة التراث الثقافي",
+   "city": "birjand",
+   "approx": true
+  },
+  "المكتبه الملكيه البريطانيه|london": {
+   "label": "المكتبه الملكية البريطانيه",
+   "city": "london",
+   "approx": true
+  },
+  "مكتبه الاوقاف العامه|mosul": {
+   "label": "مكتبة الأوقاف العامة",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه السيد كاظم المدرسي اليزدي|yazd": {
+   "label": "مكتبة السيد كاظم المدرسي اليزدي",
+   "city": "yazd",
+   "approx": true
+  },
+  "السيد حسين بحر العلوم|najaf": {
+   "label": "السيد حسين بحر العلوم",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه سعيد الديوه جي|mosul": {
+   "label": "مكتبة سعيد الديوه جي",
+   "city": "mosul",
+   "approx": true
+  },
+  "مدرسه يحيي باشا الجليلي|mosul": {
+   "label": "مدرسة يحيى باشا الجليلي",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه مدرسه صدر|tehran": {
+   "label": "مكتبة مدرسة صدر",
+   "city": "tehran",
+   "approx": true
+  },
+  "مكتبه المدرسه المنصوريه|shiraz": {
+   "label": "مكتبة المدرسة المنصورية",
+   "city": "shiraz",
+   "approx": true
+  },
+  "مكتبه الحوزه العلميه الحسنيه/كاخك|kakhk": {
+   "label": "مكتبة الحوزة العلمية الحسنية/كاخك",
+   "city": "kakhk",
+   "approx": true
+  },
+  "مكتبه مؤسسه احياء الطب الطبيعي|qom": {
+   "label": "مكتبة مؤسسة احياء الطب الطبيعي",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه الشيخ محمد حسن ال ياسين|kadhimiya": {
+   "label": "مكتبة الشيخ محمد حسن آل ياسين",
+   "city": "kadhimiya",
+   "approx": true
+  },
+  "فهرس مكتبه مدرسه الحكيم|shiraz": {
+   "label": "فهرس مكتبة مدرسة الحكيم",
+   "city": "shiraz",
+   "approx": true
+  },
+  "مكتبه قائم|ferdows": {
+   "label": "مكتبة قائم",
+   "city": "ferdows",
+   "lat": 34.0111,
+   "lon": 58.16753,
+   "osm": "way/1196304484",
+   "osmName": "کتابخانه قائم",
+   "kind": "amenity:library",
+   "query": "مكتبة قائم",
+   "km": 0.9
+  },
+  "مكتبه الشيخ علي فضل البيرجندي|mashhad": {
+   "label": "مكتبة الشيخ علي فضل البيرجندي",
+   "city": "mashhad",
+   "approx": true
+  },
+  "مكتبه كرماني|najaf": {
+   "label": "مكتبة كرماني",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبات تونس الوطنيه|tunis": {
+   "label": "مكتبات تونس الوطنية",
+   "city": "tunis",
+   "approx": true
+  },
+  "مكتبه الامام الصادق|najaf": {
+   "label": "مكتبة الإمام الصادق",
+   "city": "najaf",
+   "lat": 32.00086,
+   "lon": 44.34293,
+   "osm": "node/8121489617",
+   "osmName": "Library alsadiq",
+   "kind": "amenity:library",
+   "query": "مكتبة الإمام الصادق",
+   "km": 0.8
+  },
+  "فيلم مكتبه الدكتور حسين علي محفوظ|baghdad": {
+   "label": "فيلم مكتبة الدكتور حسين علي محفوظ",
+   "city": "baghdad",
+   "approx": true
+  },
+  "مكتبه الامير غازي العامه|mosul": {
+   "label": "مكتبة الأمير غازي العامة",
+   "city": "mosul",
+   "approx": true
+  },
+  "المكتبه الشبريه|khanaqin": {
+   "label": "المكتبة الشبرية",
+   "city": "khanaqin",
+   "approx": true
+  },
+  "مكتبه سعيدي|birjand": {
+   "label": "مكتبة سعيدي",
+   "city": "birjand",
+   "lat": 32.8742,
+   "lon": 59.2158,
+   "osm": "node/4332768807",
+   "osmName": "Ostad Saeedi Library",
+   "kind": "amenity:library",
+   "query": "مكتبة سعيدي",
+   "km": 1
+  },
+  "خزائن المدرسه الامينيه جامع الباشا|mosul": {
+   "label": "خزائن المدرسة الأمينية جامع الباشا",
+   "city": "mosul",
+   "approx": true
+  },
+  "المكتبه المركزيه العامه|mosul": {
+   "label": "المكتبة المركزية العامة",
+   "city": "mosul",
+   "approx": true
+  },
+  "المكتبه القادريه العامه|baghdad": {
+   "label": "المكتبة القادرية العامة",
+   "city": "baghdad",
+   "approx": true
+  },
+  "مكتبه حاجي احمد علي الحنفي|birjand": {
+   "label": "مكتبة حاجي احمد علي الحنفي",
+   "city": "birjand",
+   "approx": true
+  },
+  "مكتبه الشيخ محمد اللويمي الاحسائي|qom": {
+   "label": "مكتبة الشيخ محمد اللويمي الاحسائي",
+   "city": "qom",
+   "approx": true
+  },
+  "مكتبه الحاج نصري النقيب|kadhimiya": {
+   "label": "مكتبة الحاج نصري النقيب",
+   "city": "kadhimiya",
+   "approx": true
+  },
+  "مكتبه مهدي اسدي مقدم الخاصه|boshruyeh": {
+   "label": "مكتبة مهدي اسدي مقدم الخاصة",
+   "city": "boshruyeh",
+   "approx": true
+  },
+  "مكتبه مكتب مفيد|ferdows": {
+   "label": "مكتبة مكتب مفيد",
+   "city": "ferdows",
+   "approx": true
+  },
+  "مكتبات القطيف|qatif": {
+   "label": "مكتبات القطيف",
+   "city": "qatif",
+   "approx": true
+  },
+  "مدرسه جامع مريم خاتون|mosul": {
+   "label": "مدرسة جامع مريم خاتون",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه الفاروقي|birjand": {
+   "label": "مكتبة الفاروقي",
+   "city": "birjand",
+   "approx": true
+  },
+  "خزانه الدكتور داود الجلبي|mosul": {
+   "label": "خزانة الدكتور داود الجلبي",
+   "city": "mosul",
+   "approx": true
+  },
+  "المكتبه المركزيه|basra": {
+   "label": "المكتبة المركزية",
+   "city": "basra",
+   "approx": true
+  },
+  "مكتبه مدرسه الشهيد بهشتي الثانويه|ferdows": {
+   "label": "مكتبة مدرسة الشهيد بهشتي الثانوية",
+   "city": "ferdows",
+   "approx": true
+  },
+  "مكتبه مدرسه الوسطي العامه|najaf": {
+   "label": "مكتبة مدرسة الوسطى العامة",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبات قطر|doha": {
+   "label": "مكتبات قطر",
+   "city": "doha",
+   "approx": true
+  },
+  "مكتبات البحرين|manama": {
+   "label": "مكتبات البحرين",
+   "city": "manama",
+   "approx": true
+  },
+  "خزانه مدرسه الحاج حسين بك|mosul": {
+   "label": "خزانة مدرسة الحاج حسين بك",
+   "city": "mosul",
+   "approx": true
+  },
+  "الاستاذ صادق شاهين|hilla": {
+   "label": "الأستاذ صادق شاهين",
+   "city": "hilla",
+   "approx": true
+  },
+  "جامعه الحكمه|baghdad": {
+   "label": "جامعة الحكمة",
+   "city": "baghdad",
+   "lat": 33.30104,
+   "lon": 44.43558,
+   "osm": "node/11676570072",
+   "osmName": "كلية الحكمة الجامعة",
+   "kind": "amenity:university",
+   "query": "جامعة الحكمة",
+   "km": 6.6
+  },
+  "مكتبه المدرسه المحمديه|mosul": {
+   "label": "مكتبة المدرسة المحمدية",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه سامر الزبيدي النجفي|najaf": {
+   "label": "مكتبة سامر الزبيدي النجفي",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه جلبي عبد الله افندي|istanbul": {
+   "label": "مكتبة جلبي عبد الله أفندي",
+   "city": "istanbul",
+   "approx": true
+  },
+  "مكتبه المدرسه النعمانيه|mosul": {
+   "label": "مكتبة المدرسة النعمانية",
+   "city": "mosul",
+   "approx": true
+  },
+  "خزائن حسن باشا الجليلي|mosul": {
+   "label": "خزائن حسن باشا الجليلي",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه الحوزه العلميه البرز پژوهش سرا (مركز الابحاث)|karaj": {
+   "label": "مكتبة الحوزة العلمية البرز پژوهش سرا (مركز الأبحاث)",
+   "city": "karaj",
+   "approx": true
+  },
+  "مدرسه الحاج زكر|mosul": {
+   "label": "مدرسة الحاج زكر",
+   "city": "mosul",
+   "approx": true
+  },
+  "د. محمد صديق الجليلي|mosul": {
+   "label": "د. محمد صديق الجليلي",
+   "city": "mosul",
+   "approx": true
+  },
+  "الموصل|mosul": {
+   "label": "الموصل",
+   "city": "mosul",
+   "approx": true
+  },
+  "عبد الله مخلص|mosul": {
+   "label": "عبد الله مخلص",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه محمد سعيد الجليلي|mosul": {
+   "label": "مكتبة محمد سعيد الجليلي",
+   "city": "mosul",
+   "approx": true
+  },
+  "مدرسه الصائغ الجلبي|mosul": {
+   "label": "مدرسة الصائغ الجلبي",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه مدرسه الشربياني|najaf": {
+   "label": "مكتبة مدرسة الشربياني",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه النجف الاشرف|najaf": {
+   "label": "مكتبة النجف الاشرف",
+   "city": "najaf",
+   "approx": true
+  },
+  "مكتبه الدكتور محمد مكيه|baghdad": {
+   "label": "مكتبة الدكتور محمد مكية",
+   "city": "baghdad",
+   "approx": true
+  },
+  "مكتبه الحاج محمد افندي الرضواني|mosul": {
+   "label": "مكتبة الحاج محمد أفندي الرضواني",
+   "city": "mosul",
+   "approx": true
+  },
+  "مكتبه الجامع الكبير|mosul": {
+   "label": "مكتبة الجامع الكبير",
+   "city": "mosul",
+   "approx": true
+  },
+  "مدرسه عبد الله بك|mosul": {
+   "label": "مدرسة عبد الله بك",
+   "city": "mosul",
+   "approx": true
+  },
+  "مدرسه بكر افندي|mosul": {
+   "label": "مدرسة بكر أفندي",
+   "city": "mosul",
+   "approx": true
+  },
+  "جامع النبي شيث|mosul": {
+   "label": "جامع النبي شيث",
+   "city": "mosul",
+   "lat": 36.3351,
+   "lon": 43.1355,
+   "osm": "node/7260935585",
+   "osmName": "جامع النبي شيث",
+   "kind": "amenity:place_of_worship",
+   "query": "جامع النبي شيث",
+   "km": 1.5
+  },
+  "جامع النبي شيت|mosul": {
+   "label": "جامع النبي شيت",
+   "city": "mosul",
+   "lat": 36.33484,
+   "lon": 43.1353,
+   "osm": "node/4872766621",
+   "osmName": "جامع النبي شيت",
+   "kind": "amenity:place_of_worship",
+   "query": "جامع النبي شيت",
+   "km": 1.5
+  },
+  "الشيخ عبد المجيد الخطيب|mosul": {
+   "label": "الشيخ عبد المجيد الخطيب",
+   "city": "mosul",
+   "approx": true
+  },
+  "خزائن مدرسه الخياط|mosul": {
+   "label": "خزائن مدرسة الخياط",
+   "city": "mosul",
+   "approx": true
+  },
+  "جامعه الكوفه|kufa": {
+   "label": "جامعة الكوفة",
+   "city": "kufa",
+   "lat": 32.0316,
+   "lon": 44.37252,
+   "osm": "relation/14664901",
+   "osmName": "جامعة الكوفة",
+   "kind": "amenity:university",
+   "query": "جامعة الكوفة",
+   "km": 2.6
+  }
+ },
+ "generated": "2026-11-08",
+ "attribution": "Locations © OpenStreetMap contributors (ODbL), found with Nominatim"
+}
