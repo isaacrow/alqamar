@@ -10,4 +10,4 @@ services:
       - key: ALQAMAR_FRAME_ANCESTORS
         value: "'self' https://mooon.site https://www.mooon.site http://localhost:*"
       - key: NODE_OPTIONS
-        value: "--max-old-space-size=400"
+        value: "--max-old-space-size=384"
