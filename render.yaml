@@ -1,13 +1,12 @@
 services:
   - type: web
-    name: alqamar
+    name: alqamar-manuscripts
     runtime: docker
     plan: free
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /healthz
     envVars:
-      - key: ALQAMAR_MOON_URL
-        value: https://mooon.site/moon/
-      - key: ALQAMAR_FRAME_ANCESTORS
-        value: "'self' https://mooon.site https://www.mooon.site http://localhost:*"
+      - key: NODE_ENV
+        value: production
       - key: NODE_OPTIONS
-        value: "--max-old-space-size=384"
+        value: --max-old-space-size=384
